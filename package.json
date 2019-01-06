@@ -1,0 +1,19 @@
+{
+  "name": "gca",
+  "version": "1.0.0",
+  "description": "Use classic algorithms for Graphs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/babudabu/gca.git"
+  },
+  "author": "Amir Liberzon <amir.lib@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/babudabu/gca/issues"
+  },
+  "homepage": "https://github.com/babudabu/gca#readme"
+}
