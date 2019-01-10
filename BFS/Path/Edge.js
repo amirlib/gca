@@ -4,17 +4,23 @@
  * @class Edge
  */
 class Edge {
-    constructor(startNodeID, endNodeID) {
-        this.startNodeID = startNodeID;
-        this.endNodeID = endNodeID;
+    /**
+     * Creates an instance of Edge.
+     * @param {number} from ID of strat Node of edge.
+     * @param {number} to ID of end Node of edge.
+     * @memberof Edge
+     */
+    constructor(from, to) {
+        this.from = from;
+        this.to = to;
     }
     /**
-     * Prints the details of the edge. You CAN just print the object without calling toString method.
-     * @returns String with the data.
+     * Prints the details of the edge.
+     * @returns {string} String with the data.
      * @memberof Edge
      */
     toString() {
-        return `${this.startNodeID} to ${this.endNodeID}`;
+        return `${this.from} to ${this.to}`;
     }
 }
 

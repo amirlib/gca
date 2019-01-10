@@ -13,18 +13,17 @@ class Graph {
      * @returns {number} The number of nodes.
      * @memberof Graph
      */
-    getNodesSize() {
+    size() {
         return this.nodesID.length;
     }
     /**
      * Inserts a new node to the graph.
      * @param {number} ID ID of node to insert.
+     * @returns {boolean} True, if node ID added successfully to the graph. Otherwise, returns false.
      * @memberof Graph
      */
-    insertNode(ID) {
-        if (this.searchIndexOfNodeID(ID) != -1) {
-            console.log(`This node already exists`);
-        } else {
+    addNode(ID) {
+        if (this.hasNode(ID) == false) { //If node ID is not exist, create new one
             let length = this.matrix.length;
             this.nodesID.push(ID);
             this.matrix[0].push(ID);
@@ -35,38 +34,36 @@ class Graph {
             for (let i = 1; i <= length; i++) {
                 this.matrix[length][i] = 0;
             }
+            return true;
         }
+        return false;
     }
     /**
-     * Inserts new edge to the graph: when '1' in (startNodeID, endNodeID) represent an edge from startNodeID to endNodeID.
-     * @param {number} startNodeID ID of strat Node of edge.
-     * @param {number} endNodeID ID of end Node of edge.
+     * Inserts new edge to the graph: when '1' in (from, to) represent an edge from startNodeID to endNodeID.
+     * @param {number} from ID of strat Node of edge.
+     * @param {number} to ID of end Node of edge.
+     * @returns {boolean} True, if edge added successfully to the graph. Otherwise, returns false.
      * @memberof Graph
      */
-    insertEdge(startNodeID, endNodeID) {
-        let startNodeIndex = this.searchIndexOfNodeID(startNodeID);
-        let endNodeIndex = this.searchIndexOfNodeID(endNodeID);
-        if (startNodeIndex == -1) {
-            console.log(`Node ID: ${startNodeID} does not exist`);
-        } else if (endNodeIndex == -1) {
-            console.log(`Node ID: ${endNodeID} does not exist`);
-        } else if (this.searchEdge(startNodeID, endNodeID) == true) {
-            console.log(`The edge you are trying to insert, is already exist`);
-        } else {
-            this.matrix[startNodeIndex][endNodeIndex] = 1;
+    addEdge(from, to) {
+        let fromIndex = this.indexOfNodeID(from);
+        let toIndex = this.indexOfNodeID(to);
+        if (fromIndex != -1 && toIndex != -1) {
+            this.matrix[fromIndex][toIndex] = 1;
+            return true;
         }
+        return false;
     }
     /**
      * Deletes given node ID from the graph, include all the edges that related to this ID.
      * @param {number} ID ID of node to delete.
+     * @returns {boolean} True, if node deleted successfully from the graph. Otherwise, returns false.
      * @memberof Graph
      */
     deleteNode(ID) {
         let length = this.matrix.length;
-        let nodeIndex = this.searchIndexOfNodeID(ID);
-        if (nodeIndex == -1) {
-            console.log(`This node does not exist`);
-        } else {
+        let nodeIndex = this.indexOfNodeID(ID);
+        if (nodeIndex != -1) {
             for (let i = 0; i < length; i++) {
                 for (let j = nodeIndex; j < length - 1; j++) {
                     this.matrix[i][j] = this.matrix[i][j + 1];
@@ -79,35 +76,39 @@ class Graph {
             this.matrix.pop();
             /* Delete the ID from the nodeID array. */
             length = this.nodesID.length;
-            nodeIndex = this.searchIndexOfNodeID(ID) - 1;
+            nodeIndex = this.indexOfNodeID(ID) - 1;
             for (let i = nodeIndex; i < length; i++) {
                 this.nodesID[i] = this.nodesID[i + 1];
             }
             this.nodesID.pop();
+            return true;
         }
+        return false;
     }
     /**
      * Deletes edge from the graph.
-     * @param {number} startNodeID ID of strat Node of edge.
-     * @param {number} endNodeID ID of end Node of edge.
+     * @param {number} from ID of strat Node of edge.
+     * @param {number} to ID of end Node of edge.
+     * @returns {boolean} True, if edge deleted successfully from the graph. Otherwise, returns false.
      * @memberof Graph
      */
-    deleteEdge(startNodeID, endNodeID) {
-        let startNodeIndex = this.searchIndexOfNodeID(startNodeID);
-        let endNodeIndex = this.searchIndexOfNodeID(endNodeID);
-        if (startNodeIndex != -1 && endNodeIndex != -1) {
-            this.matrix[startNodeIndex][endNodeIndex] = 0;
+    deleteEdge(from, to) {
+        let fromIndex = this.indexOfNodeID(from);
+        let toIndex = this.indexOfNodeID(to);
+        if (fromIndex != -1 && toIndex != -1) {
+            this.matrix[fromIndex][toIndex] = 0;
+            return true;
         }
+        return false;
     }
     /**
      * Searchs for index of node with id: ID, that will represented in the matrix of graph.
      * @param {number} ID ID of node to search.
-     * @returns The index of node that represent the same index in the matrix of the graph. Returns -1 if there is no such ID.
+     * @returns {number} The index of node that represent the same index in the matrix of the graph. Returns -1 if there is no such ID.
      * @memberof Graph
      */
-    searchIndexOfNodeID(ID) {
-        let length = this.nodesID.length;
-        for (let i = 0; i < length; i++) {
+    indexOfNodeID(ID) {
+        for (let i = 0; i < this.nodesID.length; i++) {
             if (this.nodesID[i] == ID) {
                 return i + 1;
             }
@@ -115,17 +116,15 @@ class Graph {
         return -1;
     }
     /**
-     * Finds edges that have the endNodeID of the node with id: ID
+     * Finds edges that have the fromNode of the node with id: ID
      * @param {number} ID ID of node.
-     * @returns Array of IDs that are the startNodeID of the edges. Returns empty array if there are no edges like that.
+     * @returns {number[]} Array of IDs that are the toNodes of the edges. Returns empty array if there are no edges like that.
      * @memberof Graph
      */
-    findEdgesFromNode(ID) {
-        let nodeIndex = this.searchIndexOfNodeID(ID);
+    findEndNodesEdgesFromNode(ID) {
+        let nodeIndex = this.indexOfNodeID(ID);
         let result = [];
-        if (nodeIndex == -1) {
-            return result;
-        } else {
+        if (nodeIndex != -1) {
             for (let i = 1; i < this.matrix.length; i++) {
                 if (this.matrix[nodeIndex][i] == 1) {
                     result.push(this.matrix[0][i]);
@@ -135,19 +134,35 @@ class Graph {
         return result;
     }
     /**
-     * Searchs if exist an edge: (startNodeID, endNodeID).
-     * @param {number} startNodeID ID of strat Node of edge.
-     * @param {number} endNodeID ID of end Node of edge.
-     * @returns True if there is such edge. Otherwise, False.
+     * Finds edges that have the toNode of the node with id: ID
+     * @param {number} ID ID of node.
+     * @returns {number[]} Array of IDs that are the fromNodes of the edges. Returns empty array if there are no edges like that.
      * @memberof Graph
      */
-    searchEdge(startNodeID, endNodeID) {
-        let startNodeIndex = this.searchIndexOfNodeID(startNodeID);
-        let endNodeIndex = this.searchIndexOfNodeID(endNodeID);
-        if (startNodeIndex == -1 || endNodeIndex == -1) {
-            return false;
-        } else {
-            if (this.matrix[startNodeIndex][endNodeIndex] == 1) {
+    findStartNodesEdgesFromNode(ID) {
+        let nodeIndex = this.indexOfNodeID(ID);
+        let result = [];
+        if (nodeIndex != -1) {
+            for (let i = 1; i < this.matrix.length; i++) {
+                if (this.matrix[i][nodeIndex] == 1) {
+                    result.push(this.matrix[i][0]);
+                }
+            }
+        }
+        return result;
+    }
+    /**
+     * Searchs if exist an edge: (from, to).
+     * @param {number} from ID of strat Node of edge.
+     * @param {number} to ID of end Node of edge.
+     * @returns {boolean} True if graph has such edge. Otherwise, False.
+     * @memberof Graph
+     */
+    hasEdge(from, to) {
+        let fromIndex = this.indexOfNodeID(from);
+        let toIndex = this.indexOfNodeID(to);
+        if (fromIndex != -1 && toIndex != -1) {
+            if (this.matrix[fromIndex][toIndex] == 1) {
                 return true;
             }
         }
@@ -156,12 +171,11 @@ class Graph {
     /**
      * Checks if given node is exist in the graph.
      * @param {number} ID The given node ID.
-     * @returns True if exist, otherwise False.
+     * @returns {boolean} True if exist, otherwise False.
      * @memberof Graph
      */
-    checkExistNodeInGraph(ID) {
-        let length = this.nodesID.length;
-        for (let i = 0; i < length; i++) {
+    hasNode(ID) {
+        for (let i = 0; i < this.nodesID.length; i++) {
             if (this.nodesID[i] == ID) {
                 return true;
             }
@@ -170,38 +184,37 @@ class Graph {
     }
     /**
      * Prints the matrix of the graph.
-     *
+     * @returns {string}
      * @memberof Graph
      */
-    printGraph() {
-        let length = this.matrix.length;
+    toString() {
         let print = "";
-        console.log(`----Graph----`);
-        for (let i = 0; i < length; i++) {
-            for (let j = 0; j < length; j++) {
-                print = print + "     " + this.matrix[i][j];
+        for (let i = 0; i < this.matrix.length; i++) {
+            for (let j = 0; j < this.matrix.length; j++) {
+                print = `${print}     ${this.matrix[i][j]}`;
             }
-            console.log(`${print}`);
-            print = "";
+            if (i != this.matrix.length - 1) {
+                print = `${print}\n`;
+            }
         }
+        return print;
     }
     /**
      * Prints the nodes that are in NodesID array.
-     *
+     * @returns {string}
      * @memberof Graph
      */
     printNodesID() {
-        let length = this.nodesID.length;
         let print = "";
-        console.log(`----Nodes ID----`);
-        for (let i = 0; i < length; i++) {
-            print = print + " " + this.nodesID[i];
+        for (let i = 0; i < this.nodesID.length; i++) {
+            print = `${print} ${this.nodesID[i]}`;
         }
-        console.log(`${print}`);
+        return print;
     }
     /**
      * Throw error. Can serch for path only from BFS Graph.
-     * @param {number} ID 
+     * @param {number} ID
+     * @throws {Error} Throws Error if Graph object trying to return path and not bfsGrah object.
      * @memberof Graph
      */
     getPath(ID) {

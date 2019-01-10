@@ -11,18 +11,18 @@ class Path {
     }
     /**
      * Gets the number of nodes in the path.
-     * @returns The number of nodes.
+     * @returns {number} The number of nodes.
      * @memberof Path
      */
-    getPathLength() {
+    size() {
         return this.edges.length;
     }
     /**
      * Adds new node to the path.
-     * @param {} ID ID of node.
+     * @param {number} ID ID of node.
      * @memberof Path
      */
-    addNodeToPath(ID) {
+    addNode(ID) {
         this.nodes.push(ID);
     }
     /**
@@ -31,7 +31,7 @@ class Path {
      * @param {Edge} edge
      * @memberof Path
      */
-    addEdgeToPath(edge) {
+    addEdge(edge) {
         this.edges.push(edge);
     }
     /**
@@ -49,22 +49,24 @@ class Path {
     createEdgesFromNodes() {
         for (let i = 0; i < this.nodes.length - 1; i++) {
             let edge = new Edge(this.nodes[i], this.nodes[i + 1]);
-            this.addEdgeToPath(edge);
+            this.addEdge(edge);
         }
     }
     /**
      * Prints the edges of the path.
      *
+     * @returns {string}
      * @memberof Path
      */
-    print() {
-        let print = "";
-        console.log(`----Path----`);
-        for (let i = 0; i < this.getPathLength(); i++) {
-            print = print + "     " + this.edges[i].startNodeID + " to " + this.edges[i].endNodeID;
-            console.log(`${print}`);
-            print = "";
+    toString() {
+        let print = ``;
+        for (let i = 0; i < this.edges.length; i++) {
+            print = `${print}${this.edges[i]}`;
+            if (i != this.edges.length - 1) {
+                print = `${print}\n`;
+            }
         }
+        return print;
     }
 }
 

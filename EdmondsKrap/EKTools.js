@@ -4,7 +4,7 @@ const FlowEdgeBackward = require('../Flow-Graph/FlowEdgeBackward');
  * Calculate the max flow of the graph.
  *
  * @param {FlowGraph} graph
- * @returns The max flow.
+ * @returns {number} The max flow.
  */
 function flowMax(graph) {
     let flowIn = countFlow(graph.edgesForwardList);
@@ -15,13 +15,13 @@ function flowMax(graph) {
  * Sums the flow of the edges from the given edges list of the node t (node ID 1).
  *
  * @param {LinkedList} list The given edges list (Can bew edges instanceof FlowEdgeForward or FlowEdgeBackward).
- * @returns The sum of flow.
+ * @returns {number} The sum of flow.
  */
 function countFlow(list) {
     let temp = list.head;
     let flow = 0;
     while (temp != null) {
-        if (temp.data.endNodeID == 1) {
+        if (temp.data.to == 1) {
             flow = flow + temp.data.flow;
         }
         temp = temp.next;
@@ -35,14 +35,13 @@ function countFlow(list) {
  * @param {Path} path Given path.
  */
 function augment(graphF, path) {
-    let length = path.getPathLength();
     let temp, edge;
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < path.size(); i++) {
         if (path.edges[i] instanceof FlowEdgeForward) {
-            edge = graphF.findIfEdgeExistInList(path.edges[i].startNodeID, path.edges[i].endNodeID, graphF.edgesForwardList);
+            edge = graphF.findEdgeInList(path.edges[i].from, path.edges[i].to, graphF.edgesForwardList);
             temp = graphF.edgesForwardList.head;
         } else {
-            edge = graphF.findIfEdgeExistInList(path.edges[i].startNodeID, path.edges[i].endNodeID, graphF.edgesBackwardList);
+            edge = graphF.findEdgeInList(path.edges[i].from, path.edges[i].to, graphF.edgesBackwardList);
             temp = graphF.edgesBackwardList.head;
         }
         while (temp != null) {
@@ -63,34 +62,34 @@ function augment(graphF, path) {
  *
  * @param {FlowGraph} graphF From the graph, its gets edges list of FlowEdgeForward and FlowEdgeBackward.
  * @param {Path} path Given path.
- * @returns Updated FlowGraph.
+ * @returns {FlowGraph} Updated FlowGraph.
  */
 function updateFlowGraph(graphF, path) {
     let graph = graphF;
     let temp, edge;
-    let length = path.getPathLength();
+    let length = path.size();
     for (let i = 0; i < length; i++) {
         if (path.edges[i] instanceof FlowEdgeForward) {
             temp = graphF.edgesBackwardList.head;
-            edge = graphF.findIfEdgeExistInList(path.edges[i].endNodeID, path.edges[i].startNodeID, graphF.edgesBackwardList);
+            edge = graphF.findEdgeInList(path.edges[i].to, path.edges[i].from, graphF.edgesBackwardList);
             if (edge == null) {
-                edge = new FlowEdgeBackward(path.edges[i].endNodeID, path.edges[i].startNodeID);
-                graph.markEdge(edge.startNodeID, edge.endNodeID);
+                edge = new FlowEdgeBackward(path.edges[i].to, path.edges[i].from);
+                graph.markEdge(edge.from, edge.to);
                 graphF.edgesBackwardList.addData(edge);
             }
         } else {
             temp = graphF.edgesForwardList.head;
-            edge = graphF.findIfEdgeExistInList(path.edges[i].endNodeID, path.edges[i].startNodeID, graphF.edgesForwardList);
+            edge = graphF.findEdgeInList(path.edges[i].to, path.edges[i].from, graphF.edgesForwardList);
         }
-        if (path.edges[i].checkIfCapacityIsFull()) {
-            graph.deleteEdge(path.edges[i].startNodeID, path.edges[i].endNodeID);
-            graph.markEdge(path.edges[i].endNodeID, path.edges[i].startNodeID);
+        if (path.edges[i].IsCapacityFull()) {
+            graph.unmarkEdge(path.edges[i].from, path.edges[i].to);
+            graph.markEdge(path.edges[i].to, path.edges[i].from);
             edge.resetFlow();
         } else {
             edge.changeFlowTo(path.edges[i].capacity - path.edges[i].flow);
         }
         while (temp != null) {
-            if (temp.data.startNodeID == edge.startNodeID && temp.data.endNodeID == edge.endNodeID) {
+            if (temp.data.from == edge.from && temp.data.to == edge.to) {
                 temp.data = edge;
                 break;
             }

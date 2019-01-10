@@ -6,8 +6,14 @@ const FlowEdge = require('./FlowEdge');
  * @extends {FlowEdge}
  */
 class FlowEdgeForward extends FlowEdge {
-    constructor(startNodeID, endNodeID) {
-        super(startNodeID, endNodeID);
+    /**
+     * Creates an instance of FlowEdgeForward.
+     * @param {number} from ID of strat Node of edge.
+     * @param {number} to ID of end Node of edge.
+     * @memberof FlowEdgeForward
+     */
+    constructor(from, to) {
+        super(from, to);
     }
 }
 

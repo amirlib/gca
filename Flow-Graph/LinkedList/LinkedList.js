@@ -1,5 +1,4 @@
 const Node = require('./Node');
-const LinkedListError = require('./LinkedListError');
 /**
  * Implementaion of linked list. Used for saveing the edges of the Flow Graph.
  * 
@@ -29,24 +28,27 @@ class LinkedList {
     }
     /**
      * Checks if there a node with this obj, and if does, remove it.
-     * @param {object} obj - The object to be removed.
+     * @param {object} obj The object to be removed.
+     * @returns {boolean} True, if node with given data removed from linkedlist. Otherwise, false.
      * @memberof LinkedList
      */
     removeData(obj) {
-        if (this.checkIfNodeExist(obj) == false) {
-            throw new LinkedListError(`There no such node to remove.`);
+        if (this.has(obj) == true) {
+            if (this.head.data == obj) {
+                this.head = this.head.next;
+            } else {
+                let temp = this.head;
+                let prev = null;
+                while (temp.next.data != obj) {
+                    temp = temp.next;
+                }
+                prev = temp;
+                temp = temp.next
+                prev.next = temp.next;
+            }
+            return true;
         }
-        if (this.head.data == obj) {
-            this.head = this.head.next;
-        }
-        let temp = this.head;
-        let prev = null;
-        while (temp.next.data != obj) {
-            temp = temp.next;
-        }
-        prev = temp;
-        temp = temp.next
-        prev.next = temp.next;
+        return false;
     }
     /**
      * Checks if there a node with this obj in the linked list.
@@ -54,7 +56,7 @@ class LinkedList {
      * @returns True if there a such node. Otherwise, False.
      * @memberof LinkedList
      */
-    checkIfNodeExist(obj) {
+    has(obj) {
         let temp = this.head;
         while (temp != null) {
             if (temp.data == obj) {
@@ -66,18 +68,20 @@ class LinkedList {
     }
     /**
      * Prints the data inside all the nodes.
+     * @returns String.
      * @memberof LinkedList
      */
-    print() {
-        let print = "";
-        console.log(`----LinkedList----`);
+    toString() {
+        let print = ``;
         let temp = this.head;
         while (temp != null) {
-            print = print + " " + temp.data;
-            console.log(`${print}`);
-            print = "";
+            print = `${print}${temp.data}`;
+            if (temp.next != null) {
+                print = `${print}\n`;
+            }
             temp = temp.next;
         }
+        return print;
     }
 }
 

@@ -6,8 +6,14 @@ const Edge = require('../BFS/Path/Edge');
  * @extends {Edge}
  */
 class FlowEdge extends Edge {
-    constructor(startNodeID, endNodeID) {
-        super(startNodeID, endNodeID);
+    /**
+     * Creates an instance of FlowEdge.
+     * @param {number} from ID of strat Node of edge.
+     * @param {number} to ID of end Node of edge.
+     * @memberof FlowEdge
+     */
+    constructor(from, to) {
+        super(from, to);
         this.capacity = 1;
         this.flow = 0;
     }
@@ -55,10 +61,10 @@ class FlowEdge extends Edge {
     }
     /**
      * Check the if capacity is full.
-     * @returns True if capacity of the edge is full. Otherwise, return false.
+     * @returns {boolean} True if capacity of the edge is full. Otherwise, return false.
      * @memberof FlowEdge
      */
-    checkIfCapacityIsFull() {
+    IsCapacityFull() {
         if (this.flow == this.capacity) {
             return true;
         }
@@ -66,7 +72,7 @@ class FlowEdge extends Edge {
     }
     /**
      * Prints the details of the edge. You CAN just print the object without calling toString method.
-     * @returns String with the data.
+     * @returns {string} String with the data.
      * @memberof FlowEdge
      */
     toString() {

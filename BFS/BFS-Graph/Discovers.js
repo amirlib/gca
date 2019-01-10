@@ -7,19 +7,25 @@ const discoverError = require('./discoverError');
  * @class Discovers
  */
 class Discovers {
-    constructor(nodesID) {
-        this.matrix = new Array(2);
+    /**
+     * Creates an instance of Discovers.
+     * @param {number[]} nodesID Array of nodes ID.
+     * @param {number} indexS The index of the root BFS graph node.
+     * @memberof Discovers
+     */
+    constructor(nodesID, indexS) {
+        this.matrix = [2];
         this.matrix[0] = nodesID;
-        this.matrix[1] = new Array(nodesID.length);
+        this.matrix[1] = [nodesID.length];
+        this.init(indexS);
     }
     /**
      * Initiate the matrix: Insert False to evrey cell except the root node.
      * @param {number} indexS The index of the root BFS graph node.
-     * @param {number} size Number of nodes in the original graph.
      * @memberof Discovers
      */
-    init(indexS, size) {
-        for (let i = 0; i < size; i++) {
+    init(indexS) {
+        for (let i = 0; i < this.matrix[0].length; i++) {
             this.matrix[1][i] = false;
         }
         this.matrix[1][indexS] = true;
@@ -27,9 +33,10 @@ class Discovers {
     /**
      * Sets true on a dicovered node.
      * @param {number} index Index of node to set true.
+     * @throws {discoverError} Throws Error if node ID is not exist in Discovers.
      * @memberof Discovers
      */
-    setDiscover(index) {
+    markNode(index) {
         if (index >= this.matrix[0].length) {
             throw new discoverError(`There is no node to discover with this index.`);
         }
@@ -39,9 +46,10 @@ class Discovers {
      * Checks if node was discovered.
      * @param {number} index Index of node to check
      * @returns {boolean} True if node was discovered. Otherwise, False.
+     * @throws {discoverError} Throws Error if node ID is not exist in Discovers.
      * @memberof Discovers
      */
-    checkDiscover(index) {
+    hasDiscover(index) {
         if (index >= this.matrix[0].length) {
             throw new discoverError(`There is nothing in Discover with this index.`);
         }
@@ -50,10 +58,10 @@ class Discovers {
     /**
      * Searches the node ID in the Discovers Matrix and return it index.
      * @param {number} ID ID of node to search.
-     * @returns The ID of node. Return -1 if there is no such node.
+     * @returns {number} The ID of node. Return -1 if there is no such node.
      * @memberof Discovers
      */
-    searchIndexOfNodeID(ID) {
+    indexOfNodeID(ID) {
         for (let i = 0; i < this.matrix[0].length; i++) {
             if (this.matrix[0][i] == ID) {
                 return i;
@@ -63,19 +71,20 @@ class Discovers {
     }
     /**
      * Print all the nodes and there discovered values.
-     *
+     * @returns {string}
      * @memberof Discovers
      */
-    print() {
-        let print = "";
-        console.log(`----Discovers----`);
+    toString() {
+        let print = ``;
         for (let i = 0; i < 2; i++) {
             for (let j = 0; j < this.matrix[0].length; j++) {
-                print = print + "     " + this.matrix[i][j];
+                print = `${print}${this.matrix[i][j]}   `;
             }
-            console.log(`${print}`);
-            print = "";
+            if (i != this.matrix[0].length - 1) {
+                print = `${print}\n`;
+            }
         }
+        return print;
     }
 }
 
