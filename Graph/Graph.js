@@ -183,6 +183,18 @@ class Graph {
         return false;
     }
     /**
+     * Graph object create exact copy of its own. Will clone bfsGraph and FlowGraph objects too,
+     * but only their nodesID and matrix arrays.
+     * @returns {Graph} Copied Graph.
+     * @memberof bfsGraph
+     */
+    clone() {
+        let cloneGraph = new Graph();
+        cloneGraph.nodesID = this.nodesID;
+        cloneGraph.matrix = this.matrix;
+        return cloneGraph;
+    }
+    /**
      * Prints the matrix of the graph.
      * @returns {string}
      * @memberof Graph

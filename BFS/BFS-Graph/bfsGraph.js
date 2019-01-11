@@ -14,6 +14,44 @@ class bfsGraph extends Graph {
         this.layer = [];
     }
     /**
+     * bfsGraph object cannot add new node.
+     * @param {number} ID ID of node to insert.
+     * @returns {boolean} False.
+     * @memberof bfsGraph
+     */
+    addNode(ID) {
+        return false;
+    }
+    /**
+     * bfsGraph object cannot add new edge.
+     * @param {number} from ID of strat Node of edge.
+     * @param {number} to ID of end Node of edge.
+     * @returns {boolean} False.
+     * @memberof bfsGraph
+     */
+    addEdge(from, to) {
+        return false;
+    }
+    /**
+     * bfsGraph object cannot delete node.
+     * @param {number} ID ID of node to delete.
+     * @returns {boolean} False.
+     * @memberof bfsGraph
+     */
+    deleteNode(ID) {
+        return false;
+    }
+    /**
+     * bfsGraph object cannot delete edge.
+     * @param {number} from ID of strat Node of edge.
+     * @param {number} to ID of end Node of edge.
+     * @returns {boolean} False.
+     * @memberof bfsGraph
+     */
+    deleteEdge(from, to) {
+        return false;
+    }
+    /**
      * Increases the layer Counter by one.
      *
      * @memberof bfsGraph
@@ -157,6 +195,14 @@ class bfsGraph extends Graph {
             return path;
         }
         return -1;
+    }
+    /**
+     * bfsGraph object can not clone.
+     * @returns {boolean} False
+     * @memberof bfsGraph
+     */
+    clone() {
+        return false;
     }
     /**
      * Prints all the nodes inside all the layers.

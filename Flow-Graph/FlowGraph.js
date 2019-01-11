@@ -29,7 +29,7 @@ class FlowGraph extends Graph {
         let toIndex = this.indexOfNodeID(to);
         this.matrix[fromIndex][toIndex] = 1;
     }
-        /**
+    /**
      * Unmarks in the Graph's matrix the edge. USE it only when use need to update the forward edge that was deleted beacuse the capacity of the edge was full.
      * @param {number} from ID of start node edge.
      * @param {number} to ID of the end node edge. 
@@ -56,7 +56,7 @@ class FlowGraph extends Graph {
      * EDITED: Deletes given node ID from the graph except node ID: 0 and 1, include all the edges that related to this ID.
      * @param {number} ID ID of node to delete.
      * @returns {boolean} True, if node deleted successfully from the graph. Otherwise, returns false.
-     * @memberof Graph
+     * @memberof FlowGraph
      */
     deleteNode(ID) {
         if (ID != 0 && ID != 1) {
@@ -92,7 +92,7 @@ class FlowGraph extends Graph {
      * @param {number} from ID of strat Node of edge.
      * @param {number} to ID of end Node of edge.
      * @returns {boolean} True, if edge deleted successfully from the graph. Otherwise, returns false.
-     * @memberof Graph
+     * @memberof FlowGraph
      */
     deleteEdge(from, to) {
         if (super.deleteEdge(from, to) == true) {
@@ -143,6 +143,19 @@ class FlowGraph extends Graph {
             }
         }
         path.edges = newEdges;
+    }
+    /**
+     * FlowGraph object create exact copy of its own.
+     * @returns {FlowGraph} Copied FlowGraph.
+     * @memberof FlowGraph
+     */
+    clone() {
+        let cloneGraph = new FlowGraph();
+        cloneGraph.nodesID = this.nodesID;
+        cloneGraph.matrix = this.matrix;
+        cloneGraph.edgesForwardList = this.edgesForwardList;
+        cloneGraph.edgesBackwardList = this.edgesBackwardList;
+        return cloneGraph;
     }
     /**
      * Throws error. Can serch for path only from BFS Graph.
