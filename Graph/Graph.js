@@ -4,8 +4,8 @@
  */
 class Graph {
     constructor() {
-        this.nodesID = []; //Array of Nodes ID - When the ID inside index 'i' in this array represent the ID inside index of 'i + 1' in the Matrix array.
-        this.matrix = []; //2d Array that represent the Graph as 'Adjacency matrix'
+        this.nodesID = []; //An array of Nodes ID - When the ID inside index 'i' in this array represent the ID inside index of 'i + 1' in the Matrix array.
+        this.matrix = []; //2d Array that represents the Graph as 'Adjacency matrix'.
         this.matrix[0] = ['M'];
     }
     /**
@@ -17,7 +17,7 @@ class Graph {
         return this.nodesID.length;
     }
     /**
-     * Inserts a new node to the graph.
+     * Inserts a new node to the graph. The ID must be number.
      * @param {number} ID ID of node to insert.
      * @returns {boolean} True, if node ID added successfully to the graph. Otherwise, returns false.
      * @memberof Graph
@@ -39,7 +39,7 @@ class Graph {
         return false;
     }
     /**
-     * Inserts new edge to the graph: when '1' in (from, to) represent an edge from startNodeID to endNodeID.
+     * Inserts new edge to the graph: when (from, to) represent an edge from startNodeID to endNodeID.
      * @param {number} from ID of strat Node of edge.
      * @param {number} to ID of end Node of edge.
      * @returns {boolean} True, if edge added successfully to the graph. Otherwise, returns false.
@@ -55,9 +55,9 @@ class Graph {
         return false;
     }
     /**
-     * Deletes given node ID from the graph, include all the edges that related to this ID.
+     * Deletes given node ID from the graph, including all the edges that related to this ID.
      * @param {number} ID ID of node to delete.
-     * @returns {boolean} True, if node deleted successfully from the graph. Otherwise, returns false.
+     * @returns {boolean} True, if the node was deleted successfully from the graph. Otherwise, returns false.
      * @memberof Graph
      */
     deleteNode(ID) {
@@ -102,9 +102,9 @@ class Graph {
         return false;
     }
     /**
-     * Searchs for index of node with id: ID, that will represented in the matrix of graph.
+     * Searches for an index of the node with id: ID, that will be represented in the matrix of the graph.
      * @param {number} ID ID of node to search.
-     * @returns {number} The index of node that represent the same index in the matrix of the graph. Returns -1 if there is no such ID.
+     * @returns {number} The index of the node that represents the same index in the matrix of the graph. Returns -1 if there is no such ID.
      * @memberof Graph
      */
     indexOfNodeID(ID) {
@@ -116,9 +116,9 @@ class Graph {
         return -1;
     }
     /**
-     * Finds edges that have the fromNode of the node with id: ID
+     * Finds edges that have the fromNode of the node with id: ID.
      * @param {number} ID ID of node.
-     * @returns {number[]} Array of IDs that are the toNodes of the edges. Returns empty array if there are no edges like that.
+     * @returns {number[]} An array of IDs that are the toNodes of the edges. Returns empty array if there are no edges like that.
      * @memberof Graph
      */
     findEndNodesEdgesFromNode(ID) {
@@ -134,9 +134,9 @@ class Graph {
         return result;
     }
     /**
-     * Finds edges that have the toNode of the node with id: ID
+     * Finds edges that have the toNode of the node with id: ID.
      * @param {number} ID ID of node.
-     * @returns {number[]} Array of IDs that are the fromNodes of the edges. Returns empty array if there are no edges like that.
+     * @returns {number[]} An array of IDs that are the fromNodes of the edges. Returns empty array if there are no edges like that.
      * @memberof Graph
      */
     findStartNodesEdgesFromNode(ID) {
@@ -152,7 +152,7 @@ class Graph {
         return result;
     }
     /**
-     * Searchs if exist an edge: (from, to).
+     * Checks if an edge: (from, to) exist in the graph.
      * @param {number} from ID of strat Node of edge.
      * @param {number} to ID of end Node of edge.
      * @returns {boolean} True if graph has such edge. Otherwise, False.
@@ -169,7 +169,7 @@ class Graph {
         return false;
     }
     /**
-     * Checks if given node is exist in the graph.
+     * Checks if the given node exists in the graph.
      * @param {number} ID The given node ID.
      * @returns {boolean} True if exist, otherwise False.
      * @memberof Graph
@@ -183,8 +183,7 @@ class Graph {
         return false;
     }
     /**
-     * Graph object create exact copy of its own. Will clone bfsGraph and FlowGraph objects too,
-     * but only their nodesID and matrix arrays.
+     * Graph object creates an exact copy of its own. Will clone bfsGraph and FlowGraph objects too, but only their nodesID and matrix arrays.Checks if the given node exists in the graph.
      * @returns {Graph} Copied Graph.
      * @memberof bfsGraph
      */

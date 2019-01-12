@@ -10,7 +10,7 @@ class Path {
         this.edges = [];
     }
     /**
-     * Gets the number of nodes in the path.
+     * Gets the number of edged in the path.
      * @returns {number} The number of nodes.
      * @memberof Path
      */

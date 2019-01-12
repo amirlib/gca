@@ -1,8 +1,8 @@
 const gca = require('./index');
 
-let tool = new gca();
+const tool = new gca();
 
-let graph = tool.CreateFlowGraph();
+let graph = tool.CreateGraph();
 
 graph.addNode(2);
 graph.addNode(3);

@@ -52,7 +52,7 @@ class bfsGraph extends Graph {
         return false;
     }
     /**
-     * Increases the layer Counter by one.
+     * Increases the layer counter by one.
      *
      * @memberof bfsGraph
      */
@@ -104,7 +104,7 @@ class bfsGraph extends Graph {
         this.layer[index].push(ID);
     }
     /**
-     * searchs given node in given layer.
+     * Searches for the given node in the given layer.
      * @param {number} ID ID of node to search.
      * @param {number} index Index of layer.
      * @returns {boolean} True if node exist. Otherwise, False.
@@ -141,7 +141,7 @@ class bfsGraph extends Graph {
         return this.layer[indexLayer][cellLayer];
     }
     /**
-     * Gets the parent node ID of given node ID.
+     * Gets the parent node ID of the given node ID.
      * @param {number} ID ID of child node.
      * @returns {number} ID of parent node. Return -1 if there is no such node ID in the graph.
      * @memberof bfsGraph
@@ -158,7 +158,7 @@ class bfsGraph extends Graph {
         return -1;
     }
     /**
-     * Gets the index of layer where node ID is.
+     * Gets the index of layer where node ID is exist.
      * @param {number} ID ID of node to search.
      * @returns {number} The index of layer. Retrun -1 if there is no such node ID in the graph or in the layer.
      * @memberof bfsGraph
@@ -174,7 +174,7 @@ class bfsGraph extends Graph {
         return -1;
     }
     /**
-     * Gets the shortest path from the root node to node t. Search path from the last node of the path to the first.
+     * Gets the shortest path from the root node to node t.
      * @param {number} t ID of end node in path.
      * @returns {Path} The Path object. Returns -1 if node with ID: t not exist in the graph.
      * @memberof bfsGraph
@@ -205,7 +205,7 @@ class bfsGraph extends Graph {
         return false;
     }
     /**
-     * Prints all the nodes inside all the layers.
+     * Prints all the nodes inside the layers.
      * @returns {string} string
      * @memberof bfsGraph
      */

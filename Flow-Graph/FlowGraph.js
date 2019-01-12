@@ -108,7 +108,7 @@ class FlowGraph extends Graph {
         return false;
     }
     /**
-     * Returns from given list an edge that have the same given nodes.
+     * Returns from a given list, an edge that has the same given nodes.
      * @param {number} from ID of start node edge.
      * @param {number} to ID of end node edge.
      * @param {LinkedList} list The list.
@@ -126,7 +126,7 @@ class FlowGraph extends Graph {
         return null;
     }
     /**
-     * Changes the each edge in path to its edge of the graph
+     * Changes each edge in path to its edge of the graph
      *
      * @param {Path} path The path's edges.
      * @memberof FlowGraph
