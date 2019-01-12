@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/babudabu/gca.git"
+    "url": "git+https://github.com/amirlib/gca.git"
   },
   "author": "Amir Liberzon <amir.lib@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/babudabu/gca/issues"
+    "url": "https://github.com/amirlib/gca/issues"
   },
-  "homepage": "https://github.com/babudabu/gca#readme"
+  "homepage": "https://github.com/amirlib/gca#readme"
 }
