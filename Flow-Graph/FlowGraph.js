@@ -48,7 +48,7 @@ class FlowGraph extends Graph {
      */
     addNode(ID) {
         if (ID != 0 && ID != 1) {
-            super.addNode(ID);
+            return super.addNode(ID);
         }
         return false;
     }
@@ -59,7 +59,7 @@ class FlowGraph extends Graph {
      * @memberof FlowGraph
      */
     deleteNode(ID) {
-        if (ID != 0 && ID != 1) {
+        if (ID != 0 && ID != 1 && this.hasNode(ID)) {
             let endNodesEdges = this.findEndNodesEdgesFromNode(ID);
             for (let i = 0; i < endNodesEdges.length; i++) {
                 this.deleteEdge(ID, endNodesEdges[i]);
@@ -160,7 +160,7 @@ class FlowGraph extends Graph {
     /**
      * Throws error. Can serch for path only from BFS Graph.
      * @param {number} ID 
-     * @memberof Graph
+     * @memberof FlowGraph
      */
     getPath(ID) {
         throw new Error(`Can not search for path. Path must be created from BFS Graph.`);

@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/amirlib/gca/issues"
   },
-  "homepage": "https://github.com/amirlib/gca#readme"
+  "homepage": "https://github.com/amirlib/gca",
+  "keywords": [
+    "graph",
+    "bfs",
+    "edmonds",
+    "krap",
+    "flow"
+  ]
 }
