@@ -36,7 +36,8 @@ The full documentation can be found in each class.
 
 ### Graph
 
-The graph represented in the matrix when: In first row and column where the IDs of nodes. '1' in the matrix in row i and column j represent an edge: (node in the first row at index i, node in the first column at index j).
+The graph represented in the matrix when: In first row and column where the IDs of nodes.  
+'1' in the matrix in row i and column j represent an edge: (node in the first row at index i, node in the first column at index j).  
 nodesID - An array of nodes ID.
 
 - `size()` - Get the number of nodes in the graph.
@@ -77,11 +78,11 @@ Path object contains array of nodes and array of edges, when each edge is an ins
 
 Extends from Graph.
 
-edgesForwardList - An linkedlist of flow edges forward .
-edgesBackwardList - An linkedlist of flow edges backward.
-FlowEdge extends from edge: Save also the capacity and the flow.
-FlowEdgeBackward extends from FlowEdge, only for classifying  as a backward edge. You can print the edges.
-FlowEdgeForward extends from FlowEdge, only for classifying  as a forward edge. You can print the edges.
+edgesForwardList - An linkedlist of flow edges forward.  
+edgesBackwardList - An linkedlist of flow edges backward.  
+FlowEdge extends from edge: Save also the capacity and the flow.  
+FlowEdgeBackward extends from FlowEdge, only for classifying  as a backward edge. You can print the edges.  
+FlowEdgeForward extends from FlowEdge, only for classifying  as a forward edge. You can print the edges.  
 
 - `findEdgeInList(from, to, list)` - Return from a given list, an edge that has the same given nodes.
 
