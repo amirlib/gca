@@ -11,7 +11,7 @@ npm install gca
 ## Usage
 
 ```js
-const gca = require('./index');
+const gca = require('gca');
 const tool = new gca();
 
 let graph = tool.CreateGraph();

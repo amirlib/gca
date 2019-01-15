@@ -21,6 +21,7 @@
     "bfs",
     "edmonds",
     "krap",
-    "flow"
+    "flow",
+    "network"
   ]
 }
