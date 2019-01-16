@@ -2,19 +2,19 @@ const FlowEdge = require('./FlowEdge');
 /**
  * Implementaion of backward edge class for the Flow Graph class.
  *
- * @class FlowEdgeBackward
+ * @class BackwardFlowEdge
  * @extends {FlowEdge}
  */
-class FlowEdgeBackward extends FlowEdge {
+class BackwardFlowEdge extends FlowEdge {
     /**
-     * Creates an instance of FlowEdgeBackward.
+     * Creates an instance of BackwardFlowEdge.
      * @param {number} from ID of strat Node of edge.
      * @param {number} to ID of end Node of edge.
-     * @memberof FlowEdgeBackward
+     * @memberof BackwardFlowEdge
      */
     constructor(from, to) {
         super(from, to);
     }
 }
 
-module.exports = FlowEdgeBackward;
+module.exports = BackwardFlowEdge;

@@ -19,9 +19,9 @@ class bfsGraph extends Graph {
      * @returns {boolean} False.
      * @memberof bfsGraph
      */
-    addNode(ID) {
-        return false;
-    }
+    // addNode(ID) {
+    //     return false;
+    // }
     /**
      * bfsGraph object cannot add new edge.
      * @param {number} from ID of strat Node of edge.
@@ -29,18 +29,18 @@ class bfsGraph extends Graph {
      * @returns {boolean} False.
      * @memberof bfsGraph
      */
-    addEdge(from, to) {
-        return false;
-    }
+    // addEdge(from, to) {
+    //     return false;
+    // }
     /**
      * bfsGraph object cannot delete node.
      * @param {number} ID ID of node to delete.
      * @returns {boolean} False.
      * @memberof bfsGraph
      */
-    deleteNode(ID) {
-        return false;
-    }
+    // deleteNode(ID) {
+    //     return false;
+    // }
     /**
      * bfsGraph object cannot delete edge.
      * @param {number} from ID of strat Node of edge.
@@ -48,9 +48,9 @@ class bfsGraph extends Graph {
      * @returns {boolean} False.
      * @memberof bfsGraph
      */
-    deleteEdge(from, to) {
-        return false;
-    }
+    // deleteEdge(from, to) {
+    //     return false;
+    // }
     /**
      * Increases the layer counter by one.
      *

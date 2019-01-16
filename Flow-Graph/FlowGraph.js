@@ -1,6 +1,6 @@
 const Graph = require('../Graph/Graph');
 const LinkedList = require('./LinkedList/LinkedList');
-const FlowEdgeForward = require('./FlowEdgeForward');
+const ForwardFlowEdge = require('./ForwardFlowEdge');
 /**
  * Implementaion of Flow Graph. There are tools for building a Flow Graph that will return a correct max flow from Edmonds Krap alogritem.
  * DONOT use it to reperesent normal graph!
@@ -13,8 +13,8 @@ class FlowGraph extends Graph {
         super();
         this.s = 0;
         this.t = 1;
-        this.edgesForwardList = new LinkedList(); //Save the forward edges of this graph.
-        this.edgesBackwardList = new LinkedList(); //Save the backward edges of this graph.
+        this.forwardEdgesList = new LinkedList(); //Save the forward edges of this graph.
+        this.backwardEdgesList = new LinkedList(); //Save the backward edges of this graph.
         super.addNode(this.s);
         super.addNode(this.t);
     }
@@ -82,7 +82,7 @@ class FlowGraph extends Graph {
      */
     addEdge(from, to) {
         if (super.addEdge(from, to) == true) {
-            this.edgesForwardList.addData(new FlowEdgeForward(from, to));
+            this.forwardEdgesList.addData(new ForwardFlowEdge(from, to));
             return true;
         }
         return false;
@@ -96,12 +96,12 @@ class FlowGraph extends Graph {
      */
     deleteEdge(from, to) {
         if (super.deleteEdge(from, to) == true) {
-            let edge = this.findEdgeInList(from, to, this.edgesForwardList);
+            let edge = this.findEdgeInList(from, to, this.forwardEdgesList);
             if (edge == null) {
-                edge = this.findEdgeInList(from, to, this.edgesBackwardList);
-                this.edgesBackwardList.removeData(edge);
+                edge = this.findEdgeInList(from, to, this.backwardEdgesList);
+                this.backwardEdgesList.removeData(edge);
             } else {
-                this.edgesForwardList.removeData(edge);
+                this.forwardEdgesList.removeData(edge);
             }
             return true;
         }
@@ -134,9 +134,9 @@ class FlowGraph extends Graph {
     changeEdgesToFlowEdges(path) {
         let newEdges = [];
         for (let i = 0; i < path.size(); i++) {
-            let edge = this.findEdgeInList(path.nodes[i], path.nodes[i + 1], this.edgesForwardList);
+            let edge = this.findEdgeInList(path.nodes[i], path.nodes[i + 1], this.forwardEdgesList);
             if (edge == null) {
-                edge = this.findEdgeInList(path.nodes[i], path.nodes[i + 1], this.edgesBackwardList);
+                edge = this.findEdgeInList(path.nodes[i], path.nodes[i + 1], this.backwardEdgesList);
                 newEdges.push(edge);
             } else {
                 newEdges.push(edge);
@@ -153,8 +153,8 @@ class FlowGraph extends Graph {
         let cloneGraph = new FlowGraph();
         cloneGraph.nodesID = this.nodesID;
         cloneGraph.matrix = this.matrix;
-        cloneGraph.edgesForwardList = this.edgesForwardList;
-        cloneGraph.edgesBackwardList = this.edgesBackwardList;
+        cloneGraph.forwardEdgesList = this.forwardEdgesList;
+        cloneGraph.backwardEdgesList = this.backwardEdgesList;
         return cloneGraph;
     }
     /**

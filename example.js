@@ -2,7 +2,7 @@ const gca = require('./index');
 
 const tool = new gca();
 
-let graph = tool.CreateGraph();
+let graph = tool.CreateFlowGraph();
 
 graph.addNode(2);
 graph.addNode(3);
@@ -38,19 +38,15 @@ graph.addEdge(14, 15);
 graph.addEdge(15, 16);
 graph.addEdge(16, graph.t);
 console.log(graph.toString());
-let cg = graph.clone();
-console.log(`${tool.EdmondsKarp(graph)}`);
-console.log(cg.toString());
-// console.log(graph.toString());
-// console.log(graph.deleteNode(3));
-// console.log(graph.toString());
+console.log(graph.printNodesID());
+console.log(tool.EdmondsKarp(graph));
 
-// let bfsG = tool.BFS(graph, 3);
-// console.log(bfsG.toString());
+let bfsG = tool.BFS(graph, graph.s);
+console.log(bfsG.toString());
 
-// try {
-//     let path = bfsG.getPath(13);
-//     console.log(path.toString());
-// } catch (error) {
-//     console.log(`${error.message}`);
-// }
+try {
+    let path = bfsG.getPath(13);
+    console.log(path.toString());
+} catch (error) {
+    console.log(`${error.message}`);
+}
