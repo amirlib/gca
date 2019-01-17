@@ -9,7 +9,7 @@ class Graph {
         this.matrix[0] = ['M'];
     }
     /**
-     * Gets the number of nodes in the graph.
+     * Returns the number of nodes in the graph.
      * @returns {number} The number of nodes.
      * @memberof Graph
      */
@@ -183,7 +183,7 @@ class Graph {
         return false;
     }
     /**
-     * Graph object creates an exact copy of its own. Will clone bfsGraph and FlowGraph objects too, but only their nodesID and matrix arrays.Checks if the given node exists in the graph.
+     * New Graph object creates an exact copy of its own. Will clone bfsGraph and FlowGraph objects too, but only their nodesID and matrix arrays.Checks if the given node exists in the graph.
      * @returns {Graph} Copied Graph.
      * @memberof bfsGraph
      */
@@ -194,7 +194,7 @@ class Graph {
         return cloneGraph;
     }
     /**
-     * Prints the matrix of the graph.
+     * Returns the matrix of the graph.
      * @returns {string}
      * @memberof Graph
      */
@@ -211,7 +211,7 @@ class Graph {
         return print;
     }
     /**
-     * Prints the nodes that are in NodesID array.
+     * Returns the nodes that are in NodesID array.
      * @returns {string}
      * @memberof Graph
      */

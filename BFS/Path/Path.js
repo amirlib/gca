@@ -1,6 +1,6 @@
 const Edge = require('./Edge');
 /**
- * Implementaion of path. Path is used for saving nodes of the minimum path from BFS Graph and creates from then edges.
+ * Implementaion of path. Path is used for saving nodes of the minimum path from BFS Graph and edges.
  *
  * @class Path
  */

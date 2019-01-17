@@ -52,8 +52,8 @@ class LinkedList {
     }
     /**
      * Checks if there a node with this obj in the linked list.
-     * @param {object} obj - The object to check.
-     * @returns True if there a such node. Otherwise, False.
+     * @param {object} obj - The object to be checked.
+     * @returns {boolean} True if there a such node. Otherwise, False.
      * @memberof LinkedList
      */
     has(obj) {
@@ -67,8 +67,8 @@ class LinkedList {
         return false;
     }
     /**
-     * Prints the data inside all the nodes.
-     * @returns String.
+     * Returns the data inside all the nodes.
+     * @returns {string}.
      * @memberof LinkedList
      */
     toString() {

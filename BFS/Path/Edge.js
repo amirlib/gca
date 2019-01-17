@@ -15,8 +15,8 @@ class Edge {
         this.to = to;
     }
     /**
-     * Prints the details of the edge.
-     * @returns {string} String with the data.
+     * Returns string with the data of edge.
+     * @returns {string}
      * @memberof Edge
      */
     toString() {

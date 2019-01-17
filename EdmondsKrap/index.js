@@ -2,7 +2,7 @@ const Tools = require('./EKTools');
 const BFS = require(`../BFS/index`);
 const FlowGraph = require('../Flow-Graph/FlowGraph');
 /**
- * The edmonds karp algorithm.
+ * Edmonds karp algorithm.
  *
  * @param {FlowGraph} graph The graph that runs the edmonds karp algorithm.
  * @returns {number} The max flow. Return -1, if the graph is not instance of FlowGraph.

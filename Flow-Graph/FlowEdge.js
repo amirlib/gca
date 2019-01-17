@@ -60,19 +60,19 @@ class FlowEdge extends Edge {
         }
     }
     /**
-     * Check the if capacity is full.
+     * Check if the capacity is full.
      * @returns {boolean} True if capacity of the edge is full. Otherwise, return false.
      * @memberof FlowEdge
      */
-    IsCapacityFull() {
+    isCapacityFull() {
         if (this.flow == this.capacity) {
             return true;
         }
         return false;
     }
     /**
-     * Prints the details of the edge. You CAN just print the object without calling toString method.
-     * @returns {string} String with the data.
+     * Returns string with the data of edge.
+     * @returns {string}
      * @memberof FlowEdge
      */
     toString() {

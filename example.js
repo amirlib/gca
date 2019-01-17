@@ -45,7 +45,7 @@ let bfsG = tool.BFS(graph, graph.s);
 console.log(bfsG.toString());
 
 try {
-    let path = bfsG.getPath(13);
+    let path = bfsG.getPath(16);
     console.log(path.toString());
 } catch (error) {
     console.log(`${error.message}`);

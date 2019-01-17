@@ -81,7 +81,7 @@ function updateFlowGraph(graphF, path) {
             temp = graphF.forwardEdgesList.head;
             edge = graphF.findEdgeInList(path.edges[i].to, path.edges[i].from, graphF.forwardEdgesList);
         }
-        if (path.edges[i].IsCapacityFull()) {
+        if (path.edges[i].isCapacityFull()) {
             graph.unmarkEdge(path.edges[i].from, path.edges[i].to);
             graph.markEdge(path.edges[i].to, path.edges[i].from);
             edge.resetFlow();
