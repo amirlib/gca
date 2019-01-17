@@ -1,6 +1,6 @@
 {
   "name": "gca",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Use classic algorithms for Graphs.",
   "main": "index.js",
   "scripts": {
