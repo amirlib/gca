@@ -272,11 +272,11 @@ Implementaion of node for the linkedlist.
     * **@param {object} obj**
 
 
-### Author
+## Author
 
-## Amir Liberzon
+### Amir Liberzon
 
-[LinkedIn Profile](https://www.linkedin.com/in/amir-liberzon-23aa3a159/)
+[LinkedIn Profile](https://www.linkedin.com/in/amir-liberzon-23aa3a159/)  
 [https://github.com/amirlib/](https://github.com/babudabu/gca/blob/master/LICENSE)
 
 ## License
