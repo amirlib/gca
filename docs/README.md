@@ -277,7 +277,7 @@ Implementaion of node for the linkedlist.
 ### Amir Liberzon
 
 [LinkedIn Profile](https://www.linkedin.com/in/amir-liberzon-23aa3a159/)  
-[https://github.com/amirlib/](https://github.com/babudabu/gca/blob/master/LICENSE)
+[Github Profile](https://github.com/amirlib/)
 
 ## License
 
