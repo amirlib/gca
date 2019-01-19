@@ -30,6 +30,13 @@ Full documentation can be found [here](https://amirlib.github.io/gca/#/).
 
 Also, there an [example.js](https://github.com/amirlib/gca/blob/master/example.js) page.
 
+### Author
+
+## Amir Liberzon
+
+[LinkedIn Profile](https://www.linkedin.com/in/amir-liberzon-23aa3a159/)
+[https://github.com/amirlib/](https://github.com/babudabu/gca/blob/master/LICENSE)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/babudabu/gca/blob/master/LICENSE) file for details.
