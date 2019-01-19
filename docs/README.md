@@ -230,6 +230,8 @@ DONOT use it to reperesent normal graph!
 1. Extends from **Graph**.
 2. **forwardEdgesList {LinkedList}** - An linkedlist of **ForwardFlowEdge**.  
 3. **backwardEdgesList {LinkedList}** - An linkedlist of **BackwardFlowEdge**.
+4. **s {number}** - The source node with ID: 0.
+5. **t {number}** - The sink node with ID: 1.
 
 
 - `findEdgeInList(from, to, list)`
