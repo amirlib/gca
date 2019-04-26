@@ -17,6 +17,23 @@ class Graph {
         return this.nodesID.length;
     }
     /**
+     * Counts the number of edges in graph.
+     * @return {number} The number of edges in graph.
+     * @memberof Graph
+     */
+    countEdges() {
+        const length = this.matrix.length;
+        let counter = 0;
+        for (let i = 1; i < length; i++) {
+            for (let j = 1; j < length; j++) {
+                if (this.matrix[i][j] == 1) {
+                    counter++;
+                }
+            }
+        }
+        return counter;
+    }
+    /**
      * Inserts a new node to the graph. The ID must be number.
      * @param {number} ID ID of node to insert.
      * @returns {boolean} True, if node ID added successfully to the graph. Otherwise, returns false.

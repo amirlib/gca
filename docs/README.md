@@ -53,6 +53,9 @@ The full documentation can be found in each class.
 - `size()`
     * Returns the number of nodes in the graph.
     * **@returns {number}** The number of nodes.
+- `countEdges()`
+    * Counts the number of edges in graph.
+    * **@return {number} The number of edges in graph.
 - `addNode(ID)`
     * Inserts a new node to the graph. The ID must be number.
     * **@param {number} ID** - ID of node to insert.
