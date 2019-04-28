@@ -1,6 +1,6 @@
 const Graph = require("../Graph");
 const LinkedList = require("../LinkedList");
-const ForwardFlowEdge = require("../Edges/ForwardFlowEdge");
+const FlowEdge = require("../Edges/FlowEdge");
 /**
  * Implementaion of Flow Graph. There are tools for building a Flow Graph that will return a correct max flow from Edmonds Krap alogritem.
  * DONOT use it to reperesent normal graph!
@@ -13,8 +13,7 @@ class FlowGraph extends Graph {
     super();
     this.s = 0;
     this.t = 1;
-    this.forwardEdgesList = new LinkedList(); //Save the forward edges of this graph.
-    this.backwardEdgesList = new LinkedList(); //Save the backward edges of this graph.
+    this.edgesList = new LinkedList(); //Save the edges of the graph.
     super.addNode(this.s);
     super.addNode(this.t);
   }
@@ -82,7 +81,7 @@ class FlowGraph extends Graph {
    */
   addEdge(from, to) {
     if (super.addEdge(from, to) == true) {
-      this.forwardEdgesList.addData(new ForwardFlowEdge(from, to));
+      this.edgesList.addData(new FlowEdge(from, to));
       return true;
     }
     return false;
@@ -96,18 +95,14 @@ class FlowGraph extends Graph {
    */
   deleteEdge(from, to) {
     if (super.deleteEdge(from, to) == true) {
-      let edge = this.findEdgeInList(from, to, this.forwardEdgesList);
-      if (edge == null) {
-        edge = this.findEdgeInList(from, to, this.backwardEdgesList);
-        this.backwardEdgesList.removeData(edge);
-      } else {
-        this.forwardEdgesList.removeData(edge);
-      }
+      const edge = this.findEdgeInList(from, to, this.edgesList);
+      this.edgesList.removeData(edge);
       return true;
     }
     return false;
   }
   /**
+   * FIXME:
    * Returns from a given list, an edge that has the same given nodes.
    * @param {number} from ID of start node edge.
    * @param {number} to ID of end node edge.
@@ -126,6 +121,7 @@ class FlowGraph extends Graph {
     return null;
   }
   /**
+   * FIXME:
    * Changes each edge in path to its edge of the graph
    *
    * @param {Path} path The path's edges.
@@ -163,8 +159,7 @@ class FlowGraph extends Graph {
       cloneGraph.matrix[i] = Array.from(this.matrix[i]);
     }
     cloneGraph.nodesID = Array.from(this.nodesID);
-    cloneGraph.forwardEdgesList = this.cloneLinkedList(this.forwardEdgesList);
-    cloneGraph.backwardEdgesList = this.cloneLinkedList(this.backwardEdgesList);
+    cloneGraph.edgesList = this.cloneLinkedList(this.edgesList);
     return cloneGraph;
   }
   /**

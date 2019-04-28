@@ -43,5 +43,6 @@ graph.addEdge(3, graph.t);
 // graph.addEdge(16, graph.t);
 
 console.log(graph.toString());
-console.log(tool.EdmondsKarp(graph));
+console.log(graph.edgesList.toString());
+// console.log(tool.EdmondsKarp(graph));
 // console.log(graph.toString());
