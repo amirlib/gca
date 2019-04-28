@@ -163,7 +163,9 @@ Implementaion of path. Path is used for saving nodes of the minimum path from BF
 
 - `size()`
     * Gets the number of edged in the path.
-    * **@returns {number}** The number of nodes.
+    * **@returns {number}** The number of edged.
+- `reverseNodes()`
+    * Reverse the order of path.
 - `toString()`
     * Prints the edges of the path.
     * **@returns {string}**
@@ -191,9 +193,11 @@ Implementaion of edge class for the Flow Graph class. Each edge includes data fo
 3. **flow {number}** - The flow of the edge. The maximum amount of flow is the capacity.
 
 
-- `constructor(from, to)`
+- `constructor(from, to, capacity, flow)`
     * **@param {number} from** - ID of strat Node of edge.
     * **@param {number} to** - ID of end Node of edge.
+    * **@param {number} capacity** - The capacity of edge.
+    * **@param {number} flow** - The flow of edge.
 - `increaseFlow(addedFlow)`
     * Increases the flow in the edge.
     * **@param {number} addedFlow** - The amount of flow to increase in the edge.
@@ -249,18 +253,30 @@ Implementaion of Flow Graph. There are tools for building a Flow Graph that will
 DONOT use it to reperesent normal graph!
 
 1. Extends from **Graph**.
-2. **forwardEdgesList {LinkedList}** - An linkedlist of **ForwardFlowEdge**.  
-3. **backwardEdgesList {LinkedList}** - An linkedlist of **BackwardFlowEdge**.
-4. **s {number}** - The source node with ID: 0.
-5. **t {number}** - The sink node with ID: 1.
+2. **edgesList {LinkedList}** - An linkedlist of **FlowEdge**.  
+3. **s {number}** - The source node with ID: 0.
+4. **t {number}** - The sink node with ID: 1.
 
-
-- `findEdgeInList(from, to, list)`
+- `addNode(ID)`
+    * Inserts a new node to the graph. But the ID can not be 0 OR 1.
+    * **@param {number} ID** - ID of start node edge.
+    * **@returns {boolean}** True, if node added successfully to the graph. Otherwise, returns false.
+- `deleteNode(ID)`
+    * Deletes given node ID from the graph except node ID: 0 and 1. Deletes also all the edges that related to this ID.
+    * **@param {number} ID** - ID of node to delete.
+    * **@returns {boolean}** True, if node deleted successfully from the graph. Otherwise, returns false.
+- `addEdge(from, to, capacity = 1, flow = 0)`
+    * Inserts new edge to the graph - When '1' in (from, to) represent an edge from startNodeID to endNodeID, and also create an object for the edge.
+    * **@param {number} from** - ID of strat Node of edge.
+    * **@param {number} to** - ID of end Node of edge.
+    * **@param {number} capacity** - The capacity of edge. Default value is 1.
+    * **@param {number} flow** - The flow of edge. Default value is 0.
+    * **@returns {boolean}** True, if edge added successfully to the graph. Otherwise, returns false.
+- `findEdgeInList(from, to)`
     * Returns from a given list, an edge that has the same given nodes.
     * **@param {number} from** - ID of start node edge.
     * **@param {number} to** - ID of end node edge.
-    * **@param {LinkedList} list** - The list.
-    * **@returns {FlowEdge}** Edge from the list.
+    * **@returns {object}** Edge from the list. Return null if its not exist.
 - `clone()`
     * Deep copies a FlowGraph object.
     * **@returns {FlowGraph}** Cloned FlowGraph.

@@ -1,27 +1,17 @@
-const ForwardFlowEdge = require("../Edges/ForwardFlowEdge");
-const BackwardFlowEdge = require("../Edges/BackwardFlowEdge");
+const FlowEdge = require("../Edges/FlowEdge");
 /**
  * Calculate the max flow of the graph.
- *
- * @param {FlowGraph} graph
+ * @param {LinkedList} list
  * @returns {number} The max flow.
  */
-function flowMax(graph) {
-  console.log(`enter flowMax`);
-  let flowIn = countFlow(graph.forwardEdgesList);
-  let flowOut = countFlow(graph.backwardEdgesList);
-  return flowIn + flowOut;
-}
-/**
- * Sums the flow of the edges from the given edges list of the node t (node ID 1).
- *
- * @param {LinkedList} list The given edges list (Can bew edges instanceof ForwardFlowEdge or BackwardFlowEdge).
- * @returns {number} The sum of flow.
- */
-function countFlow(list) {
+function flowMax(list) {
+  console.log(`flowMax`);
   let temp = list.head;
   let flow = 0;
   while (temp != null) {
+    if (temp.data.to == 1) {
+      flow = flow - temp.data.flow;
+    }
     if (temp.data.from == 1) {
       flow = flow + temp.data.flow;
     }
@@ -31,81 +21,46 @@ function countFlow(list) {
 }
 /**
  * Increases or decreases flow from each edge from the path.
- *
  * @param {FlowGraph} graphF From the graph, its gets edges list of ForwardFlowEdge and BackwardFlowEdge.
  * @param {Path} path Given path.
  */
 function augment(graphF, path) {
   console.log(`enter augment`);
   for (let i = 0; i < path.size(); i++) {
-    if (path.edges[i] instanceof ForwardFlowEdge) {
-      let forwardEdge = graphF.findEdgeInList(
-        path.edges[i].from,
-        path.edges[i].to,
-        graphF.forwardEdgesList
-      );
-      console.log(`before augment ForwardFlowEdge: ${forwardEdge}`);
-      forwardEdge.increaseFlow(1);
-    } else {
-      let backwardEdge = graphF.findEdgeInList(
-        path.edges[i].from,
-        path.edges[i].to,
-        graphF.backwardEdgesList
-      );
-      console.log(`before augment BackwardFlowEdge: ${backwardEdge}`);
-      backwardEdge.decreaseFlow(1);
+    let edge = graphF.findEdgeInList(path.edges[i].from, path.edges[i].to);
+    if (edge.isCapacityFull()) {
+      edge = graphF.findEdgeInList(path.edges[i].to, path.edges[i].from);
     }
+    console.log(`before augment edge: ${edge}`);
+    edge.increaseFlow(1);
   }
   console.log(`exit augment`);
 }
 /**
  * Updates the graph as a result of the augment method. Changes the edges as in the given path.
- *
  * @param {FlowGraph} graphF From the graph, its gets edges list of ForwardFlowEdge and BackwardFlowEdge.
  * @param {Path} path Given path.
- * @returns {FlowGraph} Updated FlowGraph.
  */
 function updateFlowGraph(graphF, path) {
   console.log(`enter updateFlowGraph`);
-  let backwardEdge, forwardEdge;
   let length = path.size();
   for (let i = 0; i < length; i++) {
-    if (path.edges[i] instanceof ForwardFlowEdge) {
-      backwardEdge = graphF.findEdgeInList(
-        path.edges[i].to,
-        path.edges[i].from,
-        graphF.backwardEdgesList
-      );
-      if (backwardEdge == null) {
-        backwardEdge = new BackwardFlowEdge(path.edges[i].to, path.edges[i].from);
-        graphF.markEdge(backwardEdge.from, backwardEdge.to);
-        graphF.backwardEdgesList.addData(backwardEdge);
-      }
-      backwardEdge.increaseFlow(1);
-      graphF.markEdge(backwardEdge.from, backwardEdge.to);
-      forwardEdge = graphF.findEdgeInList(
-        path.edges[i].from,
-        path.edges[i].to,
-        graphF.forwardEdgesList
-      );
-      forwardEdge.decreaseFlow(1);
-      graphF.unmarkEdge(forwardEdge.from, forwardEdge.to);
-    } else {
-      forwardEdge = graphF.findEdgeInList(
-        path.edges[i].to,
-        path.edges[i].from,
-        graphF.forwardEdgesList
-      );
-      forwardEdge.increaseFlow(1);
-      graphF.markEdge(forwardEdge.from, forwardEdge.to);
-      backwardEdge = graphF.findEdgeInList(
-        path.edges[i].from,
-        path.edges[i].to,
-        graphF.backwardEdgesList
-      );
-      backwardEdge.decreaseFlow(1);
-      graphF.unmarkEdge(backwardEdge.from, backwardEdge.to);
+    let forwardEdge = graphF.findEdgeInList(
+      path.edges[i].from,
+      path.edges[i].to
+    );
+    let backwardEdge = graphF.findEdgeInList(
+      path.edges[i].to,
+      path.edges[i].from
+    );
+    if (backwardEdge == null) {
+      backwardEdge = new FlowEdge(path.edges[i].to, path.edges[i].from);
+      graphF.edgesList.addData(backwardEdge);
     }
+    backwardEdge.increaseFlow(1);
+    graphF.markEdge(backwardEdge.from, backwardEdge.to);
+    forwardEdge.decreaseFlow(1);
+    graphF.unmarkEdge(forwardEdge.from, forwardEdge.to);
   }
   console.log(`exit updateFlowGraph`);
 }

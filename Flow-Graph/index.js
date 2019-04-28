@@ -40,7 +40,7 @@ class FlowGraph extends Graph {
     this.matrix[fromIndex][toIndex] = 0;
   }
   /**
-   * EDITED: Inserts a new node to the graph. But the ID can not be 0 OR 1.
+   * Inserts a new node to the graph. But the ID can not be 0 OR 1.
    * @param {number} ID ID of node to insert.
    * @returns {boolean} True, if node added successfully to the graph. Otherwise, returns false.
    * @memberof FlowGraph
@@ -52,7 +52,7 @@ class FlowGraph extends Graph {
     return false;
   }
   /**
-   * EDITED: Deletes given node ID from the graph except node ID: 0 and 1, include all the edges that related to this ID.
+   * Deletes given node ID from the graph except node ID: 0 and 1. Deletes also all the edges that related to this ID.
    * @param {number} ID ID of node to delete.
    * @returns {boolean} True, if node deleted successfully from the graph. Otherwise, returns false.
    * @memberof FlowGraph
@@ -73,21 +73,23 @@ class FlowGraph extends Graph {
     return false;
   }
   /**
-   * EDITED: Inserts new edge to the graph - When '1' in (from, to) represent an edge from startNodeID to endNodeID, and also create an object for the edge.
+   * Inserts new edge to the graph - When '1' in (from, to) represent an edge from startNodeID to endNodeID, and also create an object for the edge.
    * @param {number} from ID of strat Node of edge.
    * @param {number} to ID of end Node of edge.
+   * @param {number} capacity The capacity of edge. Default value is 1.
+   * @param {number} flow The flow of edge. Default value is 0.
    * @returns {boolean} True, if edge added successfully to the graph. Otherwise, returns false.
    * @memberof FlowGraph
    */
-  addEdge(from, to) {
+  addEdge(from, to, capacity = 1, flow = 0) {
     if (super.addEdge(from, to) == true) {
-      this.edgesList.addData(new FlowEdge(from, to));
+      this.edgesList.addData(new FlowEdge(from, to, capacity, flow));
       return true;
     }
     return false;
   }
   /**
-   * EDITED: Deletes edge from the graph.
+   * Deletes edge from the graph.
    * @param {number} from ID of strat Node of edge.
    * @param {number} to ID of end Node of edge.
    * @returns {boolean} True, if edge deleted successfully from the graph. Otherwise, returns false.
@@ -102,16 +104,14 @@ class FlowGraph extends Graph {
     return false;
   }
   /**
-   * FIXME:
    * Returns from a given list, an edge that has the same given nodes.
    * @param {number} from ID of start node edge.
    * @param {number} to ID of end node edge.
-   * @param {LinkedList} list The list.
-   * @returns {FlowEdge} Edge from the list. Return null if its not exist.
+   * @returns {object} Edge from the list. Return null if its not exist.
    * @memberof FlowGraph
    */
-  findEdgeInList(from, to, list) {
-    let currNode = list.head;
+  findEdgeInList(from, to) {
+    let currNode = this.edgesList.head;
     while (currNode != null) {
       if (currNode.data.from == from && currNode.data.to == to) {
         return currNode.data;
@@ -121,30 +121,15 @@ class FlowGraph extends Graph {
     return null;
   }
   /**
-   * FIXME:
    * Changes each edge in path to its edge of the graph
-   *
    * @param {Path} path The path's edges.
    * @memberof FlowGraph
    */
   changeEdgesToFlowEdges(path) {
     let newEdges = [];
     for (let i = 0; i < path.size(); i++) {
-      let edge = this.findEdgeInList(
-        path.nodes[i],
-        path.nodes[i + 1],
-        this.forwardEdgesList
-      );
-      if (edge == null) {
-        edge = this.findEdgeInList(
-          path.nodes[i],
-          path.nodes[i + 1],
-          this.backwardEdgesList
-        );
-        newEdges.push(edge);
-      } else {
-        newEdges.push(edge);
-      }
+      let edge = this.findEdgeInList(path.nodes[i], path.nodes[i + 1]);
+      newEdges.push(edge);
     }
     path.edges = newEdges;
   }

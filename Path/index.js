@@ -11,7 +11,7 @@ class Path {
   }
   /**
    * Gets the number of edged in the path.
-   * @returns {number} The number of nodes.
+   * @returns {number} The number of edged.
    * @memberof Path
    */
   size() {

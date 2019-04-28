@@ -12,7 +12,8 @@
   * Edge:
       Edge object can be cloned (deep copy).
   * FlowEdge:
-      FlowEdge object can be cloned (deep copy).
+      1. FlowEdge object can be cloned (deep copy).
+      2. FlowEdge can be declared with flow and capacity as you wish.
   * ForwardFlowEdge:
       ForwardFlowEdge object can be cloned (deep copy).
   * BackwardFlowEdge:
@@ -22,10 +23,13 @@
   * Graph:
       Clone method will deep copy the Graph object.
   * FlowGraph:
-      Clone method will deep copy the FlowGraph object.
+      1. Clone method will deep copy the FlowGraph object.
+      2. FlowGraph now has only one list of edges (FlowEdge objects).
+      3. findEdgeInList method would not recive 'list' arument any more.
+      4. Now, you can add edges with capacity and flow to the graph.
   * EdmondsKrap:
-      1. Edmonds Krap algorithm will work with cloned FlowGraph.
-      2. updateFlowGraph Method will update the cloned FlowGraph.
+      1. Edmonds Krap algorithm works with cloned FlowGraph only.
+      2. updateFlowGraph Method updates cloned FlowGraph only.
       3. The original graph's edges will not recieve flow (for now).
   * New files arrangement -
       before:

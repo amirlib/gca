@@ -10,12 +10,19 @@ class FlowEdge extends Edge {
    * Creates an instance of FlowEdge.
    * @param {number} from ID of strat Node of edge.
    * @param {number} to ID of end Node of edge.
+   * @param {number} capacity The capacity of edge.
+   * @param {number} flow The flow of edge.
    * @memberof FlowEdge
    */
-  constructor(from, to) {
+  constructor(from, to, capacity, flow) {
     super(from, to);
-    this.capacity = 1;
-    this.flow = 0;
+    this.capacity = capacity;
+    this.flow = flow;
+    if (flow > capacity) {
+      this.flow = this.capacity;
+    } else if (flow < 0) {
+      this.flow = 0;
+    }
   }
   /**
    * Increases the flow in the edge.
@@ -87,7 +94,7 @@ class FlowEdge extends Edge {
    * @memberof FlowEdge
    */
   toString() {
-    return `${super.toString()} with flow: ${this.flow}`;
+    return `${super.toString()} with capacity: ${capacity} and flow: ${this.flow}`;
   }
 }
 
