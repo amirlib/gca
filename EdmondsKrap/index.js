@@ -9,7 +9,7 @@ const FlowGraph = require("../Flow-Graph");
  */
 function edmondsKarp(graph) {
   if (graph instanceof FlowGraph) {
-    let flowGraph = graph;
+    let flowGraph = graph.clone();
     let bfsG = BFS(flowGraph, flowGraph.s);
     while (bfsG.hasNode(flowGraph.t)) {
       console.log(`edmondsKarp while`);

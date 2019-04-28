@@ -67,7 +67,6 @@ function augment(graphF, path) {
  */
 function updateFlowGraph(graphF, path) {
   console.log(`enter updateFlowGraph`);
-  let graph = graphF;
   let backwardEdge, forwardEdge;
   let length = path.size();
   for (let i = 0; i < length; i++) {
@@ -79,18 +78,18 @@ function updateFlowGraph(graphF, path) {
       );
       if (backwardEdge == null) {
         backwardEdge = new BackwardFlowEdge(path.edges[i].to, path.edges[i].from);
-        graph.markEdge(backwardEdge.from, backwardEdge.to);
+        graphF.markEdge(backwardEdge.from, backwardEdge.to);
         graphF.backwardEdgesList.addData(backwardEdge);
       }
       backwardEdge.increaseFlow(1);
-      graph.markEdge(backwardEdge.from, backwardEdge.to);
+      graphF.markEdge(backwardEdge.from, backwardEdge.to);
       forwardEdge = graphF.findEdgeInList(
         path.edges[i].from,
         path.edges[i].to,
         graphF.forwardEdgesList
       );
       forwardEdge.decreaseFlow(1);
-      graph.unmarkEdge(forwardEdge.from, forwardEdge.to);
+      graphF.unmarkEdge(forwardEdge.from, forwardEdge.to);
     } else {
       forwardEdge = graphF.findEdgeInList(
         path.edges[i].to,
@@ -98,33 +97,17 @@ function updateFlowGraph(graphF, path) {
         graphF.forwardEdgesList
       );
       forwardEdge.increaseFlow(1);
-      graph.markEdge(forwardEdge.from, forwardEdge.to);
+      graphF.markEdge(forwardEdge.from, forwardEdge.to);
       backwardEdge = graphF.findEdgeInList(
         path.edges[i].from,
         path.edges[i].to,
         graphF.backwardEdgesList
       );
       backwardEdge.decreaseFlow(1);
-      graph.unmarkEdge(backwardEdge.from, backwardEdge.to);
+      graphF.unmarkEdge(backwardEdge.from, backwardEdge.to);
     }
-    // if (path.edges[i].isCapacityFull()) {
-    //   console.log(`isCapacityFull`);
-
-    //   graph.markEdge(path.edges[i].to, path.edges[i].from);
-    //   edge.resetFlow();
-    // } else {
-    //   edge.changeFlowTo(path.edges[i].capacity - path.edges[i].flow);
-    // }
-    // while (temp != null) {
-    //   if (temp.data.from == edge.from && temp.data.to == edge.to) {
-    //     temp.data = edge;
-    //     break;
-    //   }
-    //   temp = temp.next;
-    // }
   }
   console.log(`exit updateFlowGraph`);
-  return graph;
 }
 
 module.exports = { flowMax, augment, updateFlowGraph };
