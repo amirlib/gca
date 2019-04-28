@@ -15,7 +15,10 @@ const gca = require('gca');
 const tool = new gca();
 
 let graph = tool.CreateGraph();
-let bfsGraph = tool.BFS(graph, s);
+graph.addNode(1);
+graph.addNode(2);
+graph.addEdge(1, 2);
+let bfsGraph = tool.BFS(graph, 1);
 let flowGraph = tool.CreateFlowGraph();
 let maxFlow = tool.EdmondsKarp(flowGraph);
 ```
@@ -55,7 +58,7 @@ The full documentation can be found in each class.
     * **@returns {number}** The number of nodes.
 - `countEdges()`
     * Counts the number of edges in graph.
-    * **@return {number} The number of edges in graph.
+    * **@return {number}** The number of edges in graph.
 - `addNode(ID)`
     * Inserts a new node to the graph. The ID must be number.
     * **@param {number} ID** - ID of node to insert.
@@ -96,8 +99,8 @@ The full documentation can be found in each class.
     * **@param {number}** - ID The given node ID.
     * **@returns {boolean}** True if exist, otherwise False.
 - `clone()`
-    * New Graph object creates an exact copy of its own. Will clone bfsGraph and FlowGraph objects too, but only their nodesID and matrix arrays.Checks if the given node exists in the graph.
-    * **@returns {Graph}** Copied Graph.
+    * Deep copies a graph object. Will clone bfsGraph and FlowGraph objects too.
+    * **@returns {Graph}** Cloned Graph.
 - `printNodesID()`
     * Returns the nodes that are in NodesID array.
     * **@returns {string}**
@@ -146,6 +149,9 @@ Implementaion of BFS Graph. There are tools for building a Graph that it result 
     * Gets the shortest path from the root node to node t.
     * **@param {number} t** - ID of end node in path.
     * **@returns {Path}** The Path object. Returns -1 if node with ID: t not exist in the graph.
+- `clone()`
+    * bfsGraph object cannot be cloned.
+    * **@returns {object}** null.
 
 ### Path
 
@@ -169,6 +175,9 @@ Implementaion of edge class for edges of Path objects.
 - `constructor(from, to)`
     * **@param {number} from** - ID of strat Node of edge.
     * **@param {number} to** - ID of end Node of edge.
+- `clone()`
+    * clones an Edge object.
+    * **@returns {Edge}** cloned Edge.
 - `toString()`
     * Returns sring with data of edge.
     * **@returns {string}**
@@ -199,6 +208,9 @@ Implementaion of edge class for the Flow Graph class. Each edge includes data fo
 - `isCapacityFull()`
     * Check if the capacity is full.
     * **@returns {boolean}** True if capacity of the edge is full. Otherwise, return false.
+- `clone()`
+    * clones a FlowEdge object.
+    * **@returns {FlowEdge}** cloned FlowEdge.
 - `toString()`
     * Returns string with the data of edge.
     * **@returns {string}**
@@ -213,6 +225,9 @@ Implementaion of backward edge class for the Flow Graph class.
 - `constructor(from, to)`
     * **@param {number} from** - ID of strat Node of edge.
     * **@param {number} to** - ID of end Node of edge.
+- `clone()`
+    * clones a BackwardFlowEdge object.
+    * **@returns {BackwardFlowEdge}** cloned BackwardFlowEdge.
 
 ### ForwardFlowEdge
 
@@ -224,6 +239,9 @@ Implementaion of forward edge class for the Flow Graph class.
 - `constructor(from, to)`
     * **@param {number} from** - ID of strat Node of edge.
     * **@param {number} to** - ID of end Node of edge.
+- `clone()`
+    * clones a ForwardFlowEdge object.
+    * **@returns {ForwardFlowEdge}** cloned ForwardFlowEdge.
 
 ### FlowGraph
 
@@ -243,6 +261,9 @@ DONOT use it to reperesent normal graph!
     * **@param {number} to** - ID of end node edge.
     * **@param {LinkedList} list** - The list.
     * **@returns {FlowEdge}** Edge from the list.
+- `clone()`
+    * Deep copies a FlowGraph object.
+    * **@returns {FlowGraph}** Cloned FlowGraph.
 
 ### LinkedList
 
@@ -250,7 +271,9 @@ Implementaion of linked list. Used for saveing the edges of the Flow Graph.
 
 1. **head** - null
 
-
+- `size()`
+    * Returns the number of nodes in the graph.
+    * **@returns {number}** The number of nodes.
 - `addData(obj)`
     * Creates new node with the obj and add it to linked list.
     * Returns from a given list, an edge that has the same given nodes.
@@ -272,7 +295,7 @@ Implementaion of linked list. Used for saveing the edges of the Flow Graph.
 Implementaion of node for the linkedlist.
 
 - `constructor(obj)`
-    * **@param {object} obj**
+    * **@param {any} obj**
 
 
 ## Author

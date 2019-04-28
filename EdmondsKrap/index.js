@@ -1,6 +1,6 @@
-const Tools = require('./EKTools');
-const BFS = require(`../BFS/index`);
-const FlowGraph = require('../Flow-Graph/FlowGraph');
+const Tools = require("./EKTools");
+const BFS = require(`../BFS`);
+const FlowGraph = require("../Flow-Graph");
 /**
  * Edmonds karp algorithm.
  *
@@ -8,19 +8,20 @@ const FlowGraph = require('../Flow-Graph/FlowGraph');
  * @returns {number} The max flow. Return -1, if the graph is not instance of FlowGraph.
  */
 function edmondsKarp(graph) {
-    if (graph instanceof FlowGraph) {
-        let graphF = graph;
-        let bfsG = BFS(graphF, graphF.s);
-        while (bfsG.hasNode(graphF.t)) {
-            let minPath = bfsG.getPath(graphF.t);
-            graphF.changeEdgesToFlowEdges(minPath);
-            Tools.augment(graphF, minPath);
-            graphF = Tools.updateFlowGraph(graphF, minPath);
-            bfsG = BFS(graphF, graphF.s);
-        }
-        return Tools.flowMax(graphF);
+  if (graph instanceof FlowGraph) {
+    let flowGraph = graph;
+    let bfsG = BFS(flowGraph, flowGraph.s);
+    while (bfsG.hasNode(flowGraph.t)) {
+      console.log(`edmondsKarp while`);
+      let minPath = bfsG.getPath(flowGraph.t);
+      flowGraph.changeEdgesToFlowEdges(minPath);
+      Tools.augment(flowGraph, minPath);
+      flowGraph = Tools.updateFlowGraph(flowGraph, minPath);
+      bfsG = BFS(flowGraph, flowGraph.s);
     }
-    return -1;
+    return Tools.flowMax(flowGraph);
+  }
+  return -1;
 }
 
 module.exports = edmondsKarp;

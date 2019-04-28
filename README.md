@@ -15,6 +15,10 @@ const gca = require('gca');
 const tool = new gca();
 
 let graph = tool.CreateGraph();
+graph.addNode(1);
+graph.addNode(2);
+graph.addEdge(1, 2);
+let bfsGraph = tool.BFS(graph, 1);
 let bfsGraph = tool.BFS(graph, NodeID);
 let flowGraph = tool.CreateFlowGraph();
 let maxFlow = tool.EdmondsKarp(flowGraph);
@@ -27,6 +31,8 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## API
 
 Full documentation can be found [here](https://amirlib.github.io/gca/#/).
+
+A chanelog file can be found [here](https://github.com/amirlib/gca/blob/master/CHANELOG.md).
 
 Also, there an [example.js](https://github.com/amirlib/gca/blob/master/example.js) page.
 

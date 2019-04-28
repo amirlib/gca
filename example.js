@@ -1,4 +1,4 @@
-const gca = require('gca');
+const gca = require("./index");
 
 const tool = new gca();
 
@@ -37,16 +37,5 @@ graph.addEdge(13, 14);
 graph.addEdge(14, 15);
 graph.addEdge(15, 16);
 graph.addEdge(16, graph.t);
-console.log(graph.toString());
-console.log(graph.printNodesID());
+
 console.log(tool.EdmondsKarp(graph));
-
-let bfsG = tool.BFS(graph, graph.s);
-console.log(bfsG.toString());
-
-try {
-    let path = bfsG.getPath(16);
-    console.log(path.toString());
-} catch (error) {
-    console.log(`${error.message}`);
-}
