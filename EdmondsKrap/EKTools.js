@@ -22,7 +22,7 @@ function countFlow(list) {
   let temp = list.head;
   let flow = 0;
   while (temp != null) {
-    if (temp.data.to == 1) {
+    if (temp.data.from == 1) {
       flow = flow + temp.data.flow;
     }
     temp = temp.next;
@@ -37,37 +37,23 @@ function countFlow(list) {
  */
 function augment(graphF, path) {
   console.log(`enter augment`);
-  let edge, temp;
   for (let i = 0; i < path.size(); i++) {
     if (path.edges[i] instanceof ForwardFlowEdge) {
-      console.log(`augment ForwardFlowEdge: ${edge}`);
-      edge = graphF.findEdgeInList(
+      let forwardEdge = graphF.findEdgeInList(
         path.edges[i].from,
         path.edges[i].to,
         graphF.forwardEdgesList
       );
-      // edge.increaseFlow(1);
-      temp = graphF.forwardEdgesList.head;
+      console.log(`before augment ForwardFlowEdge: ${forwardEdge}`);
+      forwardEdge.increaseFlow(1);
     } else {
-      console.log(`augment BackwardFlowEdge: ${edge}`);
-      edge = graphF.findEdgeInList(
+      let backwardEdge = graphF.findEdgeInList(
         path.edges[i].from,
         path.edges[i].to,
         graphF.backwardEdgesList
       );
-      // edge.decreaseFlow(1);
-      temp = graphF.backwardEdgesList.head;
-    }
-    while (temp != null) {
-      if (temp.data == edge) {
-        if (temp.data instanceof ForwardFlowEdge) {
-          temp.data.increaseFlow(1);
-        } else {
-          temp.data.decreaseFlow(1);
-        }
-        break;
-      }
-      temp = temp.next;
+      console.log(`before augment BackwardFlowEdge: ${backwardEdge}`);
+      backwardEdge.decreaseFlow(1);
     }
   }
   console.log(`exit augment`);
@@ -82,44 +68,62 @@ function augment(graphF, path) {
 function updateFlowGraph(graphF, path) {
   console.log(`enter updateFlowGraph`);
   let graph = graphF;
-  let temp, edge;
+  let backwardEdge, forwardEdge;
   let length = path.size();
   for (let i = 0; i < length; i++) {
     if (path.edges[i] instanceof ForwardFlowEdge) {
-      temp = graphF.backwardEdgesList.head;
-      edge = graphF.findEdgeInList(
+      backwardEdge = graphF.findEdgeInList(
         path.edges[i].to,
         path.edges[i].from,
         graphF.backwardEdgesList
       );
-      if (edge == null) {
-        edge = new BackwardFlowEdge(path.edges[i].to, path.edges[i].from);
-        graph.markEdge(edge.from, edge.to);
-        graphF.backwardEdgesList.addData(edge);
+      if (backwardEdge == null) {
+        backwardEdge = new BackwardFlowEdge(path.edges[i].to, path.edges[i].from);
+        graph.markEdge(backwardEdge.from, backwardEdge.to);
+        graphF.backwardEdgesList.addData(backwardEdge);
       }
+      backwardEdge.increaseFlow(1);
+      graph.markEdge(backwardEdge.from, backwardEdge.to);
+      forwardEdge = graphF.findEdgeInList(
+        path.edges[i].from,
+        path.edges[i].to,
+        graphF.forwardEdgesList
+      );
+      forwardEdge.decreaseFlow(1);
+      graph.unmarkEdge(forwardEdge.from, forwardEdge.to);
     } else {
-      temp = graphF.forwardEdgesList.head;
-      edge = graphF.findEdgeInList(
+      forwardEdge = graphF.findEdgeInList(
         path.edges[i].to,
         path.edges[i].from,
         graphF.forwardEdgesList
       );
+      forwardEdge.increaseFlow(1);
+      graph.markEdge(forwardEdge.from, forwardEdge.to);
+      backwardEdge = graphF.findEdgeInList(
+        path.edges[i].from,
+        path.edges[i].to,
+        graphF.backwardEdgesList
+      );
+      backwardEdge.decreaseFlow(1);
+      graph.unmarkEdge(backwardEdge.from, backwardEdge.to);
     }
-    if (path.edges[i].isCapacityFull()) {
-      graph.unmarkEdge(path.edges[i].from, path.edges[i].to);
-      graph.markEdge(path.edges[i].to, path.edges[i].from);
-      edge.resetFlow();
-    } else {
-      edge.changeFlowTo(path.edges[i].capacity - path.edges[i].flow);
-    }
-    while (temp != null) {
-      if (temp.data.from == edge.from && temp.data.to == edge.to) {
-        temp.data = edge;
-        break;
-      }
-      temp = temp.next;
-    }
+    // if (path.edges[i].isCapacityFull()) {
+    //   console.log(`isCapacityFull`);
+
+    //   graph.markEdge(path.edges[i].to, path.edges[i].from);
+    //   edge.resetFlow();
+    // } else {
+    //   edge.changeFlowTo(path.edges[i].capacity - path.edges[i].flow);
+    // }
+    // while (temp != null) {
+    //   if (temp.data.from == edge.from && temp.data.to == edge.to) {
+    //     temp.data = edge;
+    //     break;
+    //   }
+    //   temp = temp.next;
+    // }
   }
+  console.log(`exit updateFlowGraph`);
   return graph;
 }
 

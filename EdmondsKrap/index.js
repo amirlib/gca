@@ -14,9 +14,14 @@ function edmondsKarp(graph) {
     while (bfsG.hasNode(flowGraph.t)) {
       console.log(`edmondsKarp while`);
       let minPath = bfsG.getPath(flowGraph.t);
+      console.log(minPath.toString());
       flowGraph.changeEdgesToFlowEdges(minPath);
       Tools.augment(flowGraph, minPath);
-      flowGraph = Tools.updateFlowGraph(flowGraph, minPath);
+      Tools.updateFlowGraph(flowGraph, minPath);
+      console.log("forwardEdgeList");
+      console.log(flowGraph.forwardEdgesList.toString());
+      console.log("backwardEdgesList");
+      console.log(flowGraph.backwardEdgesList.toString());
       bfsG = BFS(flowGraph, flowGraph.s);
     }
     return Tools.flowMax(flowGraph);

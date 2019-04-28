@@ -34,7 +34,7 @@ class FlowEdge extends Edge {
    * @memberof FlowEdge
    */
   decreaseFlow(reducedFlow) {
-    this.flow = this.flow + reducedFlow;
+    this.flow = this.flow - reducedFlow;
     if (this.flow < this.capacity) {
       this.flow = 0;
     }
