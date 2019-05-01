@@ -34,8 +34,8 @@
       3. Now, you can add edges with a positive number of capacity and flow values to the graph.
   * EdmondsKrap:
       Re-write EdmondsKrap algorithm.
-<pre>
   * New files arrangement -  
+<pre>
       before:  
         gca  
         ├── README.md  
