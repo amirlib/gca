@@ -10,10 +10,12 @@ class BackwardFlowEdge extends FlowEdge {
    * Creates an instance of BackwardFlowEdge.
    * @param {number} from ID of strat Node of edge.
    * @param {number} to ID of end Node of edge.
+   * @param {number} capacity The capacity of edge.
+   * @param {number} flow The flow of edge.
    * @memberof BackwardFlowEdge
    */
-  constructor(from, to) {
-    super(from, to);
+  constructor(from, to, capacity, flow) {
+    super(from, to, capacity, flow);
   }
   /**
    * clones a BackwardFlowEdge object.

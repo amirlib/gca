@@ -15,6 +15,18 @@ class Edge {
     this.to = to;
   }
   /**
+   * Checks if two edges are equals.
+   * @param  {Edge} edge 
+   * @return {boolean} true if this instance variables are equals to edge instance variables. Otherwise. returns false.
+   * @memberof Edge
+   */
+  equals(edge) {
+    if (this.from != edge.from || this.to != edge.to) {
+      return false;
+    }
+    return true;
+  }
+  /**
    * clones an Edge object.
    * @return {Edge} cloned Edge.
    * @memberof Edge

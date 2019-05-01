@@ -3,8 +3,6 @@ const LinkedList = require("../LinkedList");
 const FlowEdge = require("../Edges/FlowEdge");
 /**
  * Implementaion of Flow Graph. There are tools for building a Flow Graph that will return a correct max flow from Edmonds Krap alogritem.
- * DONOT use it to reperesent normal graph!
- *
  * @class FlowGraph
  * @extends {Graph}
  */
@@ -40,7 +38,7 @@ class FlowGraph extends Graph {
     this.matrix[fromIndex][toIndex] = 0;
   }
   /**
-   * Inserts a new node to the graph. But the ID can not be 0 OR 1.
+   * Inserts a new node to the graph. ID cannot be 0 OR 1.
    * @param {number} ID ID of node to insert.
    * @returns {boolean} True, if node added successfully to the graph. Otherwise, returns false.
    * @memberof FlowGraph
@@ -77,13 +75,12 @@ class FlowGraph extends Graph {
    * @param {number} from ID of strat Node of edge.
    * @param {number} to ID of end Node of edge.
    * @param {number} capacity The capacity of edge. Default value is 1.
-   * @param {number} flow The flow of edge. Default value is 0.
    * @returns {boolean} True, if edge added successfully to the graph. Otherwise, returns false.
    * @memberof FlowGraph
    */
-  addEdge(from, to, capacity = 1, flow = 0) {
+  addEdge(from, to, capacity = 1) {
     if (super.addEdge(from, to) == true) {
-      this.edgesList.addData(new FlowEdge(from, to, capacity, flow));
+      this.edgesList.addData(new FlowEdge(from, to, capacity, 0));
       return true;
     }
     return false;
@@ -97,41 +94,39 @@ class FlowGraph extends Graph {
    */
   deleteEdge(from, to) {
     if (super.deleteEdge(from, to) == true) {
-      const edge = this.findEdgeInList(from, to, this.edgesList);
+      const edge = this.getEdge(from, to, this.edgesList);
       this.edgesList.removeData(edge);
       return true;
     }
     return false;
   }
   /**
-   * Returns from a given list, an edge that has the same given nodes.
+   * Returns an edge that has the same 'from' and 'to' nodes as were given.
    * @param {number} from ID of start node edge.
    * @param {number} to ID of end node edge.
-   * @returns {object} Edge from the list. Return null if its not exist.
+   * @returns {object} FlowEdge object from the list. Return null if its not exist.
    * @memberof FlowGraph
    */
-  findEdgeInList(from, to) {
-    let currNode = this.edgesList.head;
-    while (currNode != null) {
-      if (currNode.data.from == from && currNode.data.to == to) {
-        return currNode.data;
+  getEdge(from, to) {
+    let current = this.edgesList.head;
+    while (current != null) {
+      if (current.data.from == from && current.data.to == to) {
+        return current.data;
       }
-      currNode = currNode.next;
+      current = current.next;
     }
     return null;
   }
   /**
-   * Changes each edge in path to its edge of the graph
-   * @param {Path} path The path's edges.
+   * Resets the flow of all edges in the graph.
    * @memberof FlowGraph
    */
-  changeEdgesToFlowEdges(path) {
-    let newEdges = [];
-    for (let i = 0; i < path.size(); i++) {
-      let edge = this.findEdgeInList(path.nodes[i], path.nodes[i + 1]);
-      newEdges.push(edge);
+  reset() {
+    let current = this.edgesList.head;
+    while (current != null) {
+      current.data.resetFlow();
+      current = current.next;
     }
-    path.edges = newEdges;
   }
   /**
    * Deep copies a FlowGraph object.
@@ -144,27 +139,8 @@ class FlowGraph extends Graph {
       cloneGraph.matrix[i] = Array.from(this.matrix[i]);
     }
     cloneGraph.nodesID = Array.from(this.nodesID);
-    cloneGraph.edgesList = this.cloneLinkedList(this.edgesList);
+    cloneGraph.edgesList = this.edgesList.clone();
     return cloneGraph;
-  }
-  /**
-   * Deep copies a linkedlist.
-   * @param  {LinkedList} list to clone.
-   * @return {LinkedList} cloned LinkedList.
-   * @memberof FlowGraph
-   */
-  cloneLinkedList(list) {
-    let clonedList = new LinkedList();
-    if (list.size() == 0) {
-      return clonedList;
-    }
-    let temp = list.head;
-    while (temp != null) {
-      let clonedEdge = temp.data.clone();
-      clonedList.addData(clonedEdge);
-      temp = temp.next;
-    }
-    return clonedList;
   }
   /**
    * Throws error. Can serch for path only from BFS Graph.

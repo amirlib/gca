@@ -71,14 +71,32 @@ class LinkedList {
    * @memberof LinkedList
    */
   has(obj) {
-    let temp = this.head;
-    while (temp != null) {
-      if (temp.data == obj) {
+    let current = this.head;
+    while (current != null) {
+      if (current.data.equals(obj)) {
         return true;
       }
-      temp = temp.next;
+      current = current.next;
     }
     return false;
+  }
+  /**
+   * Deep copies a linkedlist.
+   * @return {LinkedList} cloned LinkedList.
+   * @memberof LinkedList
+   */
+  clone() {
+    let clonedList = new LinkedList();
+    if (this.size() == 0) {
+      return clonedList;
+    }
+    let current = this.head;
+    while (current != null) {
+      let clonedData = current.data.clone();
+      clonedList.addData(clonedData);
+      current = current.next;
+    }
+    return clonedList;
   }
   /**
    * Returns the data inside all the nodes.

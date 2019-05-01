@@ -19,8 +19,8 @@ graph.addNode(1);
 graph.addNode(2);
 graph.addEdge(1, 2);
 let bfsGraph = tool.BFS(graph, 1);
-let bfsGraph = tool.BFS(graph, NodeID);
 let flowGraph = tool.CreateFlowGraph();
+flowGraph.addEdge(flowGraph.s, flowGraph.t);
 let maxFlow = tool.EdmondsKarp(flowGraph);
 ```
 

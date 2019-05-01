@@ -67,12 +67,34 @@ class FlowEdge extends Edge {
     }
   }
   /**
-   * Check if the capacity is full.
+   * Replaces the capacity in the edge with new value.
+   * @param  {number} capaity the new value of capacity.
+   * @memberof FlowEdge
+   */
+  changeCapacityTo(capaity) {
+    this.capacity = capaity;
+    if (this.capacity < 0) {
+      this.capacity = 0;
+    }
+  }
+  /**
+   * Checks if the capacity is full.
    * @returns {boolean} True if capacity of the edge is full. Otherwise, return false.
    * @memberof FlowEdge
    */
   isCapacityFull() {
     if (this.flow == this.capacity) {
+      return true;
+    }
+    return false;
+  }
+  /**
+   * checks if it empty (zero flow).
+   * @returns {boolean} True if it empty. Otherwise, return false.
+   * @memberof FlowEdge
+   */
+  isEmpty() {
+    if (this.flow == 0) {
       return true;
     }
     return false;
@@ -94,7 +116,9 @@ class FlowEdge extends Edge {
    * @memberof FlowEdge
    */
   toString() {
-    return `${super.toString()} with capacity: ${capacity} and flow: ${this.flow}`;
+    return `${super.toString()} with capacity: ${this.capacity} and flow: ${
+      this.flow
+    }`;
   }
 }
 

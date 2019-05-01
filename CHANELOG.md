@@ -3,34 +3,37 @@
 - `Bug Fix`
   * FlowEdge:
       The decreaseFlow method actually increased the flow.
-  * bfsGraph:
-      Clone method returned false. Changed to null.
 
 - `New Feature`
   * LinkedList:
-      New method: size().
+      1. New method: size().
+      2. LinkedList object can be cloned (deep copy) with clone() method. It will use the data object's clone method.
   * Edge:
-      Edge object can be cloned (deep copy).
+      1. Edge object can be cloned (deep copy) with clone() method.
+      2. Edge object can check if it instance variables are equals to other Edge object with equals() method.
   * FlowEdge:
-      1. FlowEdge object can be cloned (deep copy).
-      2. FlowEdge can be declared with flow and capacity as you wish.
-  * ForwardFlowEdge:
-      ForwardFlowEdge object can be cloned (deep copy).
-  * BackwardFlowEdge:
-      BackwardFlowEdge object can be cloned (deep copy).
+      1. FlowEdge object can be cloned (deep copy) with clone() method.
+      2. FlowEdge object can check if it instance variables: from and to, are equals to other FlowEdge object with equals() method.
+      3. FlowEdge can be declared with flow and capacity as you wish.
+      4. FlowEdge can check if it empty (zero flow) with isEmpty() method.
+      5. FlowEdge can change it capacity with changeCapacityTo() method.
+  * FlowGraph:
+      reset() method will reset the flow for all the edges of the graph.   
 
 - `Enhancement`
+  * LinkedList:
+      has method will use the data object's equals method.
   * Graph:
-      Clone method will deep copy the Graph object.
+      clone method will deep copy the Graph object.
+  * bfsGraph:
+      1. clone() method returned false. Changed to null.
+      2. getPath() method returned false. Changed to null.
   * FlowGraph:
-      1. Clone method will deep copy the FlowGraph object.
-      2. FlowGraph now has only one list of edges (FlowEdge objects).
-      3. findEdgeInList method would not recive 'list' arument any more.
-      4. Now, you can add edges with capacity and flow to the graph.
+      1. FlowGraph now has only one list of edges (FlowEdge objects).
+      2. findEdgeInList() method would not receive 'list' argument any more. The name of this method was changed to getEdge().
+      3. Now, you can add edges with a positive number of capacity and flow values to the graph.
   * EdmondsKrap:
-      1. Edmonds Krap algorithm works with cloned FlowGraph only.
-      2. updateFlowGraph Method updates cloned FlowGraph only.
-      3. The original graph's edges will not recieve flow (for now).
+      Re-write EdmondsKrap algorithm.
   * New files arrangement -
       before:
         gca
@@ -84,6 +87,8 @@
         │   ├── EKTools.js
         │   └── index.js
         ├── Flow-Graph
+        │   ├── Residual-Graph
+        |   |   └── index.js
         |   └── index.js
         ├── Graph
         |   └── index.js

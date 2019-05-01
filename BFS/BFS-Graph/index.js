@@ -144,7 +144,7 @@ class bfsGraph extends Graph {
   /**
    * Gets the shortest path from the root node to node t.
    * @param {number} t ID of end node in path.
-   * @returns {Path} The Path object. Returns -1 if node with ID: t not exist in the graph.
+   * @returns {object} Path object. Returns null if the ID not exist in the graph.
    * @memberof bfsGraph
    */
   getPath(t) {
@@ -162,7 +162,7 @@ class bfsGraph extends Graph {
       path.createEdgesFromNodes();
       return path;
     }
-    return -1;
+    return null;
   }
   /**
    * bfsGraph object cannot be cloned.

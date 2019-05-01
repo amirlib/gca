@@ -20,6 +20,7 @@ graph.addNode(2);
 graph.addEdge(1, 2);
 let bfsGraph = tool.BFS(graph, 1);
 let flowGraph = tool.CreateFlowGraph();
+flowGraph.addEdge(flowGraph.s, flowGraph.t);
 let maxFlow = tool.EdmondsKarp(flowGraph);
 ```
 ## Contributing
@@ -51,7 +52,6 @@ The full documentation can be found in each class.
 1. **matrix** (2d array) - The graph represented in matrix array when: in the first row and the first column there the IDs of nodes. At cell (0, 0): 'M'.
 2. '1' in the matrix in row i and column j represent an edge: (node in the first row at index i, node in the first column at index j).  
 3. **nodesID** - An array of nodes ID.
-
 
 - `size()`
     * Returns the number of nodes in the graph.
@@ -116,7 +116,6 @@ Implementaion of BFS Graph. There are tools for building a Graph that it result 
 2. **layer** - An array of nodes in each layer of the graph.
 3. **layerCounter** - Counts number of layers.
 
-
 - `countNodesInLayer(index)`
     * Counts the nodes in the layer.
     * **@param {number} index** - Index of layer.
@@ -153,100 +152,6 @@ Implementaion of BFS Graph. There are tools for building a Graph that it result 
     * bfsGraph object cannot be cloned.
     * **@returns {object}** null.
 
-### Path
-
-Implementaion of path. Path is used for saving nodes of the minimum path from BFS Graph and edges. **There a method in bfsGraph class for creating a path object from the graph**.
-
-1. **nodes** - An array for the nodes.
-2. **edges** - An array for the edges.
-
-
-- `size()`
-    * Gets the number of edged in the path.
-    * **@returns {number}** The number of edged.
-- `reverseNodes()`
-    * Reverse the order of path.
-- `toString()`
-    * Prints the edges of the path.
-    * **@returns {string}**
-
-### Edge
-
-Implementaion of edge class for edges of Path objects.
-
-- `constructor(from, to)`
-    * **@param {number} from** - ID of strat Node of edge.
-    * **@param {number} to** - ID of end Node of edge.
-- `clone()`
-    * clones an Edge object.
-    * **@returns {Edge}** cloned Edge.
-- `toString()`
-    * Returns sring with data of edge.
-    * **@returns {string}**
-
-### FlowEdge
-
-Implementaion of edge class for the Flow Graph class. Each edge includes data for it nodes, the flow and the capacity.
-
-1. Extends from **Edge**.
-2. **capacity {number}** - The capacity of the edge.
-3. **flow {number}** - The flow of the edge. The maximum amount of flow is the capacity.
-
-
-- `constructor(from, to, capacity, flow)`
-    * **@param {number} from** - ID of strat Node of edge.
-    * **@param {number} to** - ID of end Node of edge.
-    * **@param {number} capacity** - The capacity of edge.
-    * **@param {number} flow** - The flow of edge.
-- `increaseFlow(addedFlow)`
-    * Increases the flow in the edge.
-    * **@param {number} addedFlow** - The amount of flow to increase in the edge.
-- `decreaseFlow(reducedFlow)`
-    * Decreases the flow in the edge.
-    * **@param {number} reducedFlow** - The amount of flow to reduce in the edge.
-- `resetFlow()`
-    * Reset the flow in the edge.
-- `changeFlowTo(flow)`
-    * Replaces the flow in the edge with new value.
-    * **@param {number} flow** - The new value of flow.
-- `isCapacityFull()`
-    * Check if the capacity is full.
-    * **@returns {boolean}** True if capacity of the edge is full. Otherwise, return false.
-- `clone()`
-    * clones a FlowEdge object.
-    * **@returns {FlowEdge}** cloned FlowEdge.
-- `toString()`
-    * Returns string with the data of edge.
-    * **@returns {string}**
-
-### BackwardFlowEdge
-
-Implementaion of backward edge class for the Flow Graph class.
-
-1. Extends from **FlowEdge**.
-
-
-- `constructor(from, to)`
-    * **@param {number} from** - ID of strat Node of edge.
-    * **@param {number} to** - ID of end Node of edge.
-- `clone()`
-    * clones a BackwardFlowEdge object.
-    * **@returns {BackwardFlowEdge}** cloned BackwardFlowEdge.
-
-### ForwardFlowEdge
-
-Implementaion of forward edge class for the Flow Graph class.
-
-1. Extends from **FlowEdge**.
-
-
-- `constructor(from, to)`
-    * **@param {number} from** - ID of strat Node of edge.
-    * **@param {number} to** - ID of end Node of edge.
-- `clone()`
-    * clones a ForwardFlowEdge object.
-    * **@returns {ForwardFlowEdge}** cloned ForwardFlowEdge.
-
 ### FlowGraph
 
 Implementaion of Flow Graph. There are tools for building a Flow Graph that will return a correct max flow from Edmonds Krap alogritem.
@@ -272,14 +177,96 @@ DONOT use it to reperesent normal graph!
     * **@param {number} capacity** - The capacity of edge. Default value is 1.
     * **@param {number} flow** - The flow of edge. Default value is 0.
     * **@returns {boolean}** True, if edge added successfully to the graph. Otherwise, returns false.
-- `findEdgeInList(from, to)`
-    * Returns from a given list, an edge that has the same given nodes.
+- `getEdge(from, to)`
+    * Returns an edge that has the same 'from' and 'to' nodes as were given.
     * **@param {number} from** - ID of start node edge.
     * **@param {number} to** - ID of end node edge.
     * **@returns {object}** Edge from the list. Return null if its not exist.
+- `reset()`
+    * Resets the flow of all edges in the graph.
 - `clone()`
     * Deep copies a FlowGraph object.
     * **@returns {FlowGraph}** Cloned FlowGraph.
+
+### Path
+
+Implementaion of path. Path is used for saving nodes of the minimum path from BFS Graph and edges. **There a method in bfsGraph class for creating a path object from the graph**.
+
+1. **nodes** - An array for the nodes.
+2. **edges** - An array for the edges.
+
+- `size()`
+    * Gets the number of edged in the path.
+    * **@returns {number}** The number of edged.
+- `reverseNodes()`
+    * Reverse the order of path.
+- `toString()`
+    * Prints the edges of the path.
+    * **@returns {string}**
+
+### Edge
+
+Implementaion of edge class for edges of Path objects.
+
+- `constructor(from, to)`
+    * **@param {number} from** - ID of strat Node of edge.
+    * **@param {number} to** - ID of end Node of edge.
+- `equals(edge)`
+    * Checks if two edges are equals.
+    * **@param {Edge} edge**
+    * **@returns {boolean}** true if this instance variables are equals to edge instance variables. Otherwise. returns false.
+- `clone()`
+    * clones an Edge object.
+    * **@returns {Edge}** cloned Edge.
+- `toString()`
+    * Returns sring with data of edge.
+    * **@returns {string}**
+
+### FlowEdge
+
+Implementaion of edge class for the Flow Graph class. Each edge includes data for it nodes, the flow and the capacity.
+
+1. Extends from **Edge**.
+2. **capacity {number}** - The capacity of the edge.
+3. **flow {number}** - The flow of the edge. The maximum amount of flow is the capacity.
+
+- `constructor(from, to, capacity, flow)`
+    * **@param {number} from** - ID of strat Node of edge.
+    * **@param {number} to** - ID of end Node of edge.
+    * **@param {number} capacity** - The capacity of edge.
+    * **@param {number} flow** - The flow of edge.
+- `increaseFlow(addedFlow)`
+    * Increases the flow in the edge.
+    * **@param {number} addedFlow** - The amount of flow to increase in the edge.
+- `decreaseFlow(reducedFlow)`
+    * Decreases the flow in the edge.
+    * **@param {number} reducedFlow** - The amount of flow to reduce in the edge.
+- `resetFlow()`
+    * Reset the flow in the edge.
+- `changeFlowTo(flow)`
+    * Replaces the flow in the edge with new value.
+    * **@param {number} flow** - The new value of flow.
+- `changeCapacityTo(capacity)`
+    * Replaces the capacity in the edge with new value.
+    * **@param {number} capacity** - The new value of capacity.
+- `isCapacityFull()`
+    * Check if the capacity is full.
+    * **@returns {boolean}** - True if capacity of the edge is full. Otherwise, return false.
+- `isEmpty()`
+    * checks if it empty (zero flow).
+    * **@returns {boolean}** - True if it empty. Otherwise, return false.
+
+### BackwardFlowEdge
+
+Implementaion of backward edge class for edmonds krap algorithm.
+
+1. Extends from **FlowEdge**.
+
+### ForwardFlowEdge
+
+Implementaion of forward edge class for edmonds krap algorithm.
+
+1. Extends from **FlowEdge**.
 
 ### LinkedList
 
@@ -312,7 +299,6 @@ Implementaion of node for the linkedlist.
 
 - `constructor(obj)`
     * **@param {any} obj**
-
 
 ## Author
 
