@@ -1,3 +1,9 @@
+# 2.0.1
+
+- `Bug Fix`
+  * FlowGraph:
+      You could not initiate a new edge with flow.
+
 # 2.0.0
 
 - `Bug Fix`

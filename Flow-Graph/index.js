@@ -75,12 +75,13 @@ class FlowGraph extends Graph {
    * @param {number} from ID of strat Node of edge.
    * @param {number} to ID of end Node of edge.
    * @param {number} capacity The capacity of edge. Default value is 1.
+   * @param {number} flow The flow of edge. Default value is 0.
    * @returns {boolean} True, if edge added successfully to the graph. Otherwise, returns false.
    * @memberof FlowGraph
    */
-  addEdge(from, to, capacity = 1) {
+  addEdge(from, to, capacity = 1, flow = 0) {
     if (super.addEdge(from, to) == true) {
-      this.edgesList.addData(new FlowEdge(from, to, capacity, 0));
+      this.edgesList.addData(new FlowEdge(from, to, capacity, flow));
       return true;
     }
     return false;
