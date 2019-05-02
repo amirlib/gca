@@ -144,12 +144,12 @@ class bfsGraph extends Graph {
   /**
    * Gets the shortest path from the root node to node t.
    * @param {number} t ID of end node in path.
-   * @returns {object} Path object. Returns null if the ID not exist in the graph.
+   * @returns {Path} Path object.
    * @memberof bfsGraph
    */
   getPath(t) {
+    let path = new Path();
     if (this.hasNode(t) == true) {
-      let path = new Path();
       let childNode = t;
       let length = this.getLayerIndexOfNodeID(t);
       path.addNode(t);
@@ -160,9 +160,8 @@ class bfsGraph extends Graph {
       }
       path.reverseNodes();
       path.createEdgesFromNodes();
-      return path;
     }
-    return null;
+    return path;
   }
   /**
    * bfsGraph object cannot be cloned.

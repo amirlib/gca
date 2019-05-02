@@ -1,3 +1,4 @@
+const BFS = require("../BFS");
 const Graph = require("../Graph");
 const LinkedList = require("../LinkedList");
 const FlowEdge = require("../Edges/FlowEdge");
@@ -144,14 +145,14 @@ class FlowGraph extends Graph {
     return cloneGraph;
   }
   /**
-   * Throws error. Can serch for path only from BFS Graph.
-   * @param {number} ID
+   * Returns the shortest path from the 'from' node to 'to' node.
+   * @param  {number} from the start node
+   * @param  {number} to the ent node
+   * @returns {Path} Path object.
    * @memberof FlowGraph
    */
-  getPath(ID) {
-    throw new Error(
-      `Can not search for path. Path must be created from BFS Graph.`
-    );
+  getPath(from, to) {
+    return BFS(this, from).getPath(to);
   }
 }
 

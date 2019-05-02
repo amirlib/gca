@@ -1,7 +1,6 @@
 const FlowEdge = require("./FlowEdge");
 /**
  * Implementaion of forward edge class for the Flow Graph class.
- *
  * @class ForwardFlowEdge
  * @extends {FlowEdge}
  */
@@ -16,6 +15,7 @@ class ForwardFlowEdge extends FlowEdge {
    */
   constructor(from, to, capacity, flow) {
     super(from, to, capacity, flow);
+    this.backwardEdge = null;
   }
   /**
    * clones a ForwardFlowEdge object.

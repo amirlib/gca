@@ -12,14 +12,13 @@ function edmondsKarp(graph) {
     graph.reset();
     let flow = 0;
     let residualGraph = new ResidualGraph(graph);
-    let bfsGraph = BFS(residualGraph, residualGraph.s);
+    let path = residualGraph.getPath(residualGraph.s, residualGraph.t);
 
-    while (bfsGraph.hasNode(residualGraph.t)) {
-      let path = bfsGraph.getPath(residualGraph.t);
+    while (path.size() > 0) {
       residualGraph.changeEdgesToFlowEdges(path);
-      flow = flow + Tools.augment(graph, residualGraph.edgesList, path);
+      flow = flow + Tools.augment(graph, path);
       Tools.updateFlowGraph(graph, residualGraph, path);
-      bfsGraph = BFS(residualGraph, residualGraph.s);
+      path = residualGraph.getPath(residualGraph.s, residualGraph.t);
     }
     return flow;
   }

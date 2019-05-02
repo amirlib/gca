@@ -144,10 +144,10 @@ Implementaion of BFS Graph. There are tools for building a Graph that it result 
 - `printLayer()`
     * Prints all the nodes inside the layers.
     * **@returns {string}**
-- `getPath(ID)`
+- `getPath(t)`
     * Gets the shortest path from the root node to node t.
     * **@param {number} t** - ID of end node in path.
-    * **@returns {Path}** The Path object. Returns -1 if node with ID: t not exist in the graph.
+    * **@returns {Path}** The Path object. Returns an empty Path object if node with ID: t not exist in the graph.
 - `clone()`
     * bfsGraph object cannot be cloned.
     * **@returns {object}** null.
@@ -184,6 +184,11 @@ DONOT use it to reperesent normal graph!
     * **@returns {object}** Edge from the list. Return null if its not exist.
 - `reset()`
     * Resets the flow of all edges in the graph.
+- `getPath(from, to)`
+    * Returns the shortest path from the 'from' node to 'to' node.
+    * **@param {number} from** - ID of start node edge.
+    * **@param {number} to** - ID of end node edge.
+    * **@returns {Path}** Path object.
 - `clone()`
     * Deep copies a FlowGraph object.
     * **@returns {FlowGraph}** Cloned FlowGraph.
@@ -261,12 +266,14 @@ Implementaion of edge class for the Flow Graph class. Each edge includes data fo
 Implementaion of backward edge class for edmonds krap algorithm.
 
 1. Extends from **FlowEdge**.
+2. **forwardEdge** - null.
 
 ### ForwardFlowEdge
 
 Implementaion of forward edge class for edmonds krap algorithm.
 
 1. Extends from **FlowEdge**.
+2. **backwardEdge** - null.
 
 ### LinkedList
 

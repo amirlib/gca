@@ -18,7 +18,7 @@ class ResidualGraph extends FlowGraph {
     this.edgesList = new LinkedList();
     this.backwardEdgesList = new LinkedList();
     this.cloneMatrix(graph);
-    this.initEdgesList(graph);
+    this.initEdges(graph);
   }
   /**
    * Clones the matrix from the Flow Graph.
@@ -36,46 +36,45 @@ class ResidualGraph extends FlowGraph {
    * @param {FlowGraph} graph
    * @memberof ResidualGraph
    */
-  initEdgesList(graph) {
+  initEdges(graph) {
     const length = graph.edgesList.size();
     let current = graph.edgesList.head;
 
     for (let i = 0; i < length; i++) {
-      const forward = current.data;
+      let forward = current.data;
+      let backward = graph.getEdge(current.data.to, current.data.from);
       if (
         this.edgesList.has(forward) == false &&
         this.backwardEdgesList.has(forward) == false
       ) {
-        this.edgesList.addData(
-          new ForwardFlowEdge(
-            forward.from,
-            forward.to,
-            forward.capacity,
-            forward.flow
-          )
+        forward = new ForwardFlowEdge(
+          current.data.from,
+          current.data.to,
+          current.data.capacity,
+          current.data.flow
         );
-        const backward = graph.getEdge(forward.to, forward.from);
+        this.edgesList.addData(forward);
         if (backward == null) {
-          this.backwardEdgesList.addData(
-            new BackwardFlowEdge(
-              forward.to,
-              forward.from,
-              forward.capacity,
-              forward.flow
-            )
+          backward = new BackwardFlowEdge(
+            current.data.to,
+            current.data.from,
+            current.data.capacity,
+            current.data.flow
           );
+          this.backwardEdgesList.addData(backward);
         } else {
-          this.backwardEdgesList.addData(
-            new BackwardFlowEdge(
-              backward.from,
-              backward.to,
-              backward.capacity,
-              backward.flow
-            )
+          backward = new BackwardFlowEdge(
+            backward.from,
+            backward.to,
+            backward.capacity,
+            backward.flow
           );
+          this.backwardEdgesList.addData(backward);
         }
       }
       current = current.next;
+      forward.backwardEdge = backward;
+      backward.forwardEdge = forward;
     }
   }
   /**
@@ -87,12 +86,12 @@ class ResidualGraph extends FlowGraph {
    * @memberof ResidualGraph
    */
   getEdge(from, to, list) {
-    let currNode = list.head;
-    while (currNode != null) {
-      if (currNode.data.from == from && currNode.data.to == to) {
-        return currNode.data;
+    let current = list.head;
+    while (current != null) {
+      if (current.data.from == from && current.data.to == to) {
+        return current.data;
       }
-      currNode = currNode.next;
+      current = current.next;
     }
     return null;
   }
@@ -104,11 +103,7 @@ class ResidualGraph extends FlowGraph {
   changeEdgesToFlowEdges(path) {
     let newEdges = [];
     for (let i = 0; i < path.size(); i++) {
-      let edge = this.getEdge(
-        path.nodes[i],
-        path.nodes[i + 1],
-        this.edgesList
-      );
+      let edge = this.getEdge(path.nodes[i], path.nodes[i + 1], this.edgesList);
       if (edge == null) {
         edge = this.getEdge(
           path.nodes[i],

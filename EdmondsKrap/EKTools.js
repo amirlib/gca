@@ -30,16 +30,15 @@ function bottleneck(path) {
 /**
  * Increases or decreases flow, of the edges in the original graph.
  * @param {FlowGraph} flowGraph the original graph.
- * @param {LinkedList} residualEdgesList edges list of the residual graph.
- * @param {Path} path it holds edges from residualEdgesList.
+ * @param {Path} path
  */
-function augment(flowGraph, residualEdgesList, path) {
+function augment(flowGraph, path) {
   const b = bottleneck(path);
   const length = path.size();
 
   for (let i = 0; i < length; i++) {
-    if (residualEdgesList.has(path.edges[i])) {
-      edge = flowGraph.getEdge(path.edges[i].from, path.edges[i].to);
+    let edge = flowGraph.getEdge(path.edges[i].from, path.edges[i].to);
+    if (edge != null) {
       edge.increaseFlow(b);
     } else {
       edge = flowGraph.getEdge(path.edges[i].to, path.edges[i].from);
@@ -62,7 +61,7 @@ function updateFlowGraph(flowGraph, residualGraph, path) {
       edge = flowGraph.getEdge(path.edges[i].to, path.edges[i].from);
     }
     let forwardEdge = residualGraph.getEdge(edge.from, edge.to, residualGraph.edgesList);
-    let backwardEdge = residualGraph.getEdge(edge.to, edge.from, residualGraph.backwardEdgesList);
+    let backwardEdge = forwardEdge.backwardEdge;
     forwardEdge.changeCapacityTo(edge.capacity - edge.flow);
     backwardEdge.changeCapacityTo(edge.flow);
     ifCapacityZero(residualGraph, forwardEdge);

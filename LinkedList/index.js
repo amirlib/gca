@@ -15,10 +15,10 @@ class LinkedList {
    */
   size() {
     let counter = 0;
-    let temp = this.head;
-    while (temp != null) {
+    let current = this.head;
+    while (current != null) {
       counter++;
-      temp = temp.next;
+      current = current.next;
     }
     return counter;
   }
@@ -28,16 +28,16 @@ class LinkedList {
    * @memberof LinkedList
    */
   addData(obj) {
-    let temp = this.head;
+    let current = this.head;
     if (this.head == null) {
       this.head = new Node(obj);
     } else {
-      temp = this.head;
-      while (temp.next != null) {
-        temp = temp.next;
+      current = this.head;
+      while (current.next != null) {
+        current = current.next;
       }
       let node = new Node(obj);
-      temp.next = node;
+      current.next = node;
     }
   }
   /**
@@ -51,14 +51,14 @@ class LinkedList {
       if (this.head.data == obj) {
         this.head = this.head.next;
       } else {
-        let temp = this.head;
+        let current = this.head;
         let prev = null;
-        while (temp.next.data != obj) {
-          temp = temp.next;
+        while (current.next.data != obj) {
+          current = current.next;
         }
-        prev = temp;
-        temp = temp.next;
-        prev.next = temp.next;
+        prev = current;
+        current = current.next;
+        prev.next = current.next;
       }
       return true;
     }
@@ -105,13 +105,13 @@ class LinkedList {
    */
   toString() {
     let print = ``;
-    let temp = this.head;
-    while (temp != null) {
-      print = `${print}${temp.data}`;
-      if (temp.next != null) {
+    let current = this.head;
+    while (current != null) {
+      print = `${print}${current.data}`;
+      if (current.next != null) {
         print = `${print}\n`;
       }
-      temp = temp.next;
+      current = current.next;
     }
     return print;
   }

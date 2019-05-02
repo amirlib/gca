@@ -1,3 +1,17 @@
+# 2.1.0
+
+- `New Feature`
+  * ForwardFlowEdge:
+      Now, it can hold his backward edge (BackwardFlowEdge object). This backward edge cannot be assigned in the constructor.
+  * BackwardFlowEdge:
+      Now, it can hold his forward edge (ForwardFlowEdge object). This forward edge cannot be assigned in the constructor.
+  * EdmondsKrap:
+      It now works more efficient.
+  * FlowGraph:
+      With getPath() method, you can get the shortest path in the graph.
+  * bfsGraph:
+      If getPath() method do not find a path, it will return an empty Path object.
+
 # 2.0.1
 
 - `Bug Fix`
