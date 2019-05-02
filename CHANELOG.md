@@ -1,6 +1,6 @@
 # 2.1.0
 
-- `New Feature`
+- `Enhancement`
   * ForwardFlowEdge:
       Now, it can hold his backward edge (BackwardFlowEdge object). This backward edge cannot be assigned in the constructor.
   * BackwardFlowEdge:
