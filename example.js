@@ -20,6 +20,8 @@ graph.addEdge(5, 4, 7);
 graph.addEdge(5, graph.t, 4);
 
 console.log(graph.toString());
+
+console.log(graph.countEdges());
 console.log(graph.printNodesID());
 console.log(tool.EdmondsKarp(graph));
 
