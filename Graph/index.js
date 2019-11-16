@@ -1,5 +1,5 @@
 /**
- * Implementaion of Graph, includes the BFS algorithm.
+ * Implementation of Graph, includes the BFS algorithm.
  * @class Graph
  */
 class Graph {
@@ -58,7 +58,7 @@ class Graph {
   }
   /**
    * Inserts new edge to the graph: when (from, to) represent an edge from startNodeID to endNodeID.
-   * @param {number} from ID of strat Node of edge.
+   * @param {number} from ID of start Node of edge.
    * @param {number} to ID of end Node of edge.
    * @returns {boolean} True, if edge added successfully to the graph. Otherwise, returns false.
    * @memberof Graph
@@ -105,7 +105,7 @@ class Graph {
   }
   /**
    * Deletes edge from the graph.
-   * @param {number} from ID of strat Node of edge.
+   * @param {number} from ID of start Node of edge.
    * @param {number} to ID of end Node of edge.
    * @returns {boolean} True, if edge deleted successfully from the graph. Otherwise, returns false.
    * @memberof Graph
@@ -171,7 +171,7 @@ class Graph {
   }
   /**
    * Checks if an edge: (from, to) exist in the graph.
-   * @param {number} from ID of strat Node of edge.
+   * @param {number} from ID of start Node of edge.
    * @param {number} to ID of end Node of edge.
    * @returns {boolean} True if graph has such edge. Otherwise, False.
    * @memberof Graph
@@ -243,9 +243,9 @@ class Graph {
     return print;
   }
   /**
-   * Throw error. Can serch for path only from BFS Graph.
+   * Throw error. Can search for path only from BFS Graph.
    * @param {number} ID
-   * @throws {Error} Throws Error if Graph object trying to return path and not bfsGrah object.
+   * @throws {Error} Throws Error if Graph object trying to return path and not bfsGraph object.
    * @memberof Graph
    */
   getPath(ID) {

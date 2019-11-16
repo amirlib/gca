@@ -1,6 +1,7 @@
 ## 2.1.1
 
-* Edit CHANGELOG.md file.  
+* Edit CHANGELOG.md and README.md files.  
+* Fix spelling errors.
 
 ## 2.1.0
 

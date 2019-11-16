@@ -1,11 +1,11 @@
 # gca
 
-Graph Classic Algorithms: Use classic algorithms like BFS and Edmonds Krap on graphs.
+Graph Classical Algorithms: Use classic algorithms like BFS and Edmonds Krap on graphs.
 
 ## Installation
 
 ```bash
-npm install gca
+npm i gca
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Full documentation can be found [here](https://amirlib.github.io/gca/#/).
 
-A chanelog file can be found [here](https://github.com/amirlib/gca/blob/master/CHANELOG.md).
+A changelog file can be found [here](https://github.com/amirlib/gca/blob/master/CHANELOG.md).
 
 Also, there an [example.js](https://github.com/amirlib/gca/blob/master/example.js) page.
 
