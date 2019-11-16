@@ -1,6 +1,10 @@
-# 2.1.0
+## 2.1.1
 
-- `Enhancement`
+* Edit CHANGELOG.md file.  
+
+## 2.1.0
+
+* `Enhancement`
   * ForwardFlowEdge:
       Now, it can hold his backward edge (BackwardFlowEdge object). This backward edge cannot be assigned in the constructor.
   * BackwardFlowEdge:
@@ -12,19 +16,19 @@
   * bfsGraph:
       If getPath() method do not find a path, it will return an empty Path object.
 
-# 2.0.1
+## 2.0.1
 
-- `Bug Fix`
+* `Bug Fix`
   * FlowGraph:
       You could not initiate a new edge with flow.
 
-# 2.0.0
+## 2.0.0
 
-- `Bug Fix`
+* `Bug Fix`
   * FlowEdge:
       The decreaseFlow() method actually increased the flow.
 
-- `New Feature`
+* `New Feature`
   * LinkedList:
       1. New method: size().
       2. LinkedList object can be cloned (deep copy) with clone() method. It will use the data object's clone method.
@@ -38,9 +42,9 @@
       4. FlowEdge can check if it is empty (zero flow) with isEmpty() method.
       5. FlowEdge can change it capacity with changeCapacityTo() method.
   * FlowGraph:
-      reset() method will reset the flow for all the edges of the graph.   
+      reset() method will reset the flow for all the edges of the graph.  
 
-- `Enhancement`
+* `Enhancement`
   * LinkedList:
       has() method will use the data object's equals method.
   * Graph:
@@ -54,8 +58,9 @@
       3. Now, you can add edges with a positive number of capacity and flow values to the graph.
   * EdmondsKrap:
       Re-write EdmondsKrap algorithm.
-  * New files arrangement -  
-<pre>
+  * New files arrangement:  
+
+```js
       before:  
         gca  
         ├── README.md  
@@ -118,4 +123,4 @@
         |   └── Node.js  
         └── Path  
             └── index.js  
-</pre>
+```
