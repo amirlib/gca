@@ -8,33 +8,33 @@ console.log(graph.printNodesID());
 
 let flowGraph = tool.CreateFlowGraph();
 
-// graph.addNode(2);
-// graph.addNode(3);
-// graph.addNode(4);
-// graph.addNode(5);
-// graph.addEdge(graph.s, 2, 16);
-// graph.addEdge(graph.s, 3, 13);
-// graph.addEdge(2, 3, 10);
-// graph.addEdge(2, 4, 12);
-// graph.addEdge(3, 2, 4);
-// graph.addEdge(3, 5, 14);
-// graph.addEdge(4, 3, 9);
-// graph.addEdge(4, graph.t, 20);
-// graph.addEdge(5, 4, 7);
-// graph.addEdge(5, graph.t, 4);
+flowGraph.addNode(2);
+flowGraph.addNode(3);
+flowGraph.addNode(4);
+flowGraph.addNode(5);
+flowGraph.addEdge(flowGraph.s, 2, 16);
+flowGraph.addEdge(flowGraph.s, 3, 13);
+flowGraph.addEdge(2, 3, 10);
+flowGraph.addEdge(2, 4, 12);
+flowGraph.addEdge(3, 2, 4);
+flowGraph.addEdge(3, 5, 14);
+flowGraph.addEdge(4, 3, 9);
+flowGraph.addEdge(4, flowGraph.t, 20);
+flowGraph.addEdge(5, 4, 7);
+flowGraph.addEdge(5, flowGraph.t, 4);
 
 console.log(flowGraph.toString());
 console.log(flowGraph.printNodesID());
 
-// console.log(graph.findEndNodesEdgesFromNode(2));
-// console.log(tool.EdmondsKarp(graph));
+console.log(flowGraph.findEndNodesEdgesFromNode(2));
+console.log(tool.EdmondsKarp(flowGraph));
 
-// let bfsG = tool.BFS(graph, graph.s);
-// console.log(bfsG.toString());
+let bfsG = tool.BFS(flowGraph, flowGraph.s);
+console.log(bfsG.toString());
 
-// try {
-//     let path = bfsG.getPath(5);
-//     console.log(path.toString());
-// } catch (error) {
-//     console.log(`${error.message}`);
-// }
+try {
+    let path = bfsG.getPath(5);
+    console.log(path.toString());
+} catch (error) {
+    console.log(`${error.message}`);
+}

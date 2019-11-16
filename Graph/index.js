@@ -100,10 +100,9 @@ class Graph {
     }
 
     this.matrix.pop();
-    length = this.nodesID.length;
     index = this.indexOfNodeID(ID) - 1;
 
-    for (let i = index; i < length; i++) { // Delete the ID from the nodeID array.
+    for (let i = index; i < this.size(); i++) { // Delete the ID from the nodeID array.
       this.nodesID[i] = this.nodesID[i + 1];
     }
 
@@ -248,6 +247,11 @@ class Graph {
 
     for (let i = 0; i < this.matrix.length; i++) {
       for (let j = 0; j < this.matrix.length; j++) {
+        if (j == 0) {
+          print = `${print}${this.matrix[i][j]}`;
+          continue;
+        }
+          
         print = `${print}     ${this.matrix[i][j]}`;
       }
 
