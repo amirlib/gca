@@ -83,27 +83,27 @@ class Graph {
    */
   deleteNode(ID) {
     let length = this.matrix.length;
-    let nodeIndex = this.indexOfNodeID(ID);
+    let index = this.indexOfNodeID(ID);
 
-    if (nodeIndex == -1) return false;
+    if (index == -1) return false;
 
     for (let i = 0; i < length; i++) {
-      for (let j = nodeIndex; j < length - 1; j++) {
+      for (let j = index; j < length - 1; j++) {
         this.matrix[i][j] = this.matrix[i][j + 1];
       }
 
       this.matrix[i].pop();
     }
 
-    for (let i = nodeIndex; i < length; i++) {
+    for (let i = index; i < length; i++) {
       this.matrix[i] = this.matrix[i + 1];
     }
 
     this.matrix.pop();
     length = this.nodesID.length;
-    nodeIndex = this.indexOfNodeID(ID) - 1;
+    index = this.indexOfNodeID(ID) - 1;
 
-    for (let i = nodeIndex; i < length; i++) { // Delete the ID from the nodeID array.
+    for (let i = index; i < length; i++) { // Delete the ID from the nodeID array.
       this.nodesID[i] = this.nodesID[i + 1];
     }
 
@@ -148,13 +148,13 @@ class Graph {
    * @memberof Graph
    */
   findEndNodesEdgesFromNode(ID) {
-    let nodeIndex = this.indexOfNodeID(ID);
+    let index = this.indexOfNodeID(ID);
     let result = [];
 
-    if (nodeIndex == -1) return result;
+    if (index == -1) return result;
 
     for (let i = 1; i < this.matrix.length; i++) {
-      if (this.matrix[nodeIndex][i] == 1) {
+      if (this.matrix[index][i] == 1) {
         result.push(this.matrix[0][i]);
       }
     }
@@ -168,13 +168,13 @@ class Graph {
    * @memberof Graph
    */
   findStartNodesEdgesFromNode(ID) {
-    let nodeIndex = this.indexOfNodeID(ID);
+    let index = this.indexOfNodeID(ID);
     let result = [];
 
-    if (nodeIndex == -1) return result;
+    if (index == -1) return result;
 
     for (let i = 1; i < this.matrix.length; i++) {
-      if (this.matrix[i][nodeIndex] == 1) {
+      if (this.matrix[i][index] == 1) {
         result.push(this.matrix[i][0]);
       }
     }
@@ -219,14 +219,14 @@ class Graph {
    * @memberof Graph
    */
   clone() {
-    let cloneGraph = new Graph();
+    let graph = new Graph();
 
     for (let i = 0; i < this.matrix.length; i++) {
-      cloneGraph.matrix[i] = Array.from(this.matrix[i]);
+      graph.matrix[i] = Array.from(this.matrix[i]);
     }
 
-    cloneGraph.nodesID = Array.from(this.nodesID);
-    return cloneGraph;
+    graph.nodesID = Array.from(this.nodesID);
+    return graph;
   }
   /**
    * Returns the matrix of the graph.
