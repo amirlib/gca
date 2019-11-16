@@ -234,17 +234,16 @@ class Graph {
    * @memberof Graph
    */
   toString() {
-    const matrixIterator = this.matrix.values();
     let print = "";
 
-    for (const row of matrixIterator) {
-      const rowsIterator = row.values();
-
-      for (const value of rowsIterator) {
-        print = `${print}     ${value}`;
+    for (let i = 0; i < this.matrix.length; i++) {
+      for (let j = 0; j < this.matrix.length; j++) {
+        print = `${print}     ${this.matrix[i][j]}`;
       }
 
-      print = `${print}\n`;
+      if (i != this.matrix.length - 1) {
+        print = `${print}\n`;
+      }
     }
 
     return print;
@@ -257,7 +256,14 @@ class Graph {
   printNodesID() {
     let print = "";
 
-    this.nodesID.forEach(node => print = `${print} ${node}`);
+    if (this.size() == 0) return print;
+
+    print = this.nodesID[0];
+
+    for (let i = 1; i < this.nodesID.length; i++) {
+      print = `${print}, ${this.nodesID[i]}`;
+    }
+
     return print;
   }
   /**
