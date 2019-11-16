@@ -21,7 +21,7 @@ graph.addEdge(5, graph.t, 4);
 
 console.log(graph.toString());
 
-console.log(graph.countEdges());
+console.log(graph.findEndNodesEdgesFromNode(2));
 console.log(graph.printNodesID());
 console.log(tool.EdmondsKarp(graph));
 

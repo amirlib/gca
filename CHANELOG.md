@@ -2,6 +2,8 @@
 
 * Edit CHANGELOG.md and README.md files.  
 * Fix spelling errors.
+* Improve the readability of graph class.
+* Improve the documentation of graph class.
 
 ## 2.1.0
 

@@ -83,13 +83,13 @@ The full documentation can be found in each class.
   * **@param {number} ID** - ID of node to search.
   * **@returns {number}** The index of the node that represents the same index in the matrix of the graph. Returns -1 if there is no such ID.
 * `findEndNodesEdgesFromNode(ID)`
-  * Finds edges that have the fromNode of the node with id: ID.
+  * Finds nodes, which are the end nodes of edges where the starting node has id of the given id.
   * **@param {number} ID** - ID of node.
-  * **@returns {number[]}** An array of IDs that are the toNodes of the edges. Returns empty array if there are no edges like that.
+  * **@returns {number[]}** An array of IDs. Returns empty array if there are no edges like that.
 * `findStartNodesEdgesFromNode(ID)`
-  * Finds edges that have the toNode of the node with id: ID.
+  * Finds nodes, which are the start nodes of edges where the ending node has id of the given id.
   * **@param {number} ID** - ID of node.
-  * **@returns {number[]}** An array of IDs that are the fromNodes of the edges. Returns empty array if there are no edges like that.
+  * **@returns {number[]}** An array of IDs. Returns empty array if there are no edges like that.
 * `hasEdge(from, to)`
   * Checks if an edge: (from, to) exist in the graph.
   * **@param {number} from** - ID of start Node of edge.
@@ -103,10 +103,10 @@ The full documentation can be found in each class.
   * Deep copies a graph object. Will clone bfsGraph and FlowGraph objects too.
   * **@returns {Graph}** Cloned Graph.
 * `printNodesID()`
-  * Returns the nodes that are in NodesID array.
+  * Returns the ids' nodes of the graph.
   * **@returns {string}**
 * `toString()`
-  * Returns the matrix of the graph.
+  * Returns the presentation of the graph as a matrix.
   * **@returns {string}**
 
 ### bfsGraph

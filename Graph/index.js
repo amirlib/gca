@@ -142,9 +142,9 @@ class Graph {
     return -1;
   }
   /**
-   * Finds edges that have the fromNode of the node with id: ID.
+   * Finds nodes, which are the end nodes of edges where the starting node has id of the given id.
    * @param {number} ID ID of node.
-   * @returns {number[]} An array of IDs that are the toNodes of the edges. Returns empty array if there are no edges like that.
+   * @returns {number[]} An array of IDs. Returns empty array if there are no edges like that.
    * @memberof Graph
    */
   findEndNodesEdgesFromNode(ID) {
@@ -162,9 +162,9 @@ class Graph {
     return result;
   }
   /**
-   * Finds edges that have the toNode of the node with id: ID.
+   * Finds nodes, which are the start nodes of edges where the ending node has id of the given id.
    * @param {number} ID ID of node.
-   * @returns {number[]} An array of IDs that are the fromNodes of the edges. Returns empty array if there are no edges like that.
+   * @returns {number[]} An array of IDs. Returns empty array if there are no edges like that.
    * @memberof Graph
    */
   findStartNodesEdgesFromNode(ID) {
@@ -229,37 +229,35 @@ class Graph {
     return graph;
   }
   /**
-   * Returns the matrix of the graph.
+   * Returns the presentation of the graph as a matrix.
    * @returns {string}
    * @memberof Graph
    */
   toString() {
+    const matrixIterator = this.matrix.values();
     let print = "";
 
-    for (let i = 0; i < this.matrix.length; i++) {
-      for (let j = 0; j < this.matrix.length; j++) {
-        print = `${print}     ${this.matrix[i][j]}`;
+    for (const row of matrixIterator) {
+      const rowsIterator = row.values();
+
+      for (const value of rowsIterator) {
+        print = `${print}     ${value}`;
       }
 
-      if (i != this.matrix.length - 1) {
-        print = `${print}\n`;
-      }
+      print = `${print}\n`;
     }
 
     return print;
   }
   /**
-   * Returns the nodes that are in NodesID array.
+   * Returns the ids' nodes of the graph.
    * @returns {string}
    * @memberof Graph
    */
   printNodesID() {
     let print = "";
 
-    for (let i = 0; i < this.nodesID.length; i++) {
-      print = `${print} ${this.nodesID[i]}`;
-    }
-
+    this.nodesID.forEach(node => print = `${print} ${node}`);
     return print;
   }
   /**
