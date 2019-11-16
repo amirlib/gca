@@ -2,8 +2,10 @@
 
 * Edit CHANGELOG.md and README.md files.  
 * Fix spelling errors.
-* Improve the readability of graph class.
-* Improve the documentation of graph class.
+* `Graph:`
+  * Add new method to the graph class: isEmpty().
+  * Improve the documentation of the class.
+  * Improve the readability of the code.
 
 ## 2.1.0
 

@@ -213,6 +213,16 @@ class Graph {
 
     return false;
   }
+    /**
+   * Checks whether the graph is empty.
+   * @return {boolean} True, if the graph is empty. Otherwise, returns false.
+   * @memberof Graph
+   */
+  isEmpty(){
+    if (this.size() == 0) return true;
+
+    return false;
+  }
   /**
    * Deep copies a graph object. Will not clone bfsGraph object.
    * @returns {Graph} Cloned Graph.
@@ -256,7 +266,7 @@ class Graph {
   printNodesID() {
     let print = "";
 
-    if (this.size() == 0) return print;
+    if (this.isEmpty()) return print;
 
     print = this.nodesID[0];
 

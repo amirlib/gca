@@ -99,6 +99,9 @@ The full documentation can be found in each class.
   * Checks if the given node exists in the graph.
   * **@param {number}** - ID The given node ID.
   * **@returns {boolean}** True if exist, otherwise False.
+* `isEmpty()`
+  * Checks whether the graph is empty.
+  * **@returns {Boolean}** True, if the graph is empty. Otherwise, returns false.
 * `clone()`
   * Deep copies a graph object. Will clone bfsGraph and FlowGraph objects too.
   * **@returns {Graph}** Cloned Graph.
