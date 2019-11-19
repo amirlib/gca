@@ -4,7 +4,7 @@
  */
 class Graph {
   constructor() {
-    this.nodesID = []; //An array of Nodes ID - When the ID inside index 'i' in this array represent the ID inside index of 'i + 1' in the Matrix array.
+    this.nodesID = []; //An array of nodes ID.
     this.matrix = []; //2d Array that represents the Graph as 'Adjacency matrix'.
   }
   /**
