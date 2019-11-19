@@ -1,40 +1,52 @@
-const gca = require("gca");
+const gca = require("./index");
 const tool = new gca();
 
 let graph = tool.CreateGraph();
+// let flowGraph = tool.CreateFlowGraph();
+console.log(`${graph.hasNode(2)}\n`);
 
-console.log(graph.toString());
-console.log(graph.printNodesID());
+graph.addNode(2);
+graph.addNode(3);
+graph.addNode(4);
+graph.addNode(5);
+graph.addEdge(2, 3);
+graph.addEdge(2, 4);
+graph.addEdge(3, 2);
+graph.addEdge(3, 5);
+graph.addEdge(4, 3);
+graph.addEdge(5, 4);
+graph.addEdge(5, 5);
 
-let flowGraph = tool.CreateFlowGraph();
+console.log(`${graph.toString()}\n`);
+console.log(`${graph.printNodesID()}\n`);
+console.log(`${graph.hasNode(1)}\n`);
 
-flowGraph.addNode(2);
-flowGraph.addNode(3);
-flowGraph.addNode(4);
-flowGraph.addNode(5);
-flowGraph.addEdge(flowGraph.s, 2, 16);
-flowGraph.addEdge(flowGraph.s, 3, 13);
-flowGraph.addEdge(2, 3, 10);
-flowGraph.addEdge(2, 4, 12);
-flowGraph.addEdge(3, 2, 4);
-flowGraph.addEdge(3, 5, 14);
-flowGraph.addEdge(4, 3, 9);
-flowGraph.addEdge(4, flowGraph.t, 20);
-flowGraph.addEdge(5, 4, 7);
-flowGraph.addEdge(5, flowGraph.t, 4);
 
-console.log(flowGraph.toString());
-console.log(flowGraph.printNodesID());
+// flowGraph.addEdge(flowGraph.s, 2, 16);
+// flowGraph.addEdge(flowGraph.s, 3, 13);
+// flowGraph.addEdge(2, 3, 10);
+// flowGraph.addEdge(2, 4, 12);
+// flowGraph.addEdge(3, 2, 4);
+// flowGraph.addEdge(3, 5, 14);
+// flowGraph.addEdge(4, 3, 9);
+// flowGraph.addEdge(4, flowGraph.t, 20);
+// flowGraph.addEdge(5, 4, 7);
+// flowGraph.addEdge(5, flowGraph.t, 4);
 
-console.log(flowGraph.findEndNodesEdgesFromNode(2));
-console.log(tool.EdmondsKarp(flowGraph));
 
-let bfsG = tool.BFS(flowGraph, flowGraph.s);
-console.log(bfsG.toString());
+// console.log(`${graph.toString()}\n`);
+// console.log(`${graph.printNodesID()}\n`);
+// console.log(`${graph.countEdges()}\n`);
 
-try {
-    let path = bfsG.getPath(5);
-    console.log(path.toString());
-} catch (error) {
-    console.log(`${error.message}`);
-}
+// console.log(flowGraph.findEndNodesEdgesFromNode(2));
+// console.log(tool.EdmondsKarp(flowGraph));
+
+// let bfsG = tool.BFS(flowGraph, flowGraph.s);
+// console.log(bfsG.toString());
+
+// try {
+//     let path = bfsG.getPath(5);
+//     console.log(path.toString());
+// } catch (error) {
+//     console.log(`${error.message}`);
+// }

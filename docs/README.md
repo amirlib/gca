@@ -50,8 +50,8 @@ The full documentation can be found in each class.
 
 ### Graph
 
-1. **matrix** (2d array) - The graph represented in matrix array when: in the first row and the first column there the IDs of nodes. At cell (0, 0): 'M'.
-2. '1' in the matrix in row i and column j represent an edge: (node in the first row at index i, node in the first column at index j).  
+1. **matrix** (2d array) - The matrix property of the graph stores whether there edges in (i, j) where i and j are the indexes in nodesID array that represents the correct IDs of the edge.  
+2. '1' in the matrix in row i and column j represent an edge.  
 3. **nodesID** - An array of nodes ID.
 
 * `size()`

@@ -6,7 +6,6 @@ class Graph {
   constructor() {
     this.nodesID = []; //An array of Nodes ID - When the ID inside index 'i' in this array represent the ID inside index of 'i + 1' in the Matrix array.
     this.matrix = []; //2d Array that represents the Graph as 'Adjacency matrix'.
-    this.matrix[0] = ["M"];
   }
   /**
    * Returns the number of nodes in the graph.
@@ -22,12 +21,14 @@ class Graph {
    * @memberof Graph
    */
   countEdges() {
-    const length = this.matrix.length;
+    const rowsIterator = this.matrix.values();
     let counter = 0;
 
-    for (let i = 1; i < length; i++) {
-      for (let j = 1; j < length; j++) {
-        if (this.matrix[i][j] == 1) {
+    for (const row of rowsIterator) {
+      const cellsIterator = row.values();
+
+      for (const value of cellsIterator) {
+        if (value == 1) {
           counter++;
         }
       }
@@ -44,10 +45,16 @@ class Graph {
   addNode(ID) {
     if (this.hasNode(ID)) return false;
 
-    let length = this.matrix.length;
+    const length = this.size();
     this.nodesID.push(ID);
-    this.matrix[0].push(ID);
-    this.matrix[length] = [ID];
+
+    if (this.size() == 1) {
+      this.matrix.push([0]);
+      return true;
+    }
+
+    this.matrix[0].push(0);
+    this.matrix[length] = [0];
 
     for (let i = 1; i < length; i++) {
       this.matrix[i][length] = 0;
@@ -67,8 +74,8 @@ class Graph {
    * @memberof Graph
    */
   addEdge(from, to) {
-    let fromIndex = this.indexOfNodeID(from);
-    let toIndex = this.indexOfNodeID(to);
+    const fromIndex = this.indexOfNodeID(from);
+    const toIndex = this.indexOfNodeID(to);
 
     if (fromIndex == -1 || toIndex == -1) return false;
 
@@ -82,30 +89,24 @@ class Graph {
    * @memberof Graph
    */
   deleteNode(ID) {
-    let length = this.matrix.length;
-    let index = this.indexOfNodeID(ID);
+    const index = this.indexOfNodeID(ID);
 
     if (index == -1) return false;
 
-    for (let i = 0; i < length; i++) {
-      for (let j = index; j < length - 1; j++) {
+    for (let i = 0; i < this.size(); i++) {
+      for (let j = index; j < this.size() - 1; j++) {
         this.matrix[i][j] = this.matrix[i][j + 1];
       }
 
       this.matrix[i].pop();
     }
 
-    for (let i = index; i < length; i++) {
+    for (let i = index; i < this.size() - 1; i++) {
       this.matrix[i] = this.matrix[i + 1];
-    }
-
-    this.matrix.pop();
-    index = this.indexOfNodeID(ID) - 1;
-
-    for (let i = index; i < this.size(); i++) { // Delete the ID from the nodeID array.
       this.nodesID[i] = this.nodesID[i + 1];
     }
 
+    this.matrix.pop();
     this.nodesID.pop();
     return true;
   }
@@ -117,8 +118,8 @@ class Graph {
    * @memberof Graph
    */
   deleteEdge(from, to) {
-    let fromIndex = this.indexOfNodeID(from);
-    let toIndex = this.indexOfNodeID(to);
+    const fromIndex = this.indexOfNodeID(from);
+    const toIndex = this.indexOfNodeID(to);
 
     if (fromIndex == -1 || toIndex == -1) return false;
 
@@ -132,9 +133,9 @@ class Graph {
    * @memberof Graph
    */
   indexOfNodeID(ID) {
-    for (let i = 0; i < this.nodesID.length; i++) {
+    for (let i = 0; i < this.size(); i++) {
       if (this.nodesID[i] == ID) {
-        return i + 1;
+        return i;
       }
     }
 
@@ -147,14 +148,14 @@ class Graph {
    * @memberof Graph
    */
   findEndNodesEdgesFromNode(ID) {
-    let index = this.indexOfNodeID(ID);
+    const index = this.indexOfNodeID(ID);
     let result = [];
 
     if (index == -1) return result;
 
-    for (let i = 1; i < this.matrix.length; i++) {
+    for (let i = 0; i < this.size(); i++) {
       if (this.matrix[index][i] == 1) {
-        result.push(this.matrix[0][i]);
+        result.push(this.nodesID[i]);
       }
     }
 
@@ -167,17 +168,17 @@ class Graph {
    * @memberof Graph
    */
   findStartNodesEdgesFromNode(ID) {
-    let index = this.indexOfNodeID(ID);
+    const index = this.indexOfNodeID(ID);
     let result = [];
 
     if (index == -1) return result;
 
-    for (let i = 1; i < this.matrix.length; i++) {
+    for (let i = 0; i < this.size(); i++) {
       if (this.matrix[i][index] == 1) {
-        result.push(this.matrix[i][0]);
+        result.push(this.nodesID[i]);
       }
     }
-    
+
     return result;
   }
   /**
@@ -188,8 +189,8 @@ class Graph {
    * @memberof Graph
    */
   hasEdge(from, to) {
-    let fromIndex = this.indexOfNodeID(from);
-    let toIndex = this.indexOfNodeID(to);
+    const fromIndex = this.indexOfNodeID(from);
+    const toIndex = this.indexOfNodeID(to);
 
     if (fromIndex == -1 || toIndex == -1) return false;
 
@@ -204,20 +205,22 @@ class Graph {
    * @memberof Graph
    */
   hasNode(ID) {
-    for (let i = 0; i < this.nodesID.length; i++) {
-      if (this.nodesID[i] == ID) {
+    const iterator = this.nodesID.values();
+
+    for (const value of iterator) {
+      if (value == ID) {
         return true;
       }
     }
 
     return false;
   }
-    /**
+  /**
    * Checks whether the graph is empty.
    * @return {boolean} True, if the graph is empty. Otherwise, returns false.
    * @memberof Graph
    */
-  isEmpty(){
+  isEmpty() {
     if (this.size() == 0) return true;
 
     return false;
@@ -230,7 +233,7 @@ class Graph {
   clone() {
     let graph = new Graph();
 
-    for (let i = 0; i < this.matrix.length; i++) {
+    for (let i = 0; i < this.size(); i++) {
       graph.matrix[i] = Array.from(this.matrix[i]);
     }
 
@@ -243,21 +246,27 @@ class Graph {
    * @memberof Graph
    */
   toString() {
-    let print = "";
+    const spaces = `     `;
+    let print = "M";
 
-    for (let i = 0; i < this.matrix.length; i++) {
-      for (let j = 0; j < this.matrix.length; j++) {
-        if (j == 0) {
-          print = `${print}${this.matrix[i][j]}`;
-          continue;
-        }
-          
-        print = `${print}     ${this.matrix[i][j]}`;
+    if (this.isEmpty()) return print;
+
+    const iterator = this.nodesID.values();
+
+    for (const value of iterator) {
+      print = `${print}${spaces}${value}`;
+    }
+
+    print = `${print}\n`;
+
+    for (let i = 0; i < this.size(); i++) {
+      print = `${print}${this.nodesID[i]}`;
+
+      for (let j = 0; j < this.size(); j++) {
+        print = `${print}${spaces}${this.matrix[i][j]}`;
       }
 
-      if (i != this.matrix.length - 1) {
-        print = `${print}\n`;
-      }
+      if (i != this.size() - 1) print = `${print}\n`;
     }
 
     return print;
