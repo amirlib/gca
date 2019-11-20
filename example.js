@@ -39,7 +39,7 @@ console.log(`${graph.printNodesID()}\n`);
 // console.log(tool.EdmondsKarp(flowGraph));
 
 let bfsG = tool.BFS(graph, 2);
-console.log(bfsG.toString());
+console.log(`${bfsG.toString()}\n`);
 
 // try {
 //     let path = bfsG.getPath(5);

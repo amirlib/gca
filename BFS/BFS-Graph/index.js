@@ -10,6 +10,7 @@ const layerError = require("./layerError");
 class bfsGraph extends Graph {
   constructor() {
     super();
+
     this.layerCounter = 0;
     this.layer = [];
   }
@@ -182,12 +183,25 @@ class bfsGraph extends Graph {
     return path;
   }
   /**
-   * bfsGraph object cannot be cloned.
-   * @returns {boolean} False
+   * Deep copies a bfs graph object.
+   * @returns {bfsGraph} Cloned bfs Graph.
    * @memberof bfsGraph
    */
   clone() {
-    return null;
+    let graph = new bfsGraph();
+
+    for (let i = 0; i < this.size(); i++) {
+      graph.matrix[i] = Array.from(this.matrix[i]);
+    }
+
+    graph.nodesID = Array.from(this.nodesID);
+    graph.layerCounter = this.layerCounter;
+
+    for (let i = 0; i < this.layer.length; i++) {
+      graph.layer[i] = Array.from(this.layer[i]);
+    }
+
+    return graph;
   }
   /**
    * Prints all the nodes inside the layers.

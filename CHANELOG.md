@@ -5,6 +5,8 @@
 * Improve the readability of the code.  
 * `Graph:`
   * From now on, the matrix property of the graph does not store the IDs of the nodes, but only whether there edges in (i, j) where i and j are the indexes in nodesID array that represents the correct IDs of the edge.  
+* `BFS-Graph`
+  * Bfs Graph object can be cloned.
 
 ## 2.1.2
 
