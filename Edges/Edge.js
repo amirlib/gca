@@ -1,12 +1,12 @@
 /**
- * Implementaion of edge class for edges of Path objects.
+ * Implementation of edge class for edges of Path objects.
  *
  * @class Edge
  */
 class Edge {
   /**
    * Creates an instance of Edge.
-   * @param {number} from ID of strat Node of edge.
+   * @param {number} from ID of start Node of edge.
    * @param {number} to ID of end Node of edge.
    * @memberof Edge
    */
@@ -21,9 +21,8 @@ class Edge {
    * @memberof Edge
    */
   equals(edge) {
-    if (this.from != edge.from || this.to != edge.to) {
-      return false;
-    }
+    if (this.from != edge.from || this.to != edge.to) return false;
+    
     return true;
   }
   /**

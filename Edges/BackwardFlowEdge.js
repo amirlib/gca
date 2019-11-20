@@ -15,6 +15,7 @@ class BackwardFlowEdge extends FlowEdge {
    */
   constructor(from, to, capacity, flow) {
     super(from, to, capacity, flow);
+
     this.forwardEdge = null;
   }
   /**
@@ -23,12 +24,9 @@ class BackwardFlowEdge extends FlowEdge {
    * @memberof BackwardFlowEdge
    */
   clone() {
-    const clonedEdge = new BackwardFlowEdge(this.from, this.to);
+    const edge = new BackwardFlowEdge(this.from, this.to, this.capacity, this.flow);
     
-    clonedEdge.capacity = this.capacity;
-    clonedEdge.flow = this.flow;
-
-    return clonedEdge;
+    return edge;
   }
 }
 

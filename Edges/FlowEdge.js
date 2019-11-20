@@ -16,8 +16,10 @@ class FlowEdge extends Edge {
    */
   constructor(from, to, capacity, flow) {
     super(from, to);
+
     this.capacity = capacity;
     this.flow = flow;
+
     if (flow > capacity) {
       this.flow = this.capacity;
     } else if (flow < 0) {
@@ -31,6 +33,7 @@ class FlowEdge extends Edge {
    */
   increaseFlow(addedFlow) {
     this.flow = this.flow + addedFlow;
+
     if (this.flow > this.capacity) {
       this.flow = this.capacity;
     }
@@ -42,6 +45,7 @@ class FlowEdge extends Edge {
    */
   decreaseFlow(reducedFlow) {
     this.flow = this.flow - reducedFlow;
+
     if (this.flow < this.capacity) {
       this.flow = 0;
     }
@@ -60,6 +64,7 @@ class FlowEdge extends Edge {
    */
   changeFlowTo(flow) {
     this.flow = flow;
+
     if (this.flow > this.capacity) {
       this.flow = this.capacity;
     } else if (this.flow < 0) {
@@ -68,11 +73,12 @@ class FlowEdge extends Edge {
   }
   /**
    * Replaces the capacity in the edge with new value.
-   * @param  {number} capaity the new value of capacity.
+   * @param {number} capacity the new value of capacity.
    * @memberof FlowEdge
    */
-  changeCapacityTo(capaity) {
-    this.capacity = capaity;
+  changeCapacityTo(capacity) {
+    this.capacity = capacity;
+
     if (this.capacity < 0) {
       this.capacity = 0;
     }
@@ -83,9 +89,8 @@ class FlowEdge extends Edge {
    * @memberof FlowEdge
    */
   isCapacityFull() {
-    if (this.flow == this.capacity) {
-      return true;
-    }
+    if (this.flow == this.capacity) return true;
+
     return false;
   }
   /**
@@ -94,9 +99,8 @@ class FlowEdge extends Edge {
    * @memberof FlowEdge
    */
   isEmpty() {
-    if (this.flow == 0) {
-      return true;
-    }
+    if (this.flow == 0) return true;
+
     return false;
   }
   /**
@@ -105,9 +109,8 @@ class FlowEdge extends Edge {
    * @memberof FlowEdge
    */
   clone() {
-    let clonedEdge = new FlowEdge(this.from, this.to);
-    clonedEdge.capacity = this.capacity;
-    clonedEdge.flow = this.flow;
+    let clonedEdge = new FlowEdge(this.from, this.to, this.capacity, this.flow);
+
     return clonedEdge;
   }
   /**
@@ -116,9 +119,7 @@ class FlowEdge extends Edge {
    * @memberof FlowEdge
    */
   toString() {
-    return `${super.toString()} with capacity: ${this.capacity} and flow: ${
-      this.flow
-    }`;
+    return `${super.toString()} with capacity: ${this.capacity} and flow: ${this.flow}`;
   }
 }
 

@@ -1,11 +1,10 @@
 ## 2.2.0
 
 * Fix spelling errors.  
+* Improve the documentation.  
+* Improve the readability of the code.  
 * `Graph:`
   * From now on, the matrix property of the graph does not store the IDs of the nodes, but only whether there edges in (i, j) where i and j are the indexes in nodesID array that represents the correct IDs of the edge.  
-* `BFS-Graph`
-  * Improve the documentation of the class.  
-  * Improve the readability of the code.  
 
 ## 2.1.2
 
