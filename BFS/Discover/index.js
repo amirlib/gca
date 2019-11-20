@@ -1,6 +1,6 @@
 const discoverError = require("./discoverError");
 /**
- * Implementaion of Discovers nodes array. Each node from the original graph is exist in this array.
+ * Implementation of Discovers nodes array. Each node from the original graph is exist in this array.
  * All node are initial to False. Set True to node, if the BFS algorithm met the node.
  * The BFS algorithm use this class for creating the BFS graph.
  *

@@ -3,7 +3,6 @@ const tool = new gca();
 
 let graph = tool.CreateGraph();
 // let flowGraph = tool.CreateFlowGraph();
-console.log(`${graph.hasNode(2)}\n`);
 
 graph.addNode(2);
 graph.addNode(3);
@@ -19,7 +18,6 @@ graph.addEdge(5, 5);
 
 console.log(`${graph.toString()}\n`);
 console.log(`${graph.printNodesID()}\n`);
-console.log(`${graph.hasNode(1)}\n`);
 
 
 // flowGraph.addEdge(flowGraph.s, 2, 16);
@@ -41,12 +39,14 @@ console.log(`${graph.hasNode(1)}\n`);
 // console.log(flowGraph.findEndNodesEdgesFromNode(2));
 // console.log(tool.EdmondsKarp(flowGraph));
 
-// let bfsG = tool.BFS(flowGraph, flowGraph.s);
-// console.log(bfsG.toString());
+let bfsG = tool.BFS(graph, 2);
+console.log(bfsG.toString());
 
-// try {
-//     let path = bfsG.getPath(5);
-//     console.log(path.toString());
-// } catch (error) {
-//     console.log(`${error.message}`);
-// }
+console.log(bfsG.printLayer());
+
+try {
+    let path = bfsG.getPath(5);
+    console.log(path.toString());
+} catch (error) {
+    console.log(`${error.message}`);
+}
