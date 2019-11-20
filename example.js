@@ -42,8 +42,6 @@ console.log(`${graph.printNodesID()}\n`);
 let bfsG = tool.BFS(graph, 2);
 console.log(bfsG.toString());
 
-console.log(bfsG.printLayer());
-
 try {
     let path = bfsG.getPath(5);
     console.log(path.toString());

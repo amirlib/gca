@@ -283,7 +283,7 @@ class Graph {
 
     print = this.nodesID[0];
 
-    for (let i = 1; i < this.nodesID.length; i++) {
+    for (let i = 1; i < this.size(); i++) {
       print = `${print}, ${this.nodesID[i]}`;
     }
 
