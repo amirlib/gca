@@ -1,13 +1,13 @@
 const FlowEdge = require("./FlowEdge");
 /**
- * Implementaion of backward edge class for the Flow Graph class.
+ * Implementation of backward edge class for the Flow Graph class.
  * @class BackwardFlowEdge
  * @extends {FlowEdge}
  */
 class BackwardFlowEdge extends FlowEdge {
   /**
    * Creates an instance of BackwardFlowEdge.
-   * @param {number} from ID of strat Node of edge.
+   * @param {number} from ID of start Node of edge.
    * @param {number} to ID of end Node of edge.
    * @param {number} capacity The capacity of edge.
    * @param {number} flow The flow of edge.
@@ -23,9 +23,11 @@ class BackwardFlowEdge extends FlowEdge {
    * @memberof BackwardFlowEdge
    */
   clone() {
-    let clonedEdge = new BackwardFlowEdge(this.from, this.to);
+    const clonedEdge = new BackwardFlowEdge(this.from, this.to);
+    
     clonedEdge.capacity = this.capacity;
     clonedEdge.flow = this.flow;
+
     return clonedEdge;
   }
 }

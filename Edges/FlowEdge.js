@@ -1,6 +1,6 @@
 const Edge = require("./Edge");
 /**
- * Implementaion of edge class for the Flow Graph class. Each edge includes data for it nodes, the flow and the capacity.
+ * Implementation of edge class for the Flow Graph class. Each edge includes data for it nodes, the flow and the capacity.
  *
  * @class FlowEdge
  * @extends {Edge}
@@ -8,7 +8,7 @@ const Edge = require("./Edge");
 class FlowEdge extends Edge {
   /**
    * Creates an instance of FlowEdge.
-   * @param {number} from ID of strat Node of edge.
+   * @param {number} from ID of start Node of edge.
    * @param {number} to ID of end Node of edge.
    * @param {number} capacity The capacity of edge.
    * @param {number} flow The flow of edge.
