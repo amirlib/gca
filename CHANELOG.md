@@ -6,6 +6,7 @@
 * `BFS-Graph`
   * Improve the documentation of the class.  
   * Improve the readability of the code.  
+  * Bfs Graph object can be cloned.
 
 ## 2.1.2
 

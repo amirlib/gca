@@ -103,7 +103,7 @@ The full documentation can be found in each class.
   * Checks whether the graph is empty.
   * **@returns {Boolean}** True, if the graph is empty. Otherwise, returns false.
 * `clone()`
-  * Deep copies a graph object. Will clone bfsGraph and FlowGraph objects too.
+  * Deep copies a graph object.
   * **@returns {Graph}** Cloned Graph.
 * `printNodesID()`
   * Returns the ids' nodes of the graph.
@@ -153,8 +153,8 @@ Implementation of BFS Graph. There are tools for building a Graph that it result
   * **@param {number} t** - ID of end node in path.
   * **@returns {Path}** The Path object. Returns an empty Path object if node with ID: t not exist in the graph.
 * `clone()`
-  * bfsGraph object cannot be cloned.
-  * **@returns {object}** null.
+  * Deep copies a bfs graph object.
+  * **@returns {bfsGraph}** Cloned bfs Graph.
 
 ### FlowGraph
 

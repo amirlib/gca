@@ -226,7 +226,7 @@ class Graph {
     return false;
   }
   /**
-   * Deep copies a graph object. Will not clone bfsGraph object.
+   * Deep copies a graph object.
    * @returns {Graph} Cloned Graph.
    * @memberof Graph
    */
