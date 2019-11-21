@@ -3,7 +3,7 @@ const ForwardFlowEdge = require("../../Edges/ForwardFlowEdge");
 const BackwardFlowEdge = require("../../Edges/BackwardFlowEdge");
 const LinkedList = require(`../../LinkedList`);
 /**
- * Implementaion of Residual Graph. There are tools for building a Residual Graph that will return a correct max flow from Edmonds Krap alogritem.
+ * Implementation of Residual Graph. There are tools for building a Residual Graph that will return a correct max flow from Edmonds Krap algorithm.
  * @class FlowGraph
  * @extends {FlowGraph}
  */
@@ -15,6 +15,7 @@ class ResidualGraph extends FlowGraph {
    */
   constructor(graph) {
     super();
+
     this.edgesList = new LinkedList();
     this.backwardEdgesList = new LinkedList();
     this.cloneMatrix(graph);
@@ -29,6 +30,7 @@ class ResidualGraph extends FlowGraph {
     for (let i = 0; i < graph.matrix.length; i++) {
       this.matrix[i] = Array.from(graph.matrix[i]);
     }
+
     this.nodesID = Array.from(graph.nodesID);
   }
   /**
@@ -43,35 +45,20 @@ class ResidualGraph extends FlowGraph {
     for (let i = 0; i < length; i++) {
       let forward = current.data;
       let backward = graph.getEdge(current.data.to, current.data.from);
-      if (
-        this.edgesList.has(forward) == false &&
-        this.backwardEdgesList.has(forward) == false
-      ) {
-        forward = new ForwardFlowEdge(
-          current.data.from,
-          current.data.to,
-          current.data.capacity,
-          current.data.flow
-        );
+
+      if (this.edgesList.has(forward) == false && this.backwardEdgesList.has(forward) == false) {
+        forward = new ForwardFlowEdge(current.data.from, current.data.to, current.data.capacity, current.data.flow);
         this.edgesList.addData(forward);
+
         if (backward == null) {
-          backward = new BackwardFlowEdge(
-            current.data.to,
-            current.data.from,
-            current.data.capacity,
-            current.data.flow
-          );
+          backward = new BackwardFlowEdge(current.data.to, current.data.from, current.data.capacity, current.data.flow);
           this.backwardEdgesList.addData(backward);
         } else {
-          backward = new BackwardFlowEdge(
-            backward.from,
-            backward.to,
-            backward.capacity,
-            backward.flow
-          );
+          backward = new BackwardFlowEdge(backward.from, backward.to, backward.capacity, backward.flow);
           this.backwardEdgesList.addData(backward);
         }
       }
+      
       current = current.next;
       forward.backwardEdge = backward;
       backward.forwardEdge = forward;
@@ -87,13 +74,16 @@ class ResidualGraph extends FlowGraph {
    */
   getEdge(from, to, list) {
     let current = list.head;
+
+    if (current == null) return null;
+
     while (current != null) {
       if (current.data.from == from && current.data.to == to) {
         return current.data;
       }
+
       current = current.next;
     }
-    return null;
   }
   /**
    * Changes each edge in path to its edge of the graph
@@ -101,20 +91,19 @@ class ResidualGraph extends FlowGraph {
    * @memberof ResidualGraph
    */
   changeEdgesToFlowEdges(path) {
-    let newEdges = [];
+    const newEdges = [];
+
     for (let i = 0; i < path.size(); i++) {
       let edge = this.getEdge(path.nodes[i], path.nodes[i + 1], this.edgesList);
+      
       if (edge == null) {
-        edge = this.getEdge(
-          path.nodes[i],
-          path.nodes[i + 1],
-          this.backwardEdgesList
-        );
+        edge = this.getEdge(path.nodes[i], path.nodes[i + 1], this.backwardEdgesList);
         newEdges.push(edge);
       } else {
         newEdges.push(edge);
       }
     }
+    
     path.edges = newEdges;
   }
   /**
