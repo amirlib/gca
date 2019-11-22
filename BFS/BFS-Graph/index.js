@@ -131,7 +131,7 @@ class bfsGraph extends Graph {
    * @returns {number} The index of layer. Returns -1 if there is no such node ID in the graph or in the layer.
    * @memberof bfsGraph
    */
-  getLayerIndexOfNodeID(ID) {
+  getLayerIndexOfNode(ID) {
     if (this.indexOfNodeID(ID) == -1) return -1;
 
     for (let i = 0; i < this.layersNumber(); i++) {
@@ -153,7 +153,7 @@ class bfsGraph extends Graph {
 
     if (!this.hasNode(t)) return path;
 
-    const length = this.getLayerIndexOfNodeID(t);
+    const length = this.getLayerIndexOfNode(t);
     let childNode = t;
   
     path.addNode(t);

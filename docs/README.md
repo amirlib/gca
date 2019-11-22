@@ -143,7 +143,7 @@ Implementation of BFS Graph. There are tools for building a Graph that it result
   * Gets the parent node ID of the given node ID.
   * **@param {number} ID** - ID of child node.
   * **@returns {number}** ID of parent node. Return -1 if there is no such node ID in the graph.
-* `getLayerIndexOfNodeID(ID)`
+* `getLayerIndexOfNode(ID)`
   * Gets the index of layer where node ID is exist.
   * **@param {number} ID** - ID of node to search.
   * **@returns {number}** The index of layer. Returns -1 if there is no such node ID in the graph or in the layer.
