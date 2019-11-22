@@ -78,7 +78,7 @@ class bfsGraph extends Graph {
     const length = this.countNodesInLayer(index);
 
     for (let i = 0; i < length; i++) {
-      if (this.getNodeIDFromLayer(i, index) == ID) {
+      if (this.getNodeFromLayer(i, index) == ID) {
         return true;
       }
     }
@@ -93,7 +93,7 @@ class bfsGraph extends Graph {
    * @throws {layerError} Throws Error if layer is not exist or the node in the layer.
    * @memberof bfsGraph
    */
-  getNodeIDFromLayer(cell, layerIndex) {
+  getNodeFromLayer(cell, layerIndex) {
     if (layerIndex >= this.layersNumber()) {
       throw new layerError(`There is no such layer number: ${layerIndex}.`);
     }
@@ -203,7 +203,7 @@ class bfsGraph extends Graph {
       print = `${print}layer ${i}:`
 
       for (let j = 0; j < this.countNodesInLayer(i); j++) {
-        print = `${print}${space}${this.getNodeIDFromLayer(j, i)}`;
+        print = `${print}${space}${this.getNodeFromLayer(j, i)}`;
       }
 
       if (i != this.layersNumber() - 1) {

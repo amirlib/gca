@@ -24,7 +24,7 @@ function BFS(graph, s) {
       bfsG.addLayer();
 
       for (let i = 0; i < numberOfNodesInLayer; i++) {
-        const parent = bfsG.getNodeIDFromLayer(i, bfsG.layersNumber() - 2);
+        const parent = bfsG.getNodeFromLayer(i, bfsG.layersNumber() - 2);
 
         if (!bfsG.hasNode(parent)) bfsG.addNode(parent);
 
