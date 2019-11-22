@@ -132,7 +132,7 @@ class bfsGraph extends Graph {
    * @memberof bfsGraph
    */
   getLayerIndexOfNode(Id) {
-    if (this.indexOfNodeID(Id) == -1) return -1;
+    if (!this.hasNode(Id)) return -1;
 
     for (let i = 0; i < this.layersNumber(); i++) {
       if (this.hasNodeInLayer(Id, i)) {

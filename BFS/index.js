@@ -7,9 +7,7 @@ const bfsGraph = require("./BFS-Graph");
  * @returns {bfsGraph} BFS graph. Return -1 if there no such s node in the original graph.
  */
 function BFS(graph, s) {
-  const indexStart = graph.indexOfNodeID(s);
-
-  if (indexStart == -1) return -1;
+  if (!graph.hasNode(s)) return -1;
 
   try {
     const bfsG = new bfsGraph();
