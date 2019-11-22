@@ -7,21 +7,22 @@ const FlowGraph = require("../Flow-Graph/");
  * @returns {number} The max flow. Return -1, if the graph is not instance of FlowGraph.
  */
 function edmondsKarp(graph) {
-  if (graph instanceof FlowGraph) {
-    graph.reset();
-    let flow = 0;
-    let residualGraph = new ResidualGraph(graph);
-    let path = residualGraph.getPath(residualGraph.s, residualGraph.t);
+  if (!graph instanceof FlowGraph) return -1;
 
-    while (path.size() > 0) {
-      residualGraph.changeEdgesToFlowEdges(path);
-      flow = flow + Tools.augment(graph, path);
-      Tools.updateFlowGraph(graph, residualGraph, path);
-      path = residualGraph.getPath(residualGraph.s, residualGraph.t);
-    }
-    return flow;
+  graph.reset();
+
+  const residualGraph = new ResidualGraph(graph);
+  let flow = 0;
+  let path = residualGraph.getPath(residualGraph.s, residualGraph.t);
+
+  while (path.size() > 0) {
+    residualGraph.changeEdgesToFlowEdges(path);
+    flow = flow + Tools.augment(graph, path);
+    Tools.updateFlowGraph(graph, residualGraph, path);
+    path = residualGraph.getPath(residualGraph.s, residualGraph.t);
   }
-  return -1;
+
+  return flow;
 }
 
 module.exports = edmondsKarp;

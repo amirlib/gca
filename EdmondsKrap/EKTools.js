@@ -21,10 +21,12 @@ function bottleneck(path) {
 
   for (let i = 0; i < length; i++) {
     const res = path.edges[i].capacity;
+
     if (minCapacityLeft > res) {
       minCapacityLeft = res;
     }
   }
+
   return minCapacityLeft;
 }
 /**
@@ -38,6 +40,7 @@ function augment(flowGraph, path) {
 
   for (let i = 0; i < length; i++) {
     let edge = flowGraph.getEdge(path.edges[i].from, path.edges[i].to);
+
     if (edge != null) {
       edge.increaseFlow(b);
     } else {
@@ -45,6 +48,7 @@ function augment(flowGraph, path) {
       edge.decreaseFlow(b);
     }
   }
+
   return b;
 }
 /**
@@ -55,13 +59,17 @@ function augment(flowGraph, path) {
  */
 function updateFlowGraph(flowGraph, residualGraph, path) {
   const length = path.size();
+
   for (let i = 0; i < length; i++) {
     let edge = flowGraph.getEdge(path.edges[i].from, path.edges[i].to);
+
     if (edge == null) {
       edge = flowGraph.getEdge(path.edges[i].to, path.edges[i].from);
     }
-    let forwardEdge = residualGraph.getEdge(edge.from, edge.to, residualGraph.edgesList);
-    let backwardEdge = forwardEdge.backwardEdge;
+
+    const forwardEdge = residualGraph.getEdge(edge.from, edge.to, residualGraph.edgesList);
+    const backwardEdge = forwardEdge.backwardEdge;
+    
     forwardEdge.changeCapacityTo(edge.capacity - edge.flow);
     backwardEdge.changeCapacityTo(edge.flow);
     ifCapacityZero(residualGraph, forwardEdge);
