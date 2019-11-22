@@ -8,6 +8,9 @@
   * addLayer method no longer accepts parameters. It will automatically add a new layer.
   * printLayer method renamed to printLayers.
   * printLayers method prints the layers with their indexes.
+  * getNodeIDFromLayer method renamed to getNodeFromLayer.
+  * getParentNodeID method renamed to getParentNode.
+  * getLayerIndexOfNodeID method renamed to getLayerIndexOfNode.
 
 ## 2.2.0
 
