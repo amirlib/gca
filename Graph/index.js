@@ -167,7 +167,7 @@ class Graph {
    * @returns {number[]} An array of IDs. Returns empty array if there are no edges like that.
    * @memberof Graph
    */
-  findStartNodesEdgesFromNode(ID) {
+  getStartNodesOfEdges(ID) {
     const index = this.indexOfNode(ID);
     let result = [];
 

@@ -86,7 +86,7 @@ The full documentation can be found in each class.
   * Finds nodes, which are the end nodes of edges where the starting node has id of the given id.
   * **@param {number} ID** - ID of node.
   * **@returns {number[]}** An array of IDs. Returns empty array if there are no edges like that.
-* `findStartNodesEdgesFromNode(ID)`
+* `getStartNodesOfEdges(ID)`
   * Finds nodes, which are the start nodes of edges where the ending node has id of the given id.
   * **@param {number} ID** - ID of node.
   * **@returns {number[]}** An array of IDs. Returns empty array if there are no edges like that.
