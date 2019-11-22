@@ -4,7 +4,7 @@ const tool = new gca();
 let graph = tool.CreateGraph();
 
 console.log(`${graph.toString()}\n`);
-console.log(`${graph.printNodesID()}\n`);
+console.log(`${graph.printNodes()}\n`);
 
 let flowGraph = tool.CreateFlowGraph();
 
@@ -24,7 +24,7 @@ flowGraph.addEdge(5, 4, 7);
 flowGraph.addEdge(5, flowGraph.t, 4);
 
 console.log(`${flowGraph.toString()}\n`);
-console.log(`${flowGraph.printNodesID()}\n`);
+console.log(`${flowGraph.printNodes()}\n`);
 
 console.log(`${flowGraph.findEndNodesEdgesFromNode(2)}\n`);
 console.log(`${tool.EdmondsKarp(flowGraph)}\n`);

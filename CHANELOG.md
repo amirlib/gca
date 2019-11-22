@@ -3,6 +3,7 @@
 * Discover folder was deleted with Discover class and DiscoverError exception. The Set data structure replaces Discover class.
 * `Graph`
   * Renamed indexOfNodeID method to indexOfNodeID.
+  * Renamed printNodesID method to printNodes.
 * `BFS-Graph`
   * layerCounter property does not exist anymore.
   * advanceLayerCounter method does not exist anymore.

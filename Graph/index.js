@@ -276,7 +276,7 @@ class Graph {
    * @returns {string}
    * @memberof Graph
    */
-  printNodesID() {
+  printNodes() {
     let print = "";
 
     if (this.isEmpty()) return print;

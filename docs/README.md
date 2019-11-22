@@ -105,7 +105,7 @@ The full documentation can be found in each class.
 * `clone()`
   * Deep copies a graph object.
   * **@returns {Graph}** Cloned Graph.
-* `printNodesID()`
+* `printNodes()`
   * Returns the ids' nodes of the graph.
   * **@returns {string}**
 * `toString()`
