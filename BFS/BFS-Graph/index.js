@@ -195,14 +195,17 @@ class bfsGraph extends Graph {
    * @returns {string} string
    * @memberof bfsGraph
    */
-  printLayer() {
+  printLayers() {
+    const space = `   `
     let print = ``;
 
     for (let i = 0; i < this.layersNumber(); i++) {
+      print = `${print}layer ${i}:`
+
       for (let j = 0; j < this.countNodesInLayer(i); j++) {
-        print = `${print}${this.getNodeIDFromLayer(j, i)}   `;
+        print = `${print}${space}${this.getNodeIDFromLayer(j, i)}`;
       }
-      
+
       if (i != this.layersNumber() - 1) {
         print = `${print}\n`;
       }

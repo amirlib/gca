@@ -2,9 +2,11 @@
 
 * `BFS-Graph`
   * layerCounter property does not exist anymore.
-  * advanceLayerCounter() method does not exist anymore.
-  * **New** method: layersNumber(), you can get the number of layers that exist in the graph.
-  * addLayer() method no longer accepts parameters. Iא will automatically add a new layer.
+  * advanceLayerCounter method does not exist anymore.
+  * **New** method: layersNumber, you can get the number of layers that exist in the graph.
+  * addLayer method no longer accepts parameters. It will automatically add a new layer.
+  * printLayer method renamed to printLayers.
+  * printLayers method prints the layers with their indexes.
 
 ## 2.2.0
 

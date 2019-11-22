@@ -147,7 +147,7 @@ Implementation of BFS Graph. There are tools for building a Graph that it result
   * Gets the index of layer where node ID is exist.
   * **@param {number} ID** - ID of node to search.
   * **@returns {number}** The index of layer. Returns -1 if there is no such node ID in the graph or in the layer.
-* `printLayer()`
+* `printLayers()`
   * Prints all the nodes inside the layers.
   * **@returns {string}**
 * `getPath(t)`
