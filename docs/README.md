@@ -133,10 +133,10 @@ Implementation of BFS Graph. There are tools for building a Graph that it result
   * **@param {number} index** - Index of layer.
   * **@returns {boolean}** True if node exist. Otherwise, False.
   * **@throws {layerError}** Throws Error if layer is not exist.
-* `getNodeIDFromLayer(cellLayer, indexLayer)`
-  * Gets the ID node in the position: cellInLayer in layer at index: indexLayer.
-  * **@param {number} cellLayer** - Index of the cell in layer.
-  * **@param {number} indexLayer** - Index of layer.
+* `getNodeIDFromLayer(cell, layerIndex)`
+  * Gets the ID node in the position: cell in layer at index: layerIndex.
+  * **@param {number} cell** - Cell index.
+  * **@param {number} layerIndex** - Layer index.
   * **@returns {number}** The node ID.
   * **@throws {layerError}** Throws Error if layer is not exist or the node in the layer.
 * `getParentNodeID(ID)`

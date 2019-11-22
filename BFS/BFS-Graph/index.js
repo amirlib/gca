@@ -86,25 +86,25 @@ class bfsGraph extends Graph {
     return false;
   }
   /**
-   * Gets the ID node in the position: cellInLayer in layer at index: indexLayer.
-   * @param {number} cellLayer Index of the cell in layer.
-   * @param {number} indexLayer Index of layer.
+   * Gets the ID node in the position: cell in layer at index: layerIndex.
+   * @param {number} cell Cell index.
+   * @param {number} layerIndex Layer index.
    * @returns {number} The node ID.
    * @throws {layerError} Throws Error if layer is not exist or the node in the layer.
    * @memberof bfsGraph
    */
-  getNodeIDFromLayer(cellLayer, indexLayer) {
-    if (indexLayer >= this.layersNumber()) {
-      throw new layerError(`There is no such layer number: ${indexLayer}.`);
+  getNodeIDFromLayer(cell, layerIndex) {
+    if (layerIndex >= this.layersNumber()) {
+      throw new layerError(`There is no such layer number: ${layerIndex}.`);
     }
 
-    if (cellLayer >= this.layers[indexLayer].length) {
+    if (cell >= this.layers[layerIndex].length) {
       throw new layerError(
-        `There is no node in cell: ${cellLayer} at layer number: ${indexLayer}.`
+        `There is no node in cell: ${cell} at layer number: ${layerIndex}.`
       );
     }
 
-    return this.layers[indexLayer][cellLayer];
+    return this.layers[layerIndex][cell];
   }
   /**
    * Gets the parent node ID of the given node ID.
