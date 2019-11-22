@@ -146,15 +146,15 @@ class FlowGraph extends Graph {
    * @memberof FlowGraph
    */
   clone() {
-    let cloneGraph = new FlowGraph();
+    let graph = new FlowGraph();
 
     for (let i = 0; i < this.matrix.length; i++) {
-      cloneGraph.matrix[i] = Array.from(this.matrix[i]);
+      graph.matrix[i] = Array.from(this.matrix[i]);
     }
     
-    cloneGraph.nodesID = Array.from(this.nodesID);
-    cloneGraph.edgesList = this.edgesList.clone();
-    return cloneGraph;
+    graph.nodesID = Array.from(this.nodesID);
+    graph.edgesList = this.edgesList.clone();
+    return graph;
   }
   /**
    * Returns the shortest path from the 'from' node to 'to' node.
