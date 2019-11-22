@@ -24,8 +24,8 @@ class FlowGraph extends Graph {
    * @memberof FlowGraph
    */
   markEdge(from, to) {
-    const fromIndex = this.indexOfNodeID(from);
-    const toIndex = this.indexOfNodeID(to);
+    const fromIndex = this.indexOfNode(from);
+    const toIndex = this.indexOfNode(to);
 
     this.matrix[fromIndex][toIndex] = 1;
   }
@@ -36,8 +36,8 @@ class FlowGraph extends Graph {
    * @memberof FlowGraph
    */
   unmarkEdge(from, to) {
-    const fromIndex = this.indexOfNodeID(from);
-    const toIndex = this.indexOfNodeID(to);
+    const fromIndex = this.indexOfNode(from);
+    const toIndex = this.indexOfNode(to);
 
     this.matrix[fromIndex][toIndex] = 0;
   }

@@ -1,16 +1,18 @@
 ## 3.0.0
 
 * Discover folder was deleted with Discover class and DiscoverError exception. The Set data structure replaces Discover class.
+* `Graph`
+  * Renamed indexOfNodeID method to indexOfNodeID.
 * `BFS-Graph`
   * layerCounter property does not exist anymore.
   * advanceLayerCounter method does not exist anymore.
   * **New** method: layersNumber, you can get the number of layers that exist in the graph.
   * addLayer method no longer accepts parameters. It will automatically add a new layer.
-  * printLayer method renamed to printLayers.
+  * Renamed printLayer method to printLayers.
   * printLayers method prints the layers with their indexes.
-  * getNodeIDFromLayer method renamed to getNodeFromLayer.
-  * getParentNodeID method renamed to getParentNode.
-  * getLayerIndexOfNodeID method renamed to getLayerIndexOfNode.
+  * Renamed getNodeIDFromLayer method to getNodeFromLayer.
+  * Renamed getParentNodeID method to getParentNode.
+  * Renamed getLayerIndexOfNodeID method to getLayerIndexOfNode.
 
 ## 2.2.0
 

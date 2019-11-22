@@ -113,7 +113,7 @@ class bfsGraph extends Graph {
    * @memberof bfsGraph
    */
   getParentNode(Id) {
-    const nodeIndex = this.indexOfNodeID(Id);
+    const nodeIndex = this.indexOfNode(Id);
 
     if (nodeIndex == -1) return -1;
 

@@ -74,8 +74,8 @@ class Graph {
    * @memberof Graph
    */
   addEdge(from, to) {
-    const fromIndex = this.indexOfNodeID(from);
-    const toIndex = this.indexOfNodeID(to);
+    const fromIndex = this.indexOfNode(from);
+    const toIndex = this.indexOfNode(to);
 
     if (fromIndex == -1 || toIndex == -1) return false;
 
@@ -89,7 +89,7 @@ class Graph {
    * @memberof Graph
    */
   deleteNode(ID) {
-    const index = this.indexOfNodeID(ID);
+    const index = this.indexOfNode(ID);
 
     if (index == -1) return false;
 
@@ -118,8 +118,8 @@ class Graph {
    * @memberof Graph
    */
   deleteEdge(from, to) {
-    const fromIndex = this.indexOfNodeID(from);
-    const toIndex = this.indexOfNodeID(to);
+    const fromIndex = this.indexOfNode(from);
+    const toIndex = this.indexOfNode(to);
 
     if (fromIndex == -1 || toIndex == -1) return false;
 
@@ -132,7 +132,7 @@ class Graph {
    * @returns {number} The index of the node that represents the same index in the matrix of the graph. Returns -1 if there is no such ID.
    * @memberof Graph
    */
-  indexOfNodeID(ID) {
+  indexOfNode(ID) {
     for (let i = 0; i < this.size(); i++) {
       if (this.nodesID[i] == ID) {
         return i;
@@ -148,7 +148,7 @@ class Graph {
    * @memberof Graph
    */
   findEndNodesEdgesFromNode(ID) {
-    const index = this.indexOfNodeID(ID);
+    const index = this.indexOfNode(ID);
     let result = [];
 
     if (index == -1) return result;
@@ -168,7 +168,7 @@ class Graph {
    * @memberof Graph
    */
   findStartNodesEdgesFromNode(ID) {
-    const index = this.indexOfNodeID(ID);
+    const index = this.indexOfNode(ID);
     let result = [];
 
     if (index == -1) return result;
@@ -189,8 +189,8 @@ class Graph {
    * @memberof Graph
    */
   hasEdge(from, to) {
-    const fromIndex = this.indexOfNodeID(from);
-    const toIndex = this.indexOfNodeID(to);
+    const fromIndex = this.indexOfNode(from);
+    const toIndex = this.indexOfNode(to);
 
     if (fromIndex == -1 || toIndex == -1) return false;
 
