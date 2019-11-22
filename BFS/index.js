@@ -26,19 +26,19 @@ function BFS(graph, s) {
 
         if (!bfsG.hasNode(parent)) bfsG.addNode(parent);
 
-        const childeNodes = graph.getNodesOfEdgesEndingNode(parent);
-        const childeNodesNotExplored = childeNodes.filter(node => !explored.has(node));
+        const children = graph.getNodesOfEdgesEndingNode(parent);
+        const childrenExplored = children.filter(node => !explored.has(node));
 
-        if (childeNodesNotExplored.length == 0) continue;
+        if (childrenExplored.length == 0) continue;
 
-        const iterator = childeNodesNotExplored.values();
+        const iterator = childrenExplored.values();
 
         for (const child of iterator) {
           if (!bfsG.hasNode(child)) bfsG.addNode(child);
 
           bfsG.addEdge(parent, child);
-          explored.add(child);
           bfsG.addNodeToLayer(child, bfsG.layersNumber() - 1);
+          explored.add(child);
         }
       }
 
