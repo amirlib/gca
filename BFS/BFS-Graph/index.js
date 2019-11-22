@@ -11,15 +11,15 @@ class bfsGraph extends Graph {
   constructor() {
     super();
 
-    this.layerCounter = 0;
-    this.layer = [];
+    this.layers = [];
   }
   /**
-   * Increases the layer counter by one.
+   * Returns the number of layers in the graph.
+   * @returns {number} The number of layers.
    * @memberof bfsGraph
    */
-  advanceLayerCounter() {
-    this.layerCounter++;
+  layersNumber() {
+    return this.layers.length;
   }
   /**
    * Counts the nodes in the layer.
@@ -29,30 +29,18 @@ class bfsGraph extends Graph {
    * @memberof bfsGraph
    */
   countNodesInLayer(index) {
-    if (index >= this.layer.length) {
+    if (index >= this.layersNumber()) {
       throw new layerError(`There is no such layer number: ${index}.`);
     }
 
-    return this.layer[index].length;
+    return this.layers[index].length;
   }
   /**
    * Adds new layer.
-   * @param {number} index Index of layer.
-   * @throws {layerError} Throws Error if layer is already exist or the graph miss some layers before the given one.
    * @memberof bfsGraph
    */
-  addLayer(index) {
-    if (index < this.layer.length) {
-      throw new layerError(`Layer number: ${index} already Exist.`);
-    }
-
-    if (index > this.layer.length) {
-      throw new layerError(
-        `Some layers before layer number: ${index}, not exists.`
-      );
-    }
-
-    this.layer[index] = [];
+  addLayer() {
+    this.layers.push([]);
   }
   /**
    * Inserts node to layer.
@@ -62,7 +50,7 @@ class bfsGraph extends Graph {
    * @memberof bfsGraph
    */
   addNodeToLayer(ID, index) {
-    if (index >= this.layer.length) {
+    if (index >= this.layersNumber()) {
       throw new layerError(`There is no such layer number: ${index}.`);
     }
 
@@ -72,7 +60,7 @@ class bfsGraph extends Graph {
       );
     }
 
-    this.layer[index].push(ID);
+    this.layers[index].push(ID);
   }
   /**
    * Searches for the given node in the given layer.
@@ -83,7 +71,7 @@ class bfsGraph extends Graph {
    * @memberof bfsGraph
    */
   hasNodeInLayer(ID, index) {
-    if (index >= this.layer.length) {
+    if (index >= this.layersNumber()) {
       throw new layerError(`There is no such layer number: ${index}.`);
     }
 
@@ -106,17 +94,17 @@ class bfsGraph extends Graph {
    * @memberof bfsGraph
    */
   getNodeIDFromLayer(cellLayer, indexLayer) {
-    if (indexLayer >= this.layer.length) {
+    if (indexLayer >= this.layersNumber()) {
       throw new layerError(`There is no such layer number: ${indexLayer}.`);
     }
 
-    if (cellLayer >= this.layer[indexLayer].length) {
+    if (cellLayer >= this.layers[indexLayer].length) {
       throw new layerError(
         `There is no node in cell: ${cellLayer} at layer number: ${indexLayer}.`
       );
     }
-    
-    return this.layer[indexLayer][cellLayer];
+
+    return this.layers[indexLayer][cellLayer];
   }
   /**
    * Gets the parent node ID of the given node ID.
@@ -146,7 +134,7 @@ class bfsGraph extends Graph {
   getLayerIndexOfNodeID(ID) {
     if (this.indexOfNodeID(ID) == -1) return -1;
 
-    for (let i = 0; i < this.layerCounter; i++) {
+    for (let i = 0; i < this.layersNumber(); i++) {
       if (this.hasNodeInLayer(ID, i)) {
         return i;
       }
@@ -195,9 +183,8 @@ class bfsGraph extends Graph {
     }
 
     graph.nodesID = Array.from(this.nodesID);
-    graph.layerCounter = this.layerCounter;
 
-    for (let i = 0; i < this.layer.length; i++) {
+    for (let i = 0; i < this.layersNumber(); i++) {
       graph.layer[i] = Array.from(this.layer[i]);
     }
 
@@ -211,12 +198,12 @@ class bfsGraph extends Graph {
   printLayer() {
     let print = ``;
 
-    for (let i = 0; i < this.layerCounter; i++) {
+    for (let i = 0; i < this.layersNumber(); i++) {
       for (let j = 0; j < this.countNodesInLayer(i); j++) {
         print = `${print}${this.getNodeIDFromLayer(j, i)}   `;
       }
       
-      if (i != this.layerCounter - 1) {
+      if (i != this.layersNumber() - 1) {
         print = `${print}\n`;
       }
     }

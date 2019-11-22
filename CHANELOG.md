@@ -1,3 +1,11 @@
+## 3.0.0
+
+* `BFS-Graph`
+  * layerCounter property does not exist anymore.
+  * advanceLayerCounter() method does not exist anymore.
+  * **New** method: layersNumber(), you can get the number of layers that exist in the graph.
+  * addLayer() method no longer accepts parameters. Iא will automatically add a new layer.
+
 ## 2.2.0
 
 * Fixed spelling errors.  

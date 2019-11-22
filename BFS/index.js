@@ -16,16 +16,16 @@ function BFS(graph, s) {
     const bfsG = new bfsGraph();
     const discovers = new Discovers(graph.nodesID, indexStart);
 
-    bfsG.addLayer(bfsG.layerCounter);
+    bfsG.addLayer();
     bfsG.addNodeToLayer(s, 0);
 
-    let numberOfNodesInLayer = bfsG.countNodesInLayer(bfsG.layerCounter);
+    let numberOfNodesInLayer = bfsG.countNodesInLayer(bfsG.layersNumber() - 1);
 
     while (numberOfNodesInLayer > 0) {
-      bfsG.addLayer(bfsG.layerCounter + 1);
+      bfsG.addLayer();
 
       for (let i = 0; i < numberOfNodesInLayer; i++) {
-        const NodeIDFromLayer = bfsG.getNodeIDFromLayer(i, bfsG.layerCounter);
+        const NodeIDFromLayer = bfsG.getNodeIDFromLayer(i, bfsG.layersNumber() - 2);
 
         if (bfsG.indexOfNodeID(NodeIDFromLayer) == -1) {
           bfsG.addNode(NodeIDFromLayer);
@@ -44,20 +44,20 @@ function BFS(graph, s) {
 
               bfsG.addEdge(NodeIDFromLayer, endNodesEdges[j]);
               discovers.markNode(nodeIndex);
-              bfsG.addNodeToLayer(endNodesEdges[j], bfsG.layerCounter + 1);
+              bfsG.addNodeToLayer(endNodesEdges[j], bfsG.layersNumber() - 1);
             }
           }
         }
       }
 
-      bfsG.advanceLayerCounter();
-      numberOfNodesInLayer = bfsG.countNodesInLayer(bfsG.layerCounter);
+      numberOfNodesInLayer = bfsG.countNodesInLayer(bfsG.layersNumber() - 1);
     }
 
-    bfsG.layer.pop();
+    bfsG.layers.pop();
     return bfsG;
   } catch (error) {
     console.log(`${error.message}`);
+    return -1;
   }
 }
 

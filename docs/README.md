@@ -117,9 +117,11 @@ The full documentation can be found in each class.
 Implementation of BFS Graph. There are tools for building a Graph that it result of the BFS algorithm.
 
 1. Extends from **Graph**.
-2. **layer** - An array of nodes in each layer of the graph.
-3. **layerCounter** - Counts number of layers.
+2. **layers** - An array of nodes in each layer of the graph.
 
+* `layersNumber()`
+  * Returns the number of layers in the graph.
+  * **@returns {number}** The number of layers.
 * `countNodesInLayer(index)`
   * Counts the nodes in the layer.
   * **@param {number} index** - Index of layer.

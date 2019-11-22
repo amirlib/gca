@@ -1,4 +1,4 @@
-const gca = require("gca");
+const gca = require("./index");
 const tool = new gca();
 
 let graph = tool.CreateGraph();
@@ -32,9 +32,9 @@ console.log(tool.EdmondsKarp(flowGraph));
 let bfsG = tool.BFS(flowGraph, flowGraph.s);
 console.log(bfsG.toString());
 
-try {
-    let path = bfsG.getPath(5);
-    console.log(path.toString());
-} catch (error) {
-    console.log(`${error.message}`);
-}
+// try {
+//     let path = bfsG.getPath(5);
+//     console.log(path.toString());
+// } catch (error) {
+//     console.log(`${error.message}`);
+// }
