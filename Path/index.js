@@ -1,6 +1,6 @@
 const Edge = require("../Edges/Edge");
 /**
- * Implementaion of path. Path is used for saving nodes of the minimum path from BFS Graph and edges.
+ * Implementation of path. Path is used for saving nodes of the minimum path from BFS Graph and edges.
  *
  * @class Path
  */
@@ -43,7 +43,7 @@ class Path {
     this.nodes = newNodes;
   }
   /**
-   * Adds edges from the the flow graph as menntion in the minimum path.
+   * Adds edges from the the flow graph as mentioned in the minimum path.
    * @memberof Path
    */
   createEdgesFromNodes() {
@@ -60,12 +60,15 @@ class Path {
    */
   toString() {
     let print = ``;
+
     for (let i = 0; i < this.edges.length; i++) {
       print = `${print}${this.edges[i]}`;
+
       if (i != this.edges.length - 1) {
         print = `${print}\n`;
       }
     }
+    
     return print;
   }
 }

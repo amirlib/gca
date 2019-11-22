@@ -37,9 +37,9 @@ flowGraph.addEdge(5, flowGraph.t, 4);
 console.log(`${flowGraph.toString()}\n`);
 console.log(`${flowGraph.printNodesID()}\n`);
 
-console.log(`${flowGraph.deleteNode(5)}\n`);
-console.log(`${flowGraph.toString()}\n`);
-console.log(`${flowGraph.printNodesID()}\n`);
+// console.log(`${flowGraph.deleteNode(5)}\n`);
+// console.log(`${flowGraph.toString()}\n`);
+// console.log(`${flowGraph.printNodesID()}\n`);
 
 console.log(tool.EdmondsKarp(flowGraph));
 
