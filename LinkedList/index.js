@@ -1,6 +1,6 @@
 const Node = require("./Node");
 /**
- * Implementaion of linked list. Used for saveing the edges of the Flow Graph.
+ * Implementation of linked list. Used for saving the edges of the Flow Graph.
  *
  * @class LinkedList
  */
@@ -16,10 +16,12 @@ class LinkedList {
   size() {
     let counter = 0;
     let current = this.head;
+
     while (current != null) {
       counter++;
       current = current.next;
     }
+
     return counter;
   }
   /**
@@ -29,40 +31,48 @@ class LinkedList {
    */
   addData(obj) {
     let current = this.head;
+
     if (this.head == null) {
       this.head = new Node(obj);
-    } else {
-      current = this.head;
-      while (current.next != null) {
-        current = current.next;
-      }
-      let node = new Node(obj);
-      current.next = node;
+
+      return;
     }
+
+    current = this.head;
+
+    while (current.next != null) {
+      current = current.next;
+    }
+
+    current.next = new Node(obj);
   }
   /**
    * Checks if there a node with this obj, and if does, remove it.
    * @param {object} obj The object to be removed.
-   * @returns {boolean} True, if node with given data removed from linkedlist. Otherwise, false.
+   * @returns {boolean} True, if node with given data removed from linked list. Otherwise, false.
    * @memberof LinkedList
    */
   removeData(obj) {
-    if (this.has(obj) == true) {
-      if (this.head.data == obj) {
-        this.head = this.head.next;
-      } else {
-        let current = this.head;
-        let prev = null;
-        while (current.next.data != obj) {
-          current = current.next;
-        }
-        prev = current;
-        current = current.next;
-        prev.next = current.next;
-      }
-      return true;
+    if (!this.has(obj)) return false;
+
+
+    if (this.head.data == obj) {
+      this.head = this.head.next;
+
+      return;
     }
-    return false;
+
+    let current = this.head;
+    let prev = null;
+
+    while (current.next.data != obj) {
+      current = current.next;
+    }
+    
+    prev = current;
+    current = current.next;
+    prev.next = current.next;
+    return true;
   }
   /**
    * Checks if there a node with this obj in the linked list.
@@ -72,31 +82,37 @@ class LinkedList {
    */
   has(obj) {
     let current = this.head;
+
     while (current != null) {
       if (current.data.equals(obj)) {
         return true;
       }
+      
       current = current.next;
     }
+
     return false;
   }
   /**
-   * Deep copies a linkedlist.
+   * Deep copies a linked list.
    * @return {LinkedList} cloned LinkedList.
    * @memberof LinkedList
    */
   clone() {
-    let clonedList = new LinkedList();
-    if (this.size() == 0) {
-      return clonedList;
-    }
+    let list = new LinkedList();
+    
+    if (this.size() == 0) return list;
+
     let current = this.head;
+
     while (current != null) {
-      let clonedData = current.data.clone();
-      clonedList.addData(clonedData);
+      const clonedData = current.data.clone();
+
+      list.addData(clonedData);
       current = current.next;
     }
-    return clonedList;
+
+    return list;
   }
   /**
    * Returns the data inside all the nodes.
@@ -106,13 +122,17 @@ class LinkedList {
   toString() {
     let print = ``;
     let current = this.head;
+
     while (current != null) {
       print = `${print}${current.data}`;
+      
       if (current.next != null) {
         print = `${print}\n`;
       }
+
       current = current.next;
     }
+
     return print;
   }
 }

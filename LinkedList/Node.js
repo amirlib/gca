@@ -1,5 +1,5 @@
 /**
- * Implementaion of node for the linkedlist.
+ * Implementation of node for the linked list.
  *
  * @class Node
  */
