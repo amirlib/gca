@@ -118,8 +118,6 @@ class FlowGraph extends Graph {
   getEdge(from, to) {
     let current = this.edgesList.head;
 
-    if (current == null) return null;
-
     while (current != null) {
       if (current.data.from == from && current.data.to == to) {
         return current.data;
@@ -127,6 +125,8 @@ class FlowGraph extends Graph {
 
       current = current.next;
     }
+
+    return null;
   }
   /**
    * Resets the flow of all edges in the graph.

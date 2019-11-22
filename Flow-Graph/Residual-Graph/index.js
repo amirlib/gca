@@ -75,8 +75,6 @@ class ResidualGraph extends FlowGraph {
   getEdge(from, to, list) {
     let current = list.head;
 
-    if (current == null) return null;
-
     while (current != null) {
       if (current.data.from == from && current.data.to == to) {
         return current.data;
@@ -84,6 +82,8 @@ class ResidualGraph extends FlowGraph {
 
       current = current.next;
     }
+
+    return null;
   }
   /**
    * Changes each edge in path to its edge of the graph

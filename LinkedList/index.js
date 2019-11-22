@@ -55,7 +55,6 @@ class LinkedList {
   removeData(obj) {
     if (!this.has(obj)) return false;
 
-
     if (this.head.data == obj) {
       this.head = this.head.next;
 
