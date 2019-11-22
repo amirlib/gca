@@ -1,5 +1,4 @@
 const bfsGraph = require("./BFS-Graph");
-const Discovers = require("./Discover");
 
 /**
  * BFS algorithm.
@@ -14,7 +13,7 @@ function BFS(graph, s) {
 
   try {
     const bfsG = new bfsGraph();
-    const discovers = new Discovers(graph.nodesID, indexStart);
+    const discovers = new Set();
 
     bfsG.addLayer();
     bfsG.addNodeToLayer(s, 0);
@@ -35,15 +34,15 @@ function BFS(graph, s) {
 
         if (endNodesEdges.length != 0) {
           for (let j = 0; j < endNodesEdges.length; j++) {
-            const nodeIndex = discovers.indexOfNodeID(endNodesEdges[j]);
+            const nodeIndex = graph.indexOfNodeID(endNodesEdges[j]);
 
-            if (discovers.hasDiscover(nodeIndex) == false) {
+            if (!discovers.has(nodeIndex)) {
               if (bfsG.indexOfNodeID(endNodesEdges[j]) == -1) {
                 bfsG.addNode(endNodesEdges[j]);
               }
 
               bfsG.addEdge(NodeIDFromLayer, endNodesEdges[j]);
-              discovers.markNode(nodeIndex);
+              discovers.add(nodeIndex);
               bfsG.addNodeToLayer(endNodesEdges[j], bfsG.layersNumber() - 1);
             }
           }
