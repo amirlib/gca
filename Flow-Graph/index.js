@@ -61,7 +61,7 @@ class FlowGraph extends Graph {
   deleteNode(ID) {
     if (ID == 0 || ID == 1 || !this.hasNode(ID)) return false;
 
-    const endNodesEdges = this.findEndNodesEdgesFromNode(ID);
+    const endNodesEdges = this.getEndNodesOfEdges(ID);
     const startNodesEdges = this.getStartNodesOfEdges(ID);
     let iterator = endNodesEdges.values();
 
