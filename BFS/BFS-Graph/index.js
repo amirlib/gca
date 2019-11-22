@@ -112,7 +112,7 @@ class bfsGraph extends Graph {
    * @returns {number} ID of parent node. Return -1 if there is no such node ID in the graph.
    * @memberof bfsGraph
    */
-  getParentNodeID(ID) {
+  getParentNode(ID) {
     const nodeIndex = this.indexOfNodeID(ID);
 
     if (nodeIndex == -1) return -1;
@@ -159,7 +159,7 @@ class bfsGraph extends Graph {
     path.addNode(t);
 
     for (let i = 0; i < length; i++) {
-      const parentNode = this.getParentNodeID(childNode);
+      const parentNode = this.getParentNode(childNode);
 
       path.addNode(parentNode);
       childNode = parentNode;
