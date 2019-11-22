@@ -44,33 +44,33 @@ class bfsGraph extends Graph {
   }
   /**
    * Inserts node to layer.
-   * @param {number} ID ID of node to insert.
+   * @param {number} Id Id of node to insert.
    * @param {number} index Index of layer.
    * @throws {layerError} Throws Error if layer is not exist or the node is already exist in the layer.
    * @memberof bfsGraph
    */
-  addNodeToLayer(ID, index) {
+  addNodeToLayer(Id, index) {
     if (index >= this.layersNumber()) {
       throw new layerError(`There is no such layer number: ${index}.`);
     }
 
-    if (this.hasNodeInLayer(ID, index) == true) {
+    if (this.hasNodeInLayer(Id, index) == true) {
       throw new layerError(
-        `You are trying to insert node ID: ${ID} that already exist in layer number: ${index}.`
+        `You are trying to insert node Id: ${Id} that already exist in layer number: ${index}.`
       );
     }
 
-    this.layers[index].push(ID);
+    this.layers[index].push(Id);
   }
   /**
    * Searches for the given node in the given layer.
-   * @param {number} ID ID of node to search.
+   * @param {number} Id Id of node to search.
    * @param {number} index Index of layer.
    * @returns {boolean} True if node exist. Otherwise, False.
    * @throws {layerError} Throws Error if layer is not exist.
    * @memberof bfsGraph
    */
-  hasNodeInLayer(ID, index) {
+  hasNodeInLayer(Id, index) {
     if (index >= this.layersNumber()) {
       throw new layerError(`There is no such layer number: ${index}.`);
     }
@@ -78,7 +78,7 @@ class bfsGraph extends Graph {
     const length = this.countNodesInLayer(index);
 
     for (let i = 0; i < length; i++) {
-      if (this.getNodeFromLayer(i, index) == ID) {
+      if (this.getNodeFromLayer(i, index) == Id) {
         return true;
       }
     }
@@ -107,13 +107,13 @@ class bfsGraph extends Graph {
     return this.layers[layerIndex][cell];
   }
   /**
-   * Gets the parent node ID of the given node ID.
-   * @param {number} ID ID of child node.
-   * @returns {number} ID of parent node. Return -1 if there is no such node ID in the graph.
+   * Gets the parent node Id of the given node Id.
+   * @param {number} Id Id of child node.
+   * @returns {number} Id of parent node. Return -1 if there is no such node Id in the graph.
    * @memberof bfsGraph
    */
-  getParentNode(ID) {
-    const nodeIndex = this.indexOfNodeID(ID);
+  getParentNode(Id) {
+    const nodeIndex = this.indexOfNodeID(Id);
 
     if (nodeIndex == -1) return -1;
 
@@ -126,16 +126,16 @@ class bfsGraph extends Graph {
     return -1;
   }
   /**
-   * Gets the index of layer where node ID is exist.
-   * @param {number} ID ID of node to search.
-   * @returns {number} The index of layer. Returns -1 if there is no such node ID in the graph or in the layer.
+   * Gets the index of layer where node Id is exist.
+   * @param {number} Id Id of node to search.
+   * @returns {number} The index of layer. Returns -1 if there is no such node Id in the graph or in the layer.
    * @memberof bfsGraph
    */
-  getLayerIndexOfNode(ID) {
-    if (this.indexOfNodeID(ID) == -1) return -1;
+  getLayerIndexOfNode(Id) {
+    if (this.indexOfNodeID(Id) == -1) return -1;
 
     for (let i = 0; i < this.layersNumber(); i++) {
-      if (this.hasNodeInLayer(ID, i)) {
+      if (this.hasNodeInLayer(Id, i)) {
         return i;
       }
     }
@@ -144,7 +144,7 @@ class bfsGraph extends Graph {
   }
   /**
    * Gets the shortest path from the root node to node t.
-   * @param {number} t ID of end node in path.
+   * @param {number} t Id of end node in path.
    * @returns {Path} Path object.
    * @memberof bfsGraph
    */
