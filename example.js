@@ -31,6 +31,7 @@ console.log(`${tool.EdmondsKarp(flowGraph)}\n`);
 
 let bfsG = tool.BFS(flowGraph, flowGraph.s);
 console.log(`${bfsG.toString()}\n`);
+console.log(`${bfsG.printLayers()}\n`);
 
 // try {
 //     let path = bfsG.getPath(5);

@@ -13,7 +13,7 @@ function BFS(graph, s) {
 
   try {
     const bfsG = new bfsGraph();
-    const discovers = new Set();
+    const explored = new Set();
 
     bfsG.addLayer();
     bfsG.addNodeToLayer(s, 0);
@@ -24,28 +24,23 @@ function BFS(graph, s) {
       bfsG.addLayer();
 
       for (let i = 0; i < numberOfNodesInLayer; i++) {
-        const NodeIDFromLayer = bfsG.getNodeIDFromLayer(i, bfsG.layersNumber() - 2);
+        const parent = bfsG.getNodeIDFromLayer(i, bfsG.layersNumber() - 2);
 
-        if (bfsG.indexOfNodeID(NodeIDFromLayer) == -1) {
-          bfsG.addNode(NodeIDFromLayer);
-        }
+        if (!bfsG.hasNode(parent)) bfsG.addNode(parent);
 
-        const endNodesEdges = graph.findEndNodesEdgesFromNode(NodeIDFromLayer);
+        const childeNodes = graph.findEndNodesEdgesFromNode(parent);
+        const childeNodesNotExplored = childeNodes.filter(node => !explored.has(node));
 
-        if (endNodesEdges.length != 0) {
-          for (let j = 0; j < endNodesEdges.length; j++) {
-            const nodeIndex = graph.indexOfNodeID(endNodesEdges[j]);
+        if (childeNodesNotExplored.length == 0) continue;
 
-            if (!discovers.has(nodeIndex)) {
-              if (bfsG.indexOfNodeID(endNodesEdges[j]) == -1) {
-                bfsG.addNode(endNodesEdges[j]);
-              }
+        const iterator = childeNodesNotExplored.values();
 
-              bfsG.addEdge(NodeIDFromLayer, endNodesEdges[j]);
-              discovers.add(nodeIndex);
-              bfsG.addNodeToLayer(endNodesEdges[j], bfsG.layersNumber() - 1);
-            }
-          }
+        for (const child of iterator) {
+          if (!bfsG.hasNode(child)) bfsG.addNode(child);
+
+          bfsG.addEdge(parent, child);
+          explored.add(child);
+          bfsG.addNodeToLayer(child, bfsG.layersNumber() - 1);
         }
       }
 
