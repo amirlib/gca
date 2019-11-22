@@ -1,8 +1,8 @@
 ## 2.2.0
 
-* Fix spelling errors.  
-* Improve the documentation.  
-* Improve the readability of the code.  
+* Fixed spelling errors.  
+* Improved the documentation.  
+* Improved the readability of the code.  
 * `Graph:`
   * From now on, the matrix property of the graph does not store the IDs of the nodes, but only whether there edges in (i, j) where i and j are the indexes in nodesID array that represents the correct IDs of the edge.  
 * `BFS-Graph`
@@ -13,9 +13,9 @@
 * Edit CHANGELOG.md and README.md files.  
 * Fix spelling errors.  
 * `Graph:`  
-  * Add new method to the graph class: isEmpty().  
-  * Improve the documentation of the class.  
-  * Improve the readability of the code.  
+  * Added new method to the graph class: isEmpty().  
+  * Improved the documentation of the class.  
+  * Improved the readability of the code.  
 
 ## 2.1.0
 
