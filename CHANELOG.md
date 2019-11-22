@@ -4,8 +4,8 @@
 * `Graph`
   * Renamed indexOfNodeID method to indexOfNodeID.
   * Renamed printNodesID method to printNodes.
-  * Renamed findStartNodesEdgesFromNode method to getStartNodesOfEdges.
-  * Renamed findEndNodesEdgesFromNode method to getEndNodesOfEdges.
+  * Renamed findStartNodesEdgesFromNode method to getNodesOfEdgesStartingNode.
+  * Renamed findEndNodesEdgesFromNode method to getNodesOfEdgesEndingNode.
 * `BFS-Graph`
   * layerCounter property does not exist anymore.
   * advanceLayerCounter method does not exist anymore.

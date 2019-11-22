@@ -147,7 +147,7 @@ class Graph {
    * @returns {number[]} An array of IDs. Returns empty array if there are no edges like that.
    * @memberof Graph
    */
-  getEndNodesOfEdges(ID) {
+  getNodesOfEdgesEndingNode(ID) {
     const index = this.indexOfNode(ID);
     let result = [];
 
@@ -167,7 +167,7 @@ class Graph {
    * @returns {number[]} An array of IDs. Returns empty array if there are no edges like that.
    * @memberof Graph
    */
-  getStartNodesOfEdges(ID) {
+  getNodesOfEdgesStartingNode(ID) {
     const index = this.indexOfNode(ID);
     let result = [];
 

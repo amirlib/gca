@@ -26,7 +26,7 @@ function BFS(graph, s) {
 
         if (!bfsG.hasNode(parent)) bfsG.addNode(parent);
 
-        const childeNodes = graph.getEndNodesOfEdges(parent);
+        const childeNodes = graph.getNodesOfEdgesEndingNode(parent);
         const childeNodesNotExplored = childeNodes.filter(node => !explored.has(node));
 
         if (childeNodesNotExplored.length == 0) continue;
