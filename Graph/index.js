@@ -8,33 +8,20 @@ class Graph {
     this.matrix = []; //2d Array that represents the Graph as 'Adjacency matrix'.
   }
   /**
-   * Returns the number of nodes in the graph.
-   * @returns {number} The number of nodes.
+   * Inserts new edge to the graph: when (from, to) represent an edge from startNodeID to endNodeID.
+   * @param {number} from ID of start Node of edge.
+   * @param {number} to ID of end Node of edge.
+   * @returns {boolean} True, if edge added successfully to the graph. Otherwise, returns false.
    * @memberof Graph
    */
-  size() {
-    return this.nodesID.length;
-  }
-  /**
-   * Counts the number of edges in graph.
-   * @return {number} The number of edges in graph.
-   * @memberof Graph
-   */
-  countEdges() {
-    const rowsIterator = this.matrix.values();
-    let counter = 0;
+  addEdge(from, to) {
+    const fromIndex = this.indexOfNode(from);
+    const toIndex = this.indexOfNode(to);
 
-    for (const row of rowsIterator) {
-      const cellsIterator = row.values();
+    if (fromIndex == -1 || toIndex == -1) return false;
 
-      for (const value of cellsIterator) {
-        if (value == 1) {
-          counter++;
-        }
-      }
-    }
-
-    return counter;
+    this.matrix[fromIndex][toIndex] = 1;
+    return true;
   }
   /**
    * Inserts a new node to the graph. The ID must be number.
@@ -67,19 +54,55 @@ class Graph {
     return true;
   }
   /**
-   * Inserts new edge to the graph: when (from, to) represent an edge from startNodeID to endNodeID.
-   * @param {number} from ID of start Node of edge.
-   * @param {number} to ID of end Node of edge.
-   * @returns {boolean} True, if edge added successfully to the graph. Otherwise, returns false.
+   * Deep copies a graph object.
+   * @returns {Graph} Cloned Graph.
    * @memberof Graph
    */
-  addEdge(from, to) {
+  clone() {
+    let graph = new Graph();
+
+    for (let i = 0; i < this.size(); i++) {
+      graph.matrix[i] = Array.from(this.matrix[i]);
+    }
+
+    graph.nodesID = Array.from(this.nodesID);
+    return graph;
+  }
+  /**
+   * Counts the number of edges in graph.
+   * @return {number} The number of edges in graph.
+   * @memberof Graph
+   */
+  countEdges() {
+    const rowsIterator = this.matrix.values();
+    let counter = 0;
+
+    for (const row of rowsIterator) {
+      const cellsIterator = row.values();
+
+      for (const value of cellsIterator) {
+        if (value == 1) {
+          counter++;
+        }
+      }
+    }
+
+    return counter;
+  }
+  /**
+   * Deletes edge from the graph.
+   * @param {number} from ID of start Node of edge.
+   * @param {number} to ID of end Node of edge.
+   * @returns {boolean} True, if edge deleted successfully from the graph. Otherwise, returns false.
+   * @memberof Graph
+   */
+  deleteEdge(from, to) {
     const fromIndex = this.indexOfNode(from);
     const toIndex = this.indexOfNode(to);
 
     if (fromIndex == -1 || toIndex == -1) return false;
 
-    this.matrix[fromIndex][toIndex] = 1;
+    this.matrix[fromIndex][toIndex] = 0;
     return true;
   }
   /**
@@ -111,35 +134,24 @@ class Graph {
     return true;
   }
   /**
-   * Deletes edge from the graph.
-   * @param {number} from ID of start Node of edge.
-   * @param {number} to ID of end Node of edge.
-   * @returns {boolean} True, if edge deleted successfully from the graph. Otherwise, returns false.
+   * Finds nodes, which are the start nodes of edges where the ending node has id of the given id.
+   * @param {number} ID ID of node.
+   * @returns {number[]} An array of IDs. Returns empty array if there are no edges like that.
    * @memberof Graph
    */
-  deleteEdge(from, to) {
-    const fromIndex = this.indexOfNode(from);
-    const toIndex = this.indexOfNode(to);
+  getNodesOfEdgesEndingNode(ID) {
+    const index = this.indexOfNode(ID);
+    let result = [];
 
-    if (fromIndex == -1 || toIndex == -1) return false;
+    if (index == -1) return result;
 
-    this.matrix[fromIndex][toIndex] = 0;
-    return true;
-  }
-  /**
-   * Searches for an index of the node with id: ID, that will be represented in the matrix of the graph.
-   * @param {number} ID ID of node to search.
-   * @returns {number} The index of the node that represents the same index in the matrix of the graph. Returns -1 if there is no such ID.
-   * @memberof Graph
-   */
-  indexOfNode(ID) {
     for (let i = 0; i < this.size(); i++) {
-      if (this.nodesID[i] == ID) {
-        return i;
+      if (this.matrix[i][index] == 1) {
+        result.push(this.nodesID[i]);
       }
     }
 
-    return -1;
+    return result;
   }
   /**
    * Finds nodes, which are the end nodes of edges where the starting node has id of the given id.
@@ -162,24 +174,15 @@ class Graph {
     return result;
   }
   /**
-   * Finds nodes, which are the start nodes of edges where the ending node has id of the given id.
-   * @param {number} ID ID of node.
-   * @returns {number[]} An array of IDs. Returns empty array if there are no edges like that.
+   * Throw error. Can search for path only from BFS Graph.
+   * @param {number} ID
+   * @throws {Error} Throws Error if Graph object trying to return path and not bfsGraph object.
    * @memberof Graph
    */
-  getNodesOfEdgesEndingNode(ID) {
-    const index = this.indexOfNode(ID);
-    let result = [];
-
-    if (index == -1) return result;
-
-    for (let i = 0; i < this.size(); i++) {
-      if (this.matrix[i][index] == 1) {
-        result.push(this.nodesID[i]);
-      }
-    }
-
-    return result;
+  getPath(ID) {
+    throw new Error(
+      `Can not search for path. Path must be created from BFS Graph.`
+    );
   }
   /**
    * Checks if an edge: (from, to) exist in the graph.
@@ -216,6 +219,21 @@ class Graph {
     return false;
   }
   /**
+   * Searches for an index of the node with id: ID, that will be represented in the matrix of the graph.
+   * @param {number} ID ID of node to search.
+   * @returns {number} The index of the node that represents the same index in the matrix of the graph. Returns -1 if there is no such ID.
+   * @memberof Graph
+   */
+  indexOfNode(ID) {
+    for (let i = 0; i < this.size(); i++) {
+      if (this.nodesID[i] == ID) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+  /**
    * Checks whether the graph is empty.
    * @return {boolean} True, if the graph is empty. Otherwise, returns false.
    * @memberof Graph
@@ -226,19 +244,22 @@ class Graph {
     return false;
   }
   /**
-   * Deep copies a graph object.
-   * @returns {Graph} Cloned Graph.
+   * Returns the ids' nodes of the graph.
+   * @returns {string}
    * @memberof Graph
    */
-  clone() {
-    let graph = new Graph();
+  printNodes() {
+    let print = "";
 
-    for (let i = 0; i < this.size(); i++) {
-      graph.matrix[i] = Array.from(this.matrix[i]);
+    if (this.isEmpty()) return print;
+
+    print = this.nodesID[0];
+
+    for (let i = 1; i < this.size(); i++) {
+      print = `${print}, ${this.nodesID[i]}`;
     }
 
-    graph.nodesID = Array.from(this.nodesID);
-    return graph;
+    return print;
   }
   /**
    * Returns the presentation of the graph as a matrix.
@@ -272,33 +293,12 @@ class Graph {
     return print;
   }
   /**
-   * Returns the ids' nodes of the graph.
-   * @returns {string}
+   * Returns the number of nodes in the graph.
+   * @returns {number} The number of nodes.
    * @memberof Graph
    */
-  printNodes() {
-    let print = "";
-
-    if (this.isEmpty()) return print;
-
-    print = this.nodesID[0];
-
-    for (let i = 1; i < this.size(); i++) {
-      print = `${print}, ${this.nodesID[i]}`;
-    }
-
-    return print;
-  }
-  /**
-   * Throw error. Can search for path only from BFS Graph.
-   * @param {number} ID
-   * @throws {Error} Throws Error if Graph object trying to return path and not bfsGraph object.
-   * @memberof Graph
-   */
-  getPath(ID) {
-    throw new Error(
-      `Can not search for path. Path must be created from BFS Graph.`
-    );
+  size() {
+    return this.nodesID.length;
   }
 }
 

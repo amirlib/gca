@@ -54,40 +54,36 @@ The full documentation can be found in each class.
 2. '1' in the matrix in row i and column j represent an edge.  
 3. **nodesID** - An array of nodes ID.
 
-* `size()`
-  * Returns the number of nodes in the graph.
-  * **@returns {number}** The number of nodes.
-* `countEdges()`
-  * Counts the number of edges in graph.
-  * **@return {number}** The number of edges in graph.
-* `addNode(ID)`
-  * Inserts a new node to the graph. The ID must be number.
-  * **@param {number} ID** - ID of node to insert.
-  * **@returns {boolean}** True, if node ID added successfully to the graph. Otherwise, returns false.
 * `addEdge(from, to)`
   * Inserts new edge to the graph: when (from, to) represent an edge from startNodeID to endNodeID.
   * **@param {number} from** - ID of start Node of edge.
   * **@param {number} to** - ID of end Node of edge.
   * **@returns {boolean}** True, if edge added successfully to the graph. Otherwise, returns false.
-* `deleteNode(ID)`
-  * Deletes given node ID from the graph, including all the edges that related to this ID.
-  * **@param {number} ID** - ID of node to delete.
-  * **@returns {boolean}** True, if the node was deleted successfully from the graph. Otherwise, returns false.
+* `addNode(ID)`
+  * Inserts a new node to the graph. The ID must be number.
+  * **@param {number} ID** - ID of node to insert.
+  * **@returns {boolean}** True, if node ID added successfully to the graph. Otherwise, returns false.
+* `clone()`
+  * Deep copies a graph object.
+  * **@returns {Graph}** Cloned Graph.
+* `countEdges()`
+  * Counts the number of edges in graph.
+  * **@return {number}** The number of edges in graph.
 * `deleteEdge(from, to)`
   * Deletes edge from the graph.
   * **@param {number} from** - ID of start Node of edge.
   * **@param {number} to** - ID of end Node of edge.
   * **@returns {boolean}** True, if edge deleted successfully from the graph. Otherwise, returns false.
-* `indexOfNode(ID)`
-  * Searches for an index of the node with id: ID, that will be represented in the matrix of the graph.
-  * **@param {number} ID** - ID of node to search.
-  * **@returns {number}** The index of the node that represents the same index in the matrix of the graph. Returns -1 if there is no such ID.
-* `getNodesOfEdgesStartingNode(ID)`
-  * Finds nodes, which are the end nodes of edges where the starting node has id of the given id.
-  * **@param {number} ID** - ID of node.
-  * **@returns {number[]}** An array of IDs. Returns empty array if there are no edges like that.
+* `deleteNode(ID)`
+  * Deletes given node ID from the graph, including all the edges that related to this ID.
+  * **@param {number} ID** - ID of node to delete.
+  * **@returns {boolean}** True, if the node was deleted successfully from the graph. Otherwise, returns false.
 * `getNodesOfEdgesEndingNode(ID)`
   * Finds nodes, which are the start nodes of edges where the ending node has id of the given id.
+  * **@param {number} ID** - ID of node.
+  * **@returns {number[]}** An array of IDs. Returns empty array if there are no edges like that.
+* `getNodesOfEdgesStartingNode(ID)`
+  * Finds nodes, which are the end nodes of edges where the starting node has id of the given id.
   * **@param {number} ID** - ID of node.
   * **@returns {number[]}** An array of IDs. Returns empty array if there are no edges like that.
 * `hasEdge(from, to)`
@@ -99,18 +95,22 @@ The full documentation can be found in each class.
   * Checks if the given node exists in the graph.
   * **@param {number}** - ID The given node ID.
   * **@returns {boolean}** True if exist, otherwise False.
+* `indexOfNode(ID)`
+  * Searches for an index of the node with id: ID, that will be represented in the matrix of the graph.
+  * **@param {number} ID** - ID of node to search.
+  * **@returns {number}** The index of the node that represents the same index in the matrix of the graph. Returns -1 if there is no such ID.
 * `isEmpty()`
   * Checks whether the graph is empty.
   * **@returns {Boolean}** True, if the graph is empty. Otherwise, returns false.
-* `clone()`
-  * Deep copies a graph object.
-  * **@returns {Graph}** Cloned Graph.
 * `printNodes()`
   * Returns the ids' nodes of the graph.
   * **@returns {string}**
 * `toString()`
   * Returns the presentation of the graph as a matrix.
   * **@returns {string}**
+* `size()`
+  * Returns the number of nodes in the graph.
+  * **@returns {number}** The number of nodes.
 
 ### bfsGraph
 
