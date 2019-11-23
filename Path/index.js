@@ -40,6 +40,7 @@ class Path {
    */
   reverseNodes() {
     let newNodes = this.nodes.reverse();
+
     this.nodes = newNodes;
   }
   /**
@@ -48,7 +49,8 @@ class Path {
    */
   createEdgesFromNodes() {
     for (let i = 0; i < this.nodes.length - 1; i++) {
-      let edge = new Edge(this.nodes[i], this.nodes[i + 1]);
+      const edge = new Edge(this.nodes[i], this.nodes[i + 1]);
+
       this.addEdge(edge);
     }
   }

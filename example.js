@@ -26,9 +26,9 @@ let bfsG = tool.BFS(flowGraph, flowGraph.s);
 console.log(`${bfsG.toString()}\n`);
 console.log(`${bfsG.printLayers()}\n`);
 
-// try {
-//     let path = bfsG.getPath(5);
-//     console.log(path.toString());
-// } catch (error) {
-//     console.log(`${error.message}`);
-// }
+try {
+    let path = bfsG.getPath(5);
+    console.log(path.toString());
+} catch (error) {
+    console.log(`${error.message}`);
+}

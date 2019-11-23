@@ -12,6 +12,7 @@ function BFS(graph, s) {
   const bfsG = new bfsGraph();
   const explored = new Set();
 
+  bfsG.addNode(s);
   bfsG.addLayer();
   bfsG.addNodeToLayer(s, 0);
   explored.add(s);
