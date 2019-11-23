@@ -9,46 +9,41 @@ const bfsGraph = require("./BFS-Graph");
 function BFS(graph, s) {
   if (!graph.hasNode(s)) return -1;
 
-  try {
-    const bfsG = new bfsGraph();
-    const explored = new Set();
+  const bfsG = new bfsGraph();
+  const explored = new Set();
 
+  bfsG.addLayer();
+  bfsG.addNodeToLayer(s, 0);
+
+  let numberOfNodesInLayer = bfsG.countNodesInLayer(bfsG.layersNumber() - 1);
+
+  while (numberOfNodesInLayer > 0) {
     bfsG.addLayer();
-    bfsG.addNodeToLayer(s, 0);
 
-    let numberOfNodesInLayer = bfsG.countNodesInLayer(bfsG.layersNumber() - 1);
+    const parents = bfsG.getNodesFromLayer(bfsG.layersNumber() - 2);
+    const parentsIterator = parents.values();
 
-    while (numberOfNodesInLayer > 0) {
-      bfsG.addLayer();
+    for (const parent of parentsIterator) {
+      if (!bfsG.hasNode(parent)) bfsG.addNode(parent);
 
-      const parents = bfsG.getNodesFromLayer(bfsG.layersNumber() - 2);
-      const parentsIterator = parents.values();
+      const children = graph.getNodesOfEdgesStartingNode(parent);
+      const childrenExplored = children.filter(node => !explored.has(node));
+      const childrenExploredIterator = childrenExplored.values();
 
-      for (const parent of parentsIterator) {
-        if (!bfsG.hasNode(parent)) bfsG.addNode(parent);
+      for (const child of childrenExploredIterator) {
+        if (!bfsG.hasNode(child)) bfsG.addNode(child);
 
-        const children = graph.getNodesOfEdgesStartingNode(parent);
-        const childrenExplored = children.filter(node => !explored.has(node));
-        const childrenExploredIterator = childrenExplored.values();
-
-        for (const child of childrenExploredIterator) {
-          if (!bfsG.hasNode(child)) bfsG.addNode(child);
-
-          bfsG.addEdge(parent, child);
-          bfsG.addNodeToLayer(child, bfsG.layersNumber() - 1);
-          explored.add(child);
-        }
+        bfsG.addEdge(parent, child);
+        bfsG.addNodeToLayer(child, bfsG.layersNumber() - 1);
+        explored.add(child);
       }
-
-      numberOfNodesInLayer = bfsG.countNodesInLayer(bfsG.layersNumber() - 1);
     }
 
-    bfsG.layers.pop();
-    return bfsG;
-  } catch (error) {
-    console.log(`${error.message}`);
-    return -1;
+    numberOfNodesInLayer = bfsG.countNodesInLayer(bfsG.layersNumber() - 1);
   }
+
+  bfsG.layers.pop();
+  return bfsG;
 }
 
 module.exports = BFS;
