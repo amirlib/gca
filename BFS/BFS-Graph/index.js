@@ -28,7 +28,7 @@ class bfsGraph extends Graph {
    * @throws {layerError} Throws Error if layer is not exist.
    * @memberof bfsGraph
    */
-  countNodesInLayer(index) {
+  layerSize(index) {
     if (index >= this.layersNumber()) {
       throw new layerError(`There is no such layer number: ${index}.`);
     }
@@ -105,6 +105,20 @@ class bfsGraph extends Graph {
     }
 
     return this.layers[layerIndex][cell];
+  }
+  /**
+   * Gets all nodes' Id in layer.
+   * @param {number} index Layer index.
+   * @returns {number[]} Array of nodes' Id.
+   * @throws {layerError} Throws Error if layer is not exist or the node in the layer.
+   * @memberof bfsGraph
+   */
+  getNodesFromLayer(index) {
+    if (index >= this.layersNumber()) {
+      throw new layerError(`There is no such layer number: ${index}.`);
+    }
+
+    return this.layers[index];
   }
   /**
    * Gets the parent node Id of the given node Id.

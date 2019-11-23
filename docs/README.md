@@ -122,7 +122,7 @@ Implementation of BFS Graph. There are tools for building a Graph that it result
 * `layersNumber()`
   * Returns the number of layers in the graph.
   * **@returns {number}** The number of layers.
-* `countNodesInLayer(index)`
+* `layerSize(index)`
   * Counts the nodes in the layer.
   * **@param {number} index** - Index of layer.
   * **@returns {number}** The number of nodes.
@@ -139,6 +139,11 @@ Implementation of BFS Graph. There are tools for building a Graph that it result
   * **@param {number} layerIndex** - Layer index.
   * **@returns {number}** The node ID.
   * **@throws {layerError}** Throws Error if layer is not exist or the node in the layer.
+* `getNodesFromLayer(index)`
+  * Gets all nodes' Id in layer.
+  * **@param {number} layerIndex** - Layer index.
+  * **@returns {number[]}** Array of nodes' Id.
+  * **@throws {layerError}** Throws Error if layer.
 * `getParentNode(ID)`
   * Gets the parent node ID of the given node ID.
   * **@param {number} ID** - ID of child node.
