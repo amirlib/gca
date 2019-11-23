@@ -1,4 +1,5 @@
 const bfsGraph = require("./BFS-Graph");
+const Queue = require("../Data Structures/Queue");
 
 /**
  * BFS algorithm.
@@ -26,7 +27,7 @@ function BFS(graph, s) {
 
         if (!bfsG.hasNode(parent)) bfsG.addNode(parent);
 
-        const children = graph.getNodesOfEdgesEndingNode(parent);
+        const children = graph.getNodesOfEdgesStartingNode(parent);
         const childrenExplored = children.filter(node => !explored.has(node));
 
         if (childrenExplored.length == 0) continue;

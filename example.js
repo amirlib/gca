@@ -1,11 +1,6 @@
 const gca = require("./index");
 const tool = new gca();
 
-let graph = tool.CreateGraph();
-
-console.log(`${graph.toString()}\n`);
-console.log(`${graph.printNodes()}\n`);
-
 let flowGraph = tool.CreateFlowGraph();
 
 flowGraph.addNode(2);
@@ -25,17 +20,15 @@ flowGraph.addEdge(5, flowGraph.t, 4);
 
 console.log(`${flowGraph.toString()}\n`);
 console.log(`${flowGraph.printNodes()}\n`);
-
-console.log(`${flowGraph.getNodesOfEdgesEndingNode(2)}\n`);
-console.log(`${tool.EdmondsKarp(flowGraph)}\n`);
+// console.log(`${tool.EdmondsKarp(flowGraph)}\n`);
 
 let bfsG = tool.BFS(flowGraph, flowGraph.s);
 console.log(`${bfsG.toString()}\n`);
 console.log(`${bfsG.printLayers()}\n`);
 
-try {
-    let path = bfsG.getPath(5);
-    console.log(path.toString());
-} catch (error) {
-    console.log(`${error.message}`);
-}
+// try {
+//     let path = bfsG.getPath(5);
+//     console.log(path.toString());
+// } catch (error) {
+//     console.log(`${error.message}`);
+// }

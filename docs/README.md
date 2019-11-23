@@ -82,11 +82,11 @@ The full documentation can be found in each class.
   * Searches for an index of the node with id: ID, that will be represented in the matrix of the graph.
   * **@param {number} ID** - ID of node to search.
   * **@returns {number}** The index of the node that represents the same index in the matrix of the graph. Returns -1 if there is no such ID.
-* `getNodesOfEdgesEndingNode(ID)`
+* `getNodesOfEdgesStartingNode(ID)`
   * Finds nodes, which are the end nodes of edges where the starting node has id of the given id.
   * **@param {number} ID** - ID of node.
   * **@returns {number[]}** An array of IDs. Returns empty array if there are no edges like that.
-* `getNodesOfEdgesStartingNode(ID)`
+* `getNodesOfEdgesEndingNode(ID)`
   * Finds nodes, which are the start nodes of edges where the ending node has id of the given id.
   * **@param {number} ID** - ID of node.
   * **@returns {number[]}** An array of IDs. Returns empty array if there are no edges like that.
