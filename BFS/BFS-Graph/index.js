@@ -142,15 +142,12 @@ class bfsGraph extends Graph {
 
     if (!this.hasNode(t)) return path;
 
-    const length = this.getLayerIndexOfNode(t);
     let childNode = t;
-  
-    path.addNode(t);
 
-    for (let i = 0; i < length; i++) {
+    while (childNode != -1) {
       const parentNode = this.getParentNode(childNode);
 
-      path.addNode(parentNode);
+      path.addNode(childNode);
       childNode = parentNode;
     }
 
