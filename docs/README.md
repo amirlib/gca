@@ -119,20 +119,13 @@ Implementation of BFS Graph. There are tools for building a Graph that it result
 1. Extends from **Graph**.
 2. **layers** - An array of nodes in each layer of the graph.
 
-* `layersNumber()`
-  * Returns the number of layers in the graph.
-  * **@returns {number}** The number of layers.
-* `layerSize(index)`
-  * Counts the nodes in the layer.
-  * **@param {number} index** - Index of layer.
-  * **@returns {number}** The number of nodes.
-  * **@throws {layerError}** Throws Error if layer is not exist.
-* `hasNodeInLayer(ID, index)`
-  * Searches for the given node in the given layer.
+* `clone()`
+  * Deep copies a bfs graph object.
+  * **@returns {bfsGraph}** Cloned bfs Graph.
+* `getLayerIndexOfNode(ID)`
+  * Gets the index of layer where node ID is exist.
   * **@param {number} ID** - ID of node to search.
-  * **@param {number} index** - Index of layer.
-  * **@returns {boolean}** True if node exist. Otherwise, False.
-  * **@throws {layerError}** Throws Error if layer is not exist.
+  * **@returns {number}** The index of layer. Returns -1 if there is no such node ID in the graph or in the layer.
 * `getNodeFromLayer(cell, layerIndex)`
   * Gets the ID node in the position: cell in layer at index: layerIndex.
   * **@param {number} cell** - Cell index.
@@ -148,20 +141,27 @@ Implementation of BFS Graph. There are tools for building a Graph that it result
   * Gets the parent node ID of the given node ID.
   * **@param {number} ID** - ID of child node.
   * **@returns {number}** ID of parent node. Return -1 if there is no such node ID in the graph.
-* `getLayerIndexOfNode(ID)`
-  * Gets the index of layer where node ID is exist.
-  * **@param {number} ID** - ID of node to search.
-  * **@returns {number}** The index of layer. Returns -1 if there is no such node ID in the graph or in the layer.
-* `printLayers()`
-  * Prints all the nodes inside the layers.
-  * **@returns {string}**
 * `getPath(t)`
   * Gets the shortest path from the root node to node t.
   * **@param {number} t** - ID of end node in path.
   * **@returns {Path}** The Path object. Returns an empty Path object if node with ID: t not exist in the graph.
-* `clone()`
-  * Deep copies a bfs graph object.
-  * **@returns {bfsGraph}** Cloned bfs Graph.
+* `hasNodeInLayer(ID, index)`
+  * Searches for the given node in the given layer.
+  * **@param {number} ID** - ID of node to search.
+  * **@param {number} index** - Index of layer.
+  * **@returns {boolean}** True if node exist. Otherwise, False.
+  * **@throws {layerError}** Throws Error if layer is not exist.
+* `layersNumber()`
+  * Returns the number of layers in the graph.
+  * **@returns {number}** The number of layers.
+* `layerSize(index)`
+  * Counts the nodes in the layer.
+  * **@param {number} index** - Index of layer.
+  * **@returns {number}** The number of nodes.
+  * **@throws {layerError}** Throws Error if layer is not exist.
+* `printLayers()`
+  * Prints all the nodes inside the layers.
+  * **@returns {string}**
 
 ### FlowGraph
 

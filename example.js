@@ -20,7 +20,7 @@ flowGraph.addEdge(5, flowGraph.t, 4);
 
 console.log(`${flowGraph.toString()}\n`);
 console.log(`${flowGraph.printNodes()}\n`);
-console.log(`${tool.EdmondsKarp(flowGraph)}\n`);
+// console.log(`${tool.EdmondsKarp(flowGraph)}\n`);
 
 let bfsG = tool.BFS(flowGraph, flowGraph.s);
 console.log(`${bfsG.toString()}\n`);

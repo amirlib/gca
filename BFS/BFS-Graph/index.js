@@ -14,28 +14,6 @@ class bfsGraph extends Graph {
     this.layers = [];
   }
   /**
-   * Returns the number of layers in the graph.
-   * @returns {number} The number of layers.
-   * @memberof bfsGraph
-   */
-  layersNumber() {
-    return this.layers.length;
-  }
-  /**
-   * Counts the nodes in the layer.
-   * @param {number} index Index of layer.
-   * @returns {number} The number of nodes.
-   * @throws {layerError} Throws Error if layer is not exist.
-   * @memberof bfsGraph
-   */
-  layerSize(index) {
-    if (index >= this.layersNumber()) {
-      throw new layerError(`There is no such layer number: ${index}.`);
-    }
-
-    return this.layers[index].length;
-  }
-  /**
    * Adds new layer.
    * @memberof bfsGraph
    */
@@ -63,27 +41,41 @@ class bfsGraph extends Graph {
     this.layers[index].push(Id);
   }
   /**
-   * Searches for the given node in the given layer.
-   * @param {number} Id Id of node to search.
-   * @param {number} index Index of layer.
-   * @returns {boolean} True if node exist. Otherwise, False.
-   * @throws {layerError} Throws Error if layer is not exist.
+   * Deep copies a bfs graph object.
+   * @returns {bfsGraph} Cloned bfs Graph.
    * @memberof bfsGraph
    */
-  hasNodeInLayer(Id, index) {
-    if (index >= this.layersNumber()) {
-      throw new layerError(`There is no such layer number: ${index}.`);
+  clone() {
+    let graph = new bfsGraph();
+
+    for (let i = 0; i < this.size(); i++) {
+      graph.matrix[i] = Array.from(this.matrix[i]);
     }
 
-    const length = this.layerSize(index);
+    graph.nodesID = Array.from(this.nodesID);
 
-    for (let i = 0; i < length; i++) {
-      if (this.getNodeFromLayer(i, index) == Id) {
-        return true;
+    for (let i = 0; i < this.layersNumber(); i++) {
+      graph.layer[i] = Array.from(this.layer[i]);
+    }
+
+    return graph;
+  }
+  /**
+   * Gets the index of layer where node Id is exist.
+   * @param {number} Id Id of node to search.
+   * @returns {number} The index of layer. Returns -1 if there is no such node Id in the graph or in the layer.
+   * @memberof bfsGraph
+   */
+  getLayerIndexOfNode(Id) {
+    if (!this.hasNode(Id)) return -1;
+
+    for (let i = 0; i < this.layersNumber(); i++) {
+      if (this.hasNodeInLayer(Id, i)) {
+        return i;
       }
     }
 
-    return false;
+    return -1;
   }
   /**
    * Gets the ID node in the position: cell in layer at index: layerIndex.
@@ -140,23 +132,6 @@ class bfsGraph extends Graph {
     return -1;
   }
   /**
-   * Gets the index of layer where node Id is exist.
-   * @param {number} Id Id of node to search.
-   * @returns {number} The index of layer. Returns -1 if there is no such node Id in the graph or in the layer.
-   * @memberof bfsGraph
-   */
-  getLayerIndexOfNode(Id) {
-    if (!this.hasNode(Id)) return -1;
-
-    for (let i = 0; i < this.layersNumber(); i++) {
-      if (this.hasNodeInLayer(Id, i)) {
-        return i;
-      }
-    }
-
-    return -1;
-  }
-  /**
    * Gets the shortest path from the root node to node t.
    * @param {number} t Id of end node in path.
    * @returns {Path} Path object.
@@ -185,24 +160,49 @@ class bfsGraph extends Graph {
     return path;
   }
   /**
-   * Deep copies a bfs graph object.
-   * @returns {bfsGraph} Cloned bfs Graph.
+   * Searches for the given node in the given layer.
+   * @param {number} Id Id of node to search.
+   * @param {number} index Index of layer.
+   * @returns {boolean} True if node exist. Otherwise, False.
+   * @throws {layerError} Throws Error if layer is not exist.
    * @memberof bfsGraph
    */
-  clone() {
-    let graph = new bfsGraph();
-
-    for (let i = 0; i < this.size(); i++) {
-      graph.matrix[i] = Array.from(this.matrix[i]);
+  hasNodeInLayer(Id, index) {
+    if (index >= this.layersNumber()) {
+      throw new layerError(`There is no such layer number: ${index}.`);
     }
 
-    graph.nodesID = Array.from(this.nodesID);
+    const length = this.layerSize(index);
 
-    for (let i = 0; i < this.layersNumber(); i++) {
-      graph.layer[i] = Array.from(this.layer[i]);
+    for (let i = 0; i < length; i++) {
+      if (this.getNodeFromLayer(i, index) == Id) {
+        return true;
+      }
     }
 
-    return graph;
+    return false;
+  }
+  /**
+   * Returns the number of layers in the graph.
+   * @returns {number} The number of layers.
+   * @memberof bfsGraph
+   */
+  layersNumber() {
+    return this.layers.length;
+  }
+  /**
+   * Counts the nodes in the layer.
+   * @param {number} index Index of layer.
+   * @returns {number} The number of nodes.
+   * @throws {layerError} Throws Error if layer is not exist.
+   * @memberof bfsGraph
+   */
+  layerSize(index) {
+    if (index >= this.layersNumber()) {
+      throw new layerError(`There is no such layer number: ${index}.`);
+    }
+
+    return this.layers[index].length;
   }
   /**
    * Prints all the nodes inside the layers.
