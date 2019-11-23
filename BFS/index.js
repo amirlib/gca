@@ -14,32 +14,28 @@ function BFS(graph, s) {
 
   bfsG.addLayer();
   bfsG.addNodeToLayer(s, 0);
+  explored.add(s);
 
-  let numberOfNodesInLayer = bfsG.countNodesInLayer(bfsG.layersNumber() - 1);
-
+  let numberOfNodesInLayer = bfsG.layerSize(bfsG.layersNumber() - 1);
   while (numberOfNodesInLayer > 0) {
     bfsG.addLayer();
 
     const parents = bfsG.getNodesFromLayer(bfsG.layersNumber() - 2);
-    const parentsIterator = parents.values();
 
-    for (const parent of parentsIterator) {
-      if (!bfsG.hasNode(parent)) bfsG.addNode(parent);
-
+    for (const parent of parents) {
       const children = graph.getNodesOfEdgesStartingNode(parent);
-      const childrenExplored = children.filter(node => !explored.has(node));
-      const childrenExploredIterator = childrenExplored.values();
+      const childrenNotExplored = children.filter(node => !explored.has(node));
+      const childrenNotExploredIterator = childrenNotExplored.values();
 
-      for (const child of childrenExploredIterator) {
-        if (!bfsG.hasNode(child)) bfsG.addNode(child);
-
+      for (const child of childrenNotExploredIterator) {
+        bfsG.addNode(child);
         bfsG.addEdge(parent, child);
         bfsG.addNodeToLayer(child, bfsG.layersNumber() - 1);
         explored.add(child);
       }
     }
 
-    numberOfNodesInLayer = bfsG.countNodesInLayer(bfsG.layersNumber() - 1);
+    numberOfNodesInLayer = bfsG.layerSize(bfsG.layersNumber() - 1);
   }
 
   bfsG.layers.pop();

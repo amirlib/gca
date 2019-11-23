@@ -75,7 +75,7 @@ class bfsGraph extends Graph {
       throw new layerError(`There is no such layer number: ${index}.`);
     }
 
-    const length = this.countNodesInLayer(index);
+    const length = this.layerSize(index);
 
     for (let i = 0; i < length; i++) {
       if (this.getNodeFromLayer(i, index) == Id) {
@@ -216,7 +216,7 @@ class bfsGraph extends Graph {
     for (let i = 0; i < this.layersNumber(); i++) {
       print = `${print}layer ${i}:`
 
-      for (let j = 0; j < this.countNodesInLayer(i); j++) {
+      for (let j = 0; j < this.layerSize(i); j++) {
         print = `${print}${space}${this.getNodeFromLayer(j, i)}`;
       }
 
