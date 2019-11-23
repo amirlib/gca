@@ -14,7 +14,7 @@
   * addLayer method no longer accepts parameters. It will automatically add a new layer.
   * Renamed printLayer method to printLayers.
   * printLayers method prints the layers with their indexes.
-  * Renamed layerSize method to layerSize.
+  * Renamed countNodesInLayer method to layerSize.
   * Renamed getNodeIDFromLayer method to getNodeFromLayer.
   * Renamed getParentNodeID method to getParentNode.
   * Renamed getLayerIndexOfNodeID method to getLayerIndexOfNode.
