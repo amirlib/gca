@@ -46,7 +46,7 @@ class ResidualGraph extends FlowGraph {
       let forward = current.data;
       let backward = graph.getEdge(current.data.to, current.data.from);
 
-      if (this.edgesList.has(forward) == false && this.backwardEdgesList.has(forward) == false) {
+      if (!this.edgesList.has(forward) && !this.backwardEdgesList.has(forward)) {
         forward = new ForwardFlowEdge(current.data.from, current.data.to, current.data.capacity, current.data.flow);
         this.edgesList.addData(forward);
 

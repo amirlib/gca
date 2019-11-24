@@ -25,7 +25,8 @@ class BackwardFlowEdge extends FlowEdge {
    */
   clone() {
     const edge = new BackwardFlowEdge(this.from, this.to, this.capacity, this.flow);
-    
+
+    edge.forwardEdge = this.forwardEdge;
     return edge;
   }
 }

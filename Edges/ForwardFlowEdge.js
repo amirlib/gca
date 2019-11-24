@@ -26,6 +26,7 @@ class ForwardFlowEdge extends FlowEdge {
   clone() {
     let edge = new ForwardFlowEdge(this.from, this.to, this.capacity, this.flow);
 
+    edge.backwardEdge = this.backwardEdge;
     return edge;
   }
 }
