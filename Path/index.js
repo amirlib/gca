@@ -10,12 +10,12 @@ class Path {
     this.edges = [];
   }
   /**
-   * Gets the number of edged in the path.
-   * @returns {number} The number of edged.
+   * Adds new edge to path.
+   * @param {Edge} edge The edge.
    * @memberof Path
    */
-  size() {
-    return this.edges.length;
+  addEdge(edge) {
+    this.edges.push(edge);
   }
   /**
    * Adds new node to the path.
@@ -24,24 +24,6 @@ class Path {
    */
   addNode(ID) {
     this.nodes.push(ID);
-  }
-  /**
-   * Adds new edge to path.
-   *
-   * @param {Edge} edge
-   * @memberof Path
-   */
-  addEdge(edge) {
-    this.edges.push(edge);
-  }
-  /**
-   * Reverse the order of path.
-   * @memberof Path
-   */
-  reverseNodes() {
-    let newNodes = this.nodes.reverse();
-
-    this.nodes = newNodes;
   }
   /**
    * Adds edges from the the flow graph as mentioned in the minimum path.
@@ -53,6 +35,23 @@ class Path {
 
       this.addEdge(edge);
     }
+  }
+  /**
+   * Reverse the order of path.
+   * @memberof Path
+   */
+  reverseNodes() {
+    let newNodes = this.nodes.reverse();
+
+    this.nodes = newNodes;
+  }
+  /**
+   * Gets the number of edged in the path.
+   * @returns {number} The number of edged.
+   * @memberof Path
+   */
+  size() {
+    return this.edges.length;
   }
   /**
    * Prints the edges of the path.

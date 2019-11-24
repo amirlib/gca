@@ -211,11 +211,17 @@ Implementation of path. The path is used for saving nodes of the minimum path fr
 1. **nodes** - An array for the nodes.
 2. **edges** - An array for the edges.
 
+* `addEdge(edge)`
+  * Adds new edge to path.
+  * **@param {Edge} edge** - The edge.
+* `addNode(ID)`
+  * Adds new node to the path.
+  * **@param {number} ID** - ID of start node edge.
+* `reverseNodes()`
+  * Reverse the order of path.
 * `size()`
   * Gets the number of edged in the path.
   * **@returns {number}** The number of edged.
-* `reverseNodes()`
-  * Reverse the order of path.
 * `toString()`
   * Prints the edges of the path.
   * **@returns {string}**
