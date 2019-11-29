@@ -50,7 +50,7 @@ class LinkedList {
    * @returns {boolean} True, if node with given data removed from linked list. Otherwise, false.
    * @memberof LinkedList
    */
-  removeData(obj) {
+  remove(obj) {
     if (this.head.data.equals(obj)) {
       this.head = this.head.next;
 

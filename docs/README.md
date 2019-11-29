@@ -307,7 +307,7 @@ Implementation of linked list. Used for saving the edges of the Flow Graph.
 * `push(obj)`
   * Creates new node with the obj and add it to the end of the linked list.
   * **@param {object} obj** - The object to be added.
-* `removeData(obj)`
+* `remove(obj)`
   * Checks if there a node with this obj, and if does, remove it.
   * **@param {object} obj** - The object to be removed.
   * **@returns {boolean}** True, if node with given data removed from linked list. Otherwise, false.
