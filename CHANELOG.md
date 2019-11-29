@@ -22,6 +22,8 @@
   * **New** method: isisCapacityZero, you can check if the capacity of the edge is zero.
 * `ForwardFlowEdge` and `BackwardFlowEdge`
   * Full deep clone capability of all edges properties.
+* `LinkedList`
+  * Renamed push method to push.
 
 ## 2.2.0
 

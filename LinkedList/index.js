@@ -25,11 +25,11 @@ class LinkedList {
     return counter;
   }
   /**
-   * Creates new node with the obj and add it to linked list.
-   * @param {object} obj - The object to insert.
+   * Creates new node with the obj and add it to the end of the linked list.
+   * @param {object} obj - The object to be added.
    * @memberof LinkedList
    */
-  addData(obj) {
+  push(obj) {
     let current = this.head;
 
     if (this.head == null) {
@@ -37,8 +37,6 @@ class LinkedList {
 
       return;
     }
-
-    current = this.head;
 
     while (current.next != null) {
       current = current.next;
@@ -108,7 +106,7 @@ class LinkedList {
     while (current != null) {
       const clonedData = current.data.clone();
 
-      list.addData(clonedData);
+      list.push(clonedData);
       current = current.next;
     }
 

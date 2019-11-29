@@ -90,7 +90,7 @@ class FlowGraph extends Graph {
   addEdge(from, to, capacity = 1, flow = 0) {
     if (!super.addEdge(from, to)) return false;
 
-    this.edgesList.addData(new FlowEdge(from, to, capacity, flow));
+    this.edgesList.push(new FlowEdge(from, to, capacity, flow));
     return true;
   }
   /**
