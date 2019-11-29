@@ -26,7 +26,7 @@ class LinkedList {
   }
   /**
    * Creates new node with the obj and add it to the end of the linked list.
-   * @param {object} obj - The object to be added.
+   * @param {object} obj The object to be added.
    * @memberof LinkedList
    */
   push(obj) {
@@ -60,7 +60,7 @@ class LinkedList {
     let current = this.head;
     let prev = null;
 
-    while (current != null) {
+    while (current.next != null) {
       if (current.next.data.equals(obj)) {
         prev = current;
         current = current.next;
@@ -68,6 +68,8 @@ class LinkedList {
 
         return true;
       }
+
+      current = current.next;
     }
 
     return false;
