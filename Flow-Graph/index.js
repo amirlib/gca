@@ -103,7 +103,7 @@ class FlowGraph extends Graph {
   deleteEdge(from, to) {
     if (!super.deleteEdge(from, to)) return false;
 
-    const edge = this.getEdge(from, to, this.edgesList);
+    const edge = this.getEdge(from, to);
 
     this.edgesList.removeData(edge);
     return true;

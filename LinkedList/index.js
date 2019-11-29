@@ -53,25 +53,26 @@ class LinkedList {
    * @memberof LinkedList
    */
   removeData(obj) {
-    if (!this.has(obj)) return false;
-
-    if (this.head.data == obj) {
+    if (this.head.data.equals(obj)) {
       this.head = this.head.next;
 
-      return;
+      return true;
     }
 
     let current = this.head;
     let prev = null;
 
-    while (current.next.data != obj) {
-      current = current.next;
+    while (current != null) {
+      if (current.next.data.equals(obj)) {
+        prev = current;
+        current = current.next;
+        prev.next = current.next;
+
+        return true;
+      }
     }
-    
-    prev = current;
-    current = current.next;
-    prev.next = current.next;
-    return true;
+
+    return false;
   }
   /**
    * Checks if there a node with this obj in the linked list.
