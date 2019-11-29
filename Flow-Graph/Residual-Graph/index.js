@@ -22,6 +22,18 @@ class ResidualGraph extends FlowGraph {
     this.initEdges(graph);
   }
   /**
+   * If capacity of the edge is zero, unmark from the graph. Otherwise, mark it.
+   * @param  {FlowEdge} edge The edge.
+   * @memberof ResidualGraph
+   */
+  ChooseToMarkOrUnmarkEdge(edge) {
+    if (edge.isCapacityZero()) {
+      this.unmarkEdge(edge.from, edge.to);
+    } else {
+      this.markEdge(edge.from, edge.to);
+    }
+  }
+  /**
    * Clones the matrix from the Flow Graph.
    * @param {FlowGraph} graph
    * @memberof ResidualGraph

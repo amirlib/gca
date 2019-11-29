@@ -1,16 +1,4 @@
 /**
- * If capacity of the edge is zero, unmark from the graph. Otherwise, mark it.
- * @param  {ResidualGraph} residualGraph the graph. 
- * @param  {FlowEdge} edge the edge.
- */
-function ifCapacityZero(residualGraph, edge) {
-  if (edge.isCapacityZero()) {
-    residualGraph.unmarkEdge(edge.from, edge.to);
-  } else {
-    residualGraph.markEdge(edge.from, edge.to);
-  }
-}
-/**
  * Returns the smallest capacity one of the edges in the path.
  * @param  {Path} path 
  * @return {number} the smallest capacity.
@@ -72,8 +60,8 @@ function updateFlowGraph(flowGraph, residualGraph, path) {
     
     forwardEdge.changeCapacityTo(edge.capacity - edge.flow);
     backwardEdge.changeCapacityTo(edge.flow);
-    ifCapacityZero(residualGraph, forwardEdge);
-    ifCapacityZero(residualGraph, backwardEdge);
+    residualGraph.ChooseToMarkOrUnmarkEdge(forwardEdge);
+    residualGraph.ChooseToMarkOrUnmarkEdge(backwardEdge);
   }
 }
 
