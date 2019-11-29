@@ -4,7 +4,7 @@
  * @param  {FlowEdge} edge the edge.
  */
 function ifCapacityZero(residualGraph, edge) {
-  if (edge.capacity == 0) {
+  if (edge.isCapacityZero()) {
     residualGraph.unmarkEdge(edge.from, edge.to);
   } else {
     residualGraph.markEdge(edge.from, edge.to);

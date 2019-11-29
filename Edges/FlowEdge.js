@@ -94,6 +94,16 @@ class FlowEdge extends Edge {
     return false;
   }
   /**
+   * Checks if the capacity is zero.
+   * @returns {boolean} True if capacity of the edge is zero. Otherwise, return false.
+   * @memberof FlowEdge
+   */
+  isCapacityZero() {
+    if (this.capacity == 0) return true;
+
+    return false;
+  }
+  /**
    * checks if it empty (zero flow).
    * @returns {boolean} True if it empty. Otherwise, return false.
    * @memberof FlowEdge

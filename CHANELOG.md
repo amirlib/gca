@@ -18,6 +18,8 @@
   * Renamed getNodeIDFromLayer method to getNodeFromLayer.
   * Renamed getParentNodeID method to getParentNode.
   * Renamed getLayerIndexOfNodeID method to getLayerIndexOfNode.
+* `FlowEdge`
+  * **New** method: isisCapacityZero, you can check if the capacity of the edge is zero.
 * `ForwardFlowEdge` and `BackwardFlowEdge`
   * Full deep clone capability of all edges properties.
 
