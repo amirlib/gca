@@ -301,6 +301,9 @@ Implementation of linked list. Used for saving the edges of the Flow Graph.
 
 1. **head** - null
 
+* `enqueue(obj)`
+  * Creates new node with the obj and add it to the head of the linked list.
+  * **@param {object} obj** - The object to be added.
 * `size()`
   * Returns the number of nodes in the graph.
   * **@returns {number}** The number of nodes.

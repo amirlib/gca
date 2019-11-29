@@ -9,6 +9,18 @@ class LinkedList {
     this.head = null;
   }
   /**
+   * Creates new node with the obj and add it to the head of the linked list.
+   * @param {object} obj The object to be added.
+   * @memberof LinkedList
+   */
+  enqueue(obj) {
+    let current = this.head;
+
+    this.head = new Node(obj);
+    
+    if (current != null) this.head.next = current;
+  }
+  /**
    * Returns the number of nodes in the graph.
    * @return {number} The number of nodes.
    * @memberof LinkedList
@@ -108,7 +120,7 @@ class LinkedList {
     while (current != null) {
       const clonedData = current.data.clone();
 
-      list.push(clonedData);
+      list.enqueue(clonedData);
       current = current.next;
     }
 

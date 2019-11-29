@@ -24,6 +24,8 @@
   * Full deep clone capability of all edges properties.
 * `LinkedList`
   * Renamed addData method to push.
+  * Renamed removeData method to remove.
+  * **New** method: enqueue, creates new node and add it to the head of the linked list.
 
 ## 2.2.0
 
