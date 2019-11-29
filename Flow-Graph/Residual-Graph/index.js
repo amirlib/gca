@@ -1,7 +1,7 @@
 const FlowGraph = require("../");
 const ForwardFlowEdge = require("../../Edges/ForwardFlowEdge");
 const BackwardFlowEdge = require("../../Edges/BackwardFlowEdge");
-const LinkedList = require(`../../LinkedList`);
+const LinkedList = require("../../LinkedList");
 /**
  * Implementation of Residual Graph. There are tools for building a Residual Graph that will return a correct max flow from Edmonds Krap algorithm.
  * @class FlowGraph
@@ -39,10 +39,9 @@ class ResidualGraph extends FlowGraph {
    * @memberof ResidualGraph
    */
   initEdges(graph) {
-    const length = graph.edgesList.size();
     let current = graph.edgesList.head;
 
-    for (let i = 0; i < length; i++) {
+    while (current != null) {
       let forward = current.data;
       let backward = graph.getEdge(current.data.to, current.data.from);
 
@@ -59,9 +58,9 @@ class ResidualGraph extends FlowGraph {
         }
       }
       
-      current = current.next;
       forward.backwardEdge = backward;
       backward.forwardEdge = forward;
+      current = current.next;
     }
   }
   /**

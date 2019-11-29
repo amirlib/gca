@@ -19,7 +19,7 @@
   * Renamed getParentNodeID method to getParentNode.
   * Renamed getLayerIndexOfNodeID method to getLayerIndexOfNode.
 * `ForwardFlowEdge` and `BackwardFlowEdge`
-  * Full deep clone of all their properties.
+  * Full deep clone capability of all edges properties.
 
 ## 2.2.0
 
