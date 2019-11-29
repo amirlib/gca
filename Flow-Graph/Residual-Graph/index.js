@@ -76,27 +76,6 @@ class ResidualGraph extends FlowGraph {
     }
   }
   /**
-   * Returns from a given list, an edge that has the same given nodes.
-   * @param {number} from ID of start node edge.
-   * @param {number} to ID of end node edge.
-   * @param {LinkedList} list ID of end node edge.
-   * @returns {object} Edge from the list. Return null if its not exist.
-   * @memberof ResidualGraph
-   */
-  getEdge(from, to, list) {
-    let current = list.head;
-
-    while (current != null) {
-      if (current.data.from == from && current.data.to == to) {
-        return current.data;
-      }
-
-      current = current.next;
-    }
-
-    return null;
-  }
-  /**
    * Changes each edge in path to its edge of the graph
    * @param {Path} path The path's edges.
    * @memberof ResidualGraph

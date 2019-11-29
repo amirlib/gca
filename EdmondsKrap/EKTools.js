@@ -4,18 +4,16 @@
  * @return {number} the smallest capacity.
  */
 function bottleneck(path) {
-  const length = path.size();
-  let minCapacityLeft = path.edges[0].capacity;
+  const iterator = path.edges.values();
+  let minCapacity = path.edges[0].capacity;
 
-  for (let i = 0; i < length; i++) {
-    const res = path.edges[i].capacity;
-
-    if (minCapacityLeft > res) {
-      minCapacityLeft = res;
+  for (const edge of iterator) {
+    if (minCapacity > edge.capacity) {
+      minCapacity = edge.capacity;
     }
   }
 
-  return minCapacityLeft;
+  return minCapacity;
 }
 /**
  * Increases or decreases flow, of the edges in the original graph.
@@ -24,9 +22,8 @@ function bottleneck(path) {
  */
 function augment(flowGraph, path) {
   const b = bottleneck(path);
-  const length = path.size();
 
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < path.size(); i++) {
     let edge = flowGraph.getEdge(path.edges[i].from, path.edges[i].to);
 
     if (edge != null) {
