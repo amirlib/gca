@@ -1,5 +1,5 @@
 /**
- * Returns the smallest capacity one of the edges in the path.
+ * Returns the smallest capacity of the edges in the path.
  * @param  {Path} path 
  * @return {number} the smallest capacity.
  */
@@ -43,9 +43,7 @@ function augment(flowGraph, path) {
  * @param {Path} path given path.
  */
 function updateFlowGraph(flowGraph, residualGraph, path) {
-  const length = path.size();
-
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < path.size(); i++) {
     let edge = flowGraph.getEdge(path.edges[i].from, path.edges[i].to);
 
     if (edge == null) {
