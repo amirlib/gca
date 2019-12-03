@@ -29,7 +29,7 @@ class Path {
    * Adds edges from the the flow graph as mentioned in the minimum path.
    * @memberof Path
    */
-  createEdgesFromNodes() {
+  createEdges() {
     for (let i = 0; i < this.nodes.length - 1; i++) {
       const edge = new Edge(this.nodes[i], this.nodes[i + 1]);
 

@@ -152,7 +152,7 @@ class bfsGraph extends Graph {
     }
 
     path.reverseNodes();
-    path.createEdgesFromNodes();
+    path.createEdges();
     
     return path;
   }

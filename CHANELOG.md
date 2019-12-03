@@ -8,7 +8,7 @@
   * Renamed findEndNodesEdgesFromNode method to getNodesOfEdgesEndingNode.
 * `BFS-Graph`
   * layerCounter property does not exist anymore.
-  * advanceLayerCounter method does not exist anymore.
+  * Removed advanceLayerCounter method.
   * **New** method: layersNumber, you can get the number of layers that exist in the graph.
   * **New** method: getNodesFromLayer, you can get all nodes' Id in a specific layer.
   * addLayer method no longer accepts parameters. It will automatically add a new layer.
@@ -26,6 +26,8 @@
   * Renamed addData method to push.
   * Renamed removeData method to remove.
   * **New** method: enqueue, creates new node and add it to the head of the linked list.
+* `Path`
+  * Renamed createEdgesFromNodes method to createEdges.
 
 ## 2.2.0
 
