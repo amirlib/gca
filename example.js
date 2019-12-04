@@ -27,8 +27,9 @@ console.log(`${bfsG.toString()}\n`);
 console.log(`${bfsG.printLayers()}\n`);
 
 try {
-    let path = bfsG.getPath(5, 5);
-    console.log(path.toString());
+    let path = bfsG.getPath(0, 5);
+
+    if (path != null) console.log(path.toString());
 } catch (error) {
     console.log(`${error.message}`);
 }

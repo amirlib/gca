@@ -18,7 +18,7 @@
   * Renamed getNodeIDFromLayer method to getNodeFromLayer.
   * Renamed getParentNodeID method to getParentNode.
   * Renamed getLayerIndexOfNodeID method to getLayerIndexOfNode.
-  * **New** method: getPath(from, to), returns the shortest path from the 'from' node to 'to' node.
+  * Changes to getPath method: receive two nodes' id and returns the shortest path from the 'from' node to 'to' node.
 * `FlowEdge`
   * **New** method: isCapacityZero, you can check if the capacity of the edge is zero.
 * `ForwardFlowEdge` and `BackwardFlowEdge`
