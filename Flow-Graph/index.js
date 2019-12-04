@@ -1,6 +1,7 @@
 const BFS = require("../BFS");
 const Graph = require("../Graph");
 const LinkedList = require("../LinkedList");
+const Path = require("../Path");
 const FlowEdge = require("../Edges/FlowEdge");
 /**
  * Implementation of Flow Graph. There are tools for building a Flow Graph that will return a correct max flow from Edmonds Krap algorithm.
@@ -160,11 +161,27 @@ class FlowGraph extends Graph {
    * Returns the shortest path from the 'from' node to 'to' node.
    * @param  {number} from the start node
    * @param  {number} to the ent node
-   * @returns {Path} Path object.
+   * @returns {Path} Path object. If path not exists, returns null.
    * @memberof FlowGraph
    */
   getPath(from, to) {
-    return BFS(this, from).getPath(to);
+    if (!this.hasNode(to)) return null;
+
+    const graph = BFS(this, from);
+    
+    if (graph == -1) return null;
+
+    const path = graph.getPath(to);
+
+    path.edges = [];
+
+    for (let i = 0; i < path.nodes.length - 1; i++) {
+      const edge = this.getEdge(path.nodes[i], path.nodes[i + 1]);
+
+      path.addEdge(edge);
+    }
+
+    return path;
   }
 }
 
