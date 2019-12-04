@@ -18,6 +18,8 @@
   * Renamed getNodeIDFromLayer method to getNodeFromLayer.
   * Renamed getParentNodeID method to getParentNode.
   * Renamed getLayerIndexOfNodeID method to getLayerIndexOfNode.
+* 'FlowGraph`
+  * getPath method in FlowGraph class return path with FlowEdge objects instead Edge objects.
 * `FlowEdge`
   * **New** method: isCapacityZero, you can check if the capacity of the edge is zero.
 * `ForwardFlowEdge` and `BackwardFlowEdge`
