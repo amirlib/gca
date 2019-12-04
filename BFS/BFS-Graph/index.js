@@ -1,3 +1,4 @@
+const Edge = require("../../Edges/Edge");
 const Graph = require("../../Graph");
 const Path = require("../../Path");
 const layerError = require("./layerError");
@@ -132,28 +133,42 @@ class bfsGraph extends Graph {
     return -1;
   }
   /**
-   * Gets the shortest path from the root node to node t.
-   * @param {number} t Id of end node in path.
-   * @returns {Path} Path object.
+   * Returns the shortest path from the 'from' node to 'to' node.
+   * @param  {number} from the start node
+   * @param  {number} to the ent node
+   * @returns {Path} Path object. If path not exists, returns null.
    * @memberof bfsGraph
    */
-  getPath(t) {
+  getPath(from, to) {
+    if (!this.hasNode(from) || !this.hasNode(to)) return null;
+
     const path = new Path();
-
-    if (!this.hasNode(t)) return path;
-
-    let childNode = t;
+    let childNode = to;
 
     while (childNode != -1) {
       const parentNode = this.getParentNode(childNode);
 
       path.addNode(childNode);
+
+      if (parentNode == from) {
+        path.addNode(parentNode);
+
+        break;
+      }
+
       childNode = parentNode;
     }
 
+    if (childNode == -1) return null;
+  
     path.reverseNodes();
-    path.createEdges();
-    
+
+    for (let i = 0; i < path.nodes.length - 1; i++) {
+      const edge = new Edge(path.nodes[i], path.nodes[i + 1]);
+
+      path.addEdge(edge);
+    }
+
     return path;
   }
   /**

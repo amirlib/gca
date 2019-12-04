@@ -26,17 +26,6 @@ class Path {
     this.nodes.push(ID);
   }
   /**
-   * Adds edges from the the flow graph as mentioned in the minimum path.
-   * @memberof Path
-   */
-  createEdges() {
-    for (let i = 0; i < this.nodes.length - 1; i++) {
-      const edge = new Edge(this.nodes[i], this.nodes[i + 1]);
-
-      this.addEdge(edge);
-    }
-  }
-  /**
    * Reverse the order of path.
    * @memberof Path
    */

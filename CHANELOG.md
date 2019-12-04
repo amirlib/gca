@@ -18,6 +18,7 @@
   * Renamed getNodeIDFromLayer method to getNodeFromLayer.
   * Renamed getParentNodeID method to getParentNode.
   * Renamed getLayerIndexOfNodeID method to getLayerIndexOfNode.
+  * **New** method: getPath(from, to), returns the shortest path from the 'from' node to 'to' node.
 * `FlowEdge`
   * **New** method: isCapacityZero, you can check if the capacity of the edge is zero.
 * `ForwardFlowEdge` and `BackwardFlowEdge`
@@ -27,7 +28,7 @@
   * Renamed removeData method to remove.
   * **New** method: enqueue, creates new node and add it to the head of the linked list.
 * `Path`
-  * Renamed createEdgesFromNodes method to createEdges.
+  * Removed createEdgesFromNodes.
 
 ## 2.2.0
 

@@ -142,9 +142,10 @@ Implementation of BFS Graph. There are tools for building a Graph that it result
   * **@param {number} ID** - ID of child node.
   * **@returns {number}** ID of parent node. Return -1 if there is no such node ID in the graph.
 * `getPath(t)`
-  * Gets the shortest path from the root node to node t.
-  * **@param {number} t** - ID of end node in path.
-  * **@returns {Path}** The Path object. Returns an empty Path object if node with ID: t not exist in the graph.
+  * Returns the shortest path from the 'from' node to 'to' node.
+  * **@param {number} from** - ID of start node.
+  * **@param {number} to** - ID of end node.
+  * **@returns {Path}** The Path object. If path not exists, returns null.
 * `hasNodeInLayer(ID, index)`
   * Searches for the given node in the given layer.
   * **@param {number} ID** - ID of node to search.
@@ -197,8 +198,8 @@ DO NOT use it to represent a normal graph!
   * Resets the flow of all edges in the graph.
 * `getPath(from, to)`
   * Returns the shortest path from the 'from' node to 'to' node.
-  * **@param {number} from** - ID of start node edge.
-  * **@param {number} to** - ID of end node edge.
+  * **@param {number} from** - ID of start node.
+  * **@param {number} to** - ID of end node.
   * **@returns {Path}** Path object.
 * `clone()`
   * Deep copies a FlowGraph object.
