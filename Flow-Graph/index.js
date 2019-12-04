@@ -171,7 +171,9 @@ class FlowGraph extends Graph {
     
     if (graph == -1) return null;
 
-    const path = graph.getPath(to);
+    const path = graph.getPath(from, to);
+
+    if (path == null) return null;
 
     path.edges = [];
 

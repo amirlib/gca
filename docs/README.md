@@ -200,7 +200,7 @@ DO NOT use it to represent a normal graph!
   * Returns the shortest path from the 'from' node to 'to' node.
   * **@param {number} from** - ID of start node.
   * **@param {number} to** - ID of end node.
-  * **@returns {Path}** Path object.
+  * **@returns {Path}** Path object. If path not exists, returns null.
 * `clone()`
   * Deep copies a FlowGraph object.
   * **@returns {FlowGraph}** Cloned FlowGraph.
