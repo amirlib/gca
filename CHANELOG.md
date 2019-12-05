@@ -2,7 +2,7 @@
 
 * Discover folder was deleted with Discover class and DiscoverError exception. The Set data structure replaces Discover class.
 * `Graph`
-  * Renamed indexOfNodeID method to indexOfNodeID.
+  * Renamed indexOfNodeID method to indexOfNode.
   * Renamed printNodesID method to printNodes.
   * Renamed findStartNodesEdgesFromNode method to getNodesOfEdgesStartingNode.
   * Renamed findEndNodesEdgesFromNode method to getNodesOfEdgesEndingNode.
@@ -21,6 +21,8 @@
   * Changes to getPath method: receive two nodes' id and returns the shortest path from the 'from' node to 'to' node.
 * 'FlowGraph`
   * getPath method in FlowGraph class return path with FlowEdge objects instead Edge objects.
+* `ResidualGraph`
+  * Removed changeEdgesToFlowEdges method.
 * `FlowEdge`
   * **New** method: isCapacityZero, you can check if the capacity of the edge is zero.
 * `ForwardFlowEdge` and `BackwardFlowEdge`
@@ -30,7 +32,7 @@
   * Renamed removeData method to remove.
   * **New** method: enqueue, creates new node and add it to the head of the linked list.
 * `Path`
-  * Removed createEdgesFromNodes.
+  * Removed createEdgesFromNodes method.
 
 ## 2.2.0
 

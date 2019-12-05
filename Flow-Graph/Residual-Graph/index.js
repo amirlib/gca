@@ -76,27 +76,6 @@ class ResidualGraph extends FlowGraph {
     }
   }
   /**
-   * Changes each edge in path to its edge of the graph
-   * @param {Path} path The path's edges.
-   * @memberof ResidualGraph
-   */
-  changeEdgesToFlowEdges(path) {
-    const newEdges = [];
-
-    for (let i = 0; i < path.size(); i++) {
-      let edge = this.getEdge(path.nodes[i], path.nodes[i + 1], this.edgesList);
-      
-      if (edge == null) {
-        edge = this.getEdge(path.nodes[i], path.nodes[i + 1], this.backwardEdgesList);
-        newEdges.push(edge);
-      } else {
-        newEdges.push(edge);
-      }
-    }
-    
-    path.edges = newEdges;
-  }
-  /**
    * ResidualGraph object cannot be cloned.
    * @returns {boolean} False
    * @memberof ResidualGraph
