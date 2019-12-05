@@ -4,15 +4,16 @@ const FlowGraph = require("../Flow-Graph/");
 /**
  * Edmonds karp algorithm.
  * @param {FlowGraph} graph The graph that runs the edmonds karp algorithm.
- * @returns {number} The max flow. Return -1, if the graph is not instance of FlowGraph.
+ * @returns {number} The max flow. Returns 0, if the given graph is not instance of FlowGraph.
  */
 function edmondsKarp(graph) {
-  if (!graph instanceof FlowGraph) return -1;
+  let flow = 0;
+
+  if (!graph instanceof FlowGraph) return flow;
 
   graph.reset();
 
   const residualGraph = new ResidualGraph(graph);
-  let flow = 0;
   let path = residualGraph.getPath(residualGraph.s, residualGraph.t);
 
   while (path != null) {

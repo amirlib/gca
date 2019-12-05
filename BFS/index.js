@@ -4,10 +4,10 @@ const bfsGraph = require("./BFS-Graph");
  * BFS algorithm.
  * @param {Graph} graph The given graph for BFS
  * @param {number} s ID of root node.
- * @returns {bfsGraph} BFS graph. Return -1 if there no such s node in the original graph.
+ * @returns {bfsGraph} BFS graph. Return null if there no such s node in the original graph.
  */
 function BFS(graph, s) {
-  if (!graph.hasNode(s)) return -1;
+  if (!graph.hasNode(s)) return null;
 
   const bfsG = new bfsGraph();
   const explored = new Set();

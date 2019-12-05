@@ -169,7 +169,7 @@ class FlowGraph extends Graph {
 
     const graph = BFS(this, from);
     
-    if (graph == -1) return null;
+    if (graph == null) return null;
 
     const path = graph.getPath(from, to);
 

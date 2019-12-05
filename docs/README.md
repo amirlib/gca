@@ -40,7 +40,7 @@ The full documentation can be found in each class.
   * BFS algorithm.
   * **@param {Graph} graph** - The given graph for BFS
   * **@param {number} s** - ID of root node.
-  * **@returns {bfsGraph}** BFS graph object. Return -1 if there no such s node in the original graph.
+  * **@returns {bfsGraph}** BFS graph object. Returns null if there no such s node in the original graph.
 * `CreateFlowGraph()`
   * Creates an empty flow-network graph object from FlowGraph class.
 * `EdmondsKarp(flowGraph)`

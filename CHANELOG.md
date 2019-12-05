@@ -1,6 +1,10 @@
 ## 3.0.0
 
 * Discover folder was deleted with Discover class and DiscoverError exception. The Set data structure replaces Discover class.
+* `BFS Algorithm`
+  * Returns null if there no such given node in the original graph.
+* `Edmonds Krap Algorithm`
+  * Returns 0, if the given graph is not instance of FlowGraph.
 * `Graph`
   * Renamed indexOfNodeID method to indexOfNode.
   * Renamed printNodesID method to printNodes.
