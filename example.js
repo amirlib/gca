@@ -21,11 +21,9 @@ flowGraph.addEdge(5, flowGraph.t, 4);
 console.log(`${flowGraph.toString()}\n`);
 console.log(`${flowGraph.printNodes()}\n`);
 console.log(`${tool.EdmondsKarp(flowGraph)}\n`);
-// console.log(`${flowGraph.getPath(0, 5)}\n`);
 
 let bfsG = tool.BFS(flowGraph, flowGraph.s);
 console.log(`${bfsG.toString()}\n`);
-// console.log(`${bfsG.printLayers()}\n`);
 
 try {
     let path = bfsG.getPath(0, 5);

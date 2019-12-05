@@ -15,7 +15,7 @@ function edmondsKarp(graph) {
   let flow = 0;
   let path = residualGraph.getPath(residualGraph.s, residualGraph.t);
 
-  while (path.size() > 0) {
+  while (path != null) {
     flow = flow + Tools.augment(graph, path);
     Tools.updateFlowGraph(graph, residualGraph, path);
     path = residualGraph.getPath(residualGraph.s, residualGraph.t);
