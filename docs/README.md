@@ -194,7 +194,7 @@ DO NOT use it to represent a normal graph!
   * **@param {number} from** - ID of start node edge.
   * **@param {number} to** - ID of end node edge.
   * **@returns {object}** Edge from the list. Return null if its not exist.
-* `reset()`
+* `resetFlow()`
   * Resets the flow of all edges in the graph.
 * `getPath(from, to)`
   * Returns the shortest path from the 'from' node to 'to' node.

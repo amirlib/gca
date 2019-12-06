@@ -24,6 +24,7 @@
   * addLayer method no longer accepts parameters. It will automatically add a new layer.
   * printLayers method prints the layers with their indexes.
 * 'FlowGraph`
+  * Renamed reset method to resetFlow.
   * getPath method in FlowGraph class return path with FlowEdge objects instead Edge objects.
 * `ResidualGraph`
   * Removed changeEdgesToFlowEdges method.

@@ -133,7 +133,7 @@ class FlowGraph extends Graph {
    * Resets the flow of all edges in the graph.
    * @memberof FlowGraph
    */
-  reset() {
+  resetFlow() {
     let current = this.edgesList.head;
 
     while (current != null) {
