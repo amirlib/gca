@@ -28,12 +28,11 @@ function augment(flowGraph, path) {
       const edge = flowGraph.getEdge(path.edges[i].from, path.edges[i].to);
 
       edge.increaseFlow(b);
-      continue;
+    } else {
+      const edge = flowGraph.getEdge(path.edges[i].to, path.edges[i].from);
+
+      edge.decreaseFlow(b);
     }
-
-    const edge = flowGraph.getEdge(path.edges[i].to, path.edges[i].from);
-
-    edge.decreaseFlow(b);
   }
 
   return b;
