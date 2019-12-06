@@ -11,18 +11,18 @@
   * Renamed findStartNodesEdgesFromNode method to getNodesOfEdgesStartingNode.
   * Renamed findEndNodesEdgesFromNode method to getNodesOfEdgesEndingNode.
 * `BFS-Graph`
-  * layerCounter property does not exist anymore.
-  * Removed advanceLayerCounter method.
   * **New** method: layersNumber, you can get the number of layers that exist in the graph.
   * **New** method: getNodesFromLayer, you can get all nodes' Id in a specific layer.
-  * addLayer method no longer accepts parameters. It will automatically add a new layer.
+  * Removed layerCounter property.
+  * Removed advanceLayerCounter method.
   * Renamed printLayer method to printLayers.
-  * printLayers method prints the layers with their indexes.
   * Renamed countNodesInLayer method to layerSize.
   * Renamed getNodeIDFromLayer method to getNodeFromLayer.
   * Renamed getParentNodeID method to getParentNode.
   * Renamed getLayerIndexOfNodeID method to getLayerIndexOfNode.
   * Changes to getPath method: receive two nodes' id and returns the shortest path from the 'from' node to 'to' node.
+  * addLayer method no longer accepts parameters. It will automatically add a new layer.
+  * printLayers method prints the layers with their indexes.
 * 'FlowGraph`
   * getPath method in FlowGraph class return path with FlowEdge objects instead Edge objects.
 * `ResidualGraph`
@@ -32,9 +32,9 @@
 * `ForwardFlowEdge` and `BackwardFlowEdge`
   * Full deep clone capability of all edges properties.
 * `LinkedList`
+  * **New** method: enqueue, creates new node and add it to the head of the linked list.
   * Renamed addData method to push.
   * Renamed removeData method to remove.
-  * **New** method: enqueue, creates new node and add it to the head of the linked list.
 * `Path`
   * Removed createEdgesFromNodes method.
 
