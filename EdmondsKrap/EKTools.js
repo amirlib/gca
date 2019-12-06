@@ -24,14 +24,16 @@ function augment(flowGraph, path) {
   const b = bottleneck(path);
 
   for (let i = 0; i < path.size(); i++) {
-    let edge = flowGraph.getEdge(path.edges[i].from, path.edges[i].to);
+    if (flowGraph.hasEdge(path.edges[i].from, path.edges[i].to)) {
+      const edge = flowGraph.getEdge(path.edges[i].from, path.edges[i].to);
 
-    if (edge != null) {
       edge.increaseFlow(b);
-    } else {
-      edge = flowGraph.getEdge(path.edges[i].to, path.edges[i].from);
-      edge.decreaseFlow(b);
+      continue;
     }
+
+    const edge = flowGraph.getEdge(path.edges[i].to, path.edges[i].from);
+
+    edge.decreaseFlow(b);
   }
 
   return b;
@@ -43,14 +45,16 @@ function augment(flowGraph, path) {
  * @param {Path} path given path.
  */
 function updateFlowGraph(flowGraph, residualGraph, path) {
-  for (let i = 0; i < path.size(); i++) {
-    let edge = flowGraph.getEdge(path.edges[i].from, path.edges[i].to);
+  let edge = undefined;
 
-    if (edge == null) {
+  for (let i = 0; i < path.size(); i++) {
+    if (flowGraph.hasEdge(path.edges[i].from, path.edges[i].to)) {
+      edge = flowGraph.getEdge(path.edges[i].from, path.edges[i].to);
+    } else {
       edge = flowGraph.getEdge(path.edges[i].to, path.edges[i].from);
     }
 
-    const forwardEdge = residualGraph.getEdge(edge.from, edge.to, residualGraph.edgesList);
+    const forwardEdge = residualGraph.getEdge(edge.from, edge.to);
     const backwardEdge = forwardEdge.backwardEdge;
     
     forwardEdge.changeCapacityTo(edge.capacity - edge.flow);

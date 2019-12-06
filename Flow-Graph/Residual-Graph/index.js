@@ -63,11 +63,11 @@ class ResidualGraph extends FlowGraph {
 
         if (backward == null) {
           backward = new BackwardFlowEdge(current.data.to, current.data.from, current.data.capacity, current.data.flow);
-          this.backwardEdgesList.enqueue(backward);
         } else {
           backward = new BackwardFlowEdge(backward.from, backward.to, backward.capacity, backward.flow);
-          this.backwardEdgesList.enqueue(backward);
         }
+
+        this.backwardEdgesList.enqueue(backward);
       }
       
       forward.backwardEdge = backward;
