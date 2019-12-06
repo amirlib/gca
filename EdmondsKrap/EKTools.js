@@ -44,7 +44,7 @@ function augment(flowGraph, path) {
  * @param {ResidualGraph} residualGraph the residual graph of the original graph.
  * @param {Path} path given path.
  */
-function updateFlowGraph(flowGraph, residualGraph, path) {
+function updateResidualGraph(flowGraph, residualGraph, path) {
   let edge = undefined;
 
   for (let i = 0; i < path.size(); i++) {
