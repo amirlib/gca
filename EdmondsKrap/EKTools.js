@@ -45,20 +45,21 @@ function augment(flowGraph, path) {
  * @param {Path} path given path.
  */
 function updateResidualGraph(flowGraph, residualGraph, path) {
-  let edge = undefined;
+  const iterator = path.edges.values();
+  let flowEdge = undefined;
 
-  for (let i = 0; i < path.size(); i++) {
-    if (flowGraph.hasEdge(path.edges[i].from, path.edges[i].to)) {
-      edge = flowGraph.getEdge(path.edges[i].from, path.edges[i].to);
+  for (const edge of iterator) {
+    if (flowGraph.hasEdge(edge.from, edge.to)) {
+      flowEdge = flowGraph.getEdge(edge.from, edge.to);
     } else {
-      edge = flowGraph.getEdge(path.edges[i].to, path.edges[i].from);
+      flowEdge = flowGraph.getEdge(edge.to, edge.from);
     }
 
-    const forwardEdge = residualGraph.getEdge(edge.from, edge.to);
+    const forwardEdge = residualGraph.getEdge(flowEdge.from, flowEdge.to);
     const backwardEdge = forwardEdge.backwardEdge;
     
-    forwardEdge.changeCapacityTo(edge.capacity - edge.flow);
-    backwardEdge.changeCapacityTo(edge.flow);
+    forwardEdge.changeCapacityTo(flowEdge.capacity - flowEdge.flow);
+    backwardEdge.changeCapacityTo(flowEdge.flow);
     residualGraph.ChooseToMarkOrUnmarkEdge(forwardEdge);
     residualGraph.ChooseToMarkOrUnmarkEdge(backwardEdge);
   }
