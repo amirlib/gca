@@ -22,16 +22,17 @@ function bottleneck(path) {
  */
 function augment(flowGraph, path) {
   const b = bottleneck(path);
+  const iterator = path.edges.values();
 
-  for (let i = 0; i < path.size(); i++) {
-    if (flowGraph.hasEdge(path.edges[i].from, path.edges[i].to)) {
-      const edge = flowGraph.getEdge(path.edges[i].from, path.edges[i].to);
+  for (const edge of iterator) {
+    if (flowGraph.hasEdge(edge.from, edge.to)) {
+      let flowEdge = flowGraph.getEdge(edge.from, edge.to);
 
-      edge.increaseFlow(b);
+      flowEdge.increaseFlow(b);
     } else {
-      const edge = flowGraph.getEdge(path.edges[i].to, path.edges[i].from);
+      let flowEdge = flowGraph.getEdge(edge.to, edge.from);
 
-      edge.decreaseFlow(b);
+      flowEdge.decreaseFlow(b);
     }
   }
 
@@ -63,4 +64,4 @@ function updateResidualGraph(flowGraph, residualGraph, path) {
   }
 }
 
-module.exports = { augment, updateFlowGraph };
+module.exports = { augment, updateResidualGraph };
