@@ -26,10 +26,6 @@ let bfsG = tool.BFS(flowGraph, flowGraph.s);
 
 if (bfsG != null) console.log(`${bfsG.toString()}\n`);
 
-try {
-    let path = bfsG.getPath(0, 5);
+let path = bfsG.getPath(0, 5);
 
-    if (path != null) console.log(path.toString());
-} catch (error) {
-    console.log(`${error.message}`);
-}
+if (path != null) console.log(path.toString());
