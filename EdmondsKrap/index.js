@@ -11,7 +11,7 @@ function edmondsKarp(graph) {
 
   if (!graph instanceof FlowGraph) return flow;
 
-  graph.reset();
+  graph.resetFlow();
 
   const residualGraph = new ResidualGraph(graph);
   let path = residualGraph.getPath(residualGraph.s, residualGraph.t);

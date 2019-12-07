@@ -1,6 +1,6 @@
 /**
  * Returns the smallest capacity of the edges in the path.
- * @param  {Path} path 
+ * @param  {Path} path given path.
  * @return {number} the smallest capacity.
  */
 function bottleneck(path) {
@@ -18,7 +18,8 @@ function bottleneck(path) {
 /**
  * Increases or decreases flow, of the edges in the original graph.
  * @param {FlowGraph} flowGraph the original graph.
- * @param {Path} path
+ * @param {Path} path given path.
+ * @return {number} the value of bottleneck.
  */
 function augment(flowGraph, path) {
   const b = bottleneck(path);
@@ -41,7 +42,7 @@ function augment(flowGraph, path) {
 /**
  * Updates the residual graph as a result of the augment method.
  * @param {FlowGraph} flowGraph the original graph.
- * @param {ResidualGraph} residualGraph the residual graph of the original graph.
+ * @param {ResidualGraph} residualGraph the residual graph.
  * @param {Path} path given path.
  */
 function updateResidualGraph(flowGraph, residualGraph, path) {

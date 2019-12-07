@@ -55,23 +55,25 @@ class ResidualGraph extends FlowGraph {
 
     while (current != null) {
       let forward = current.data;
-      let backward = graph.getEdge(current.data.to, current.data.from);
+      let backward = undefined;
 
-      if (!this.edgesList.has(forward) && !this.backwardEdgesList.has(forward)) {
+      if (!this.backwardEdgesList.has(forward)) {
         forward = new ForwardFlowEdge(current.data.from, current.data.to, current.data.capacity, current.data.flow);
-        this.edgesList.enqueue(forward);
 
-        if (backward == null) {
-          backward = new BackwardFlowEdge(current.data.to, current.data.from, current.data.capacity, current.data.flow);
+        if (graph.hasEdge(current.data.to, current.data.from)) {
+          const edge = graph.getEdge(current.data.to, current.data.from);
+
+          backward = new BackwardFlowEdge(edge.from, edge.to, edge.capacity, edge.flow);
         } else {
-          backward = new BackwardFlowEdge(backward.from, backward.to, backward.capacity, backward.flow);
+          backward = new BackwardFlowEdge(current.data.to, current.data.from, current.data.capacity, current.data.flow);
         }
 
+        forward.backwardEdge = backward;
+        backward.forwardEdge = forward;
         this.backwardEdgesList.enqueue(backward);
+        this.edgesList.enqueue(forward);
       }
-      
-      forward.backwardEdge = backward;
-      backward.forwardEdge = forward;
+
       current = current.next;
     }
   }
