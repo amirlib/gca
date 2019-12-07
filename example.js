@@ -1,4 +1,4 @@
-const gca = require("./index");
+const gca = require("gca");
 const tool = new gca();
 
 let flowGraph = tool.CreateFlowGraph();

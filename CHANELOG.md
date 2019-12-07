@@ -1,8 +1,11 @@
 ## 3.0.0
 
+Behind the scenes, each of the classes and files has undergone a change to improve performance and readability.  
+Here are some of the noticeable changes:  
+
 * Discover folder was deleted with Discover class and DiscoverError exception. The Set data structure replaces Discover class.
 * `BFS Algorithm`
-  * Returns null if there no such given node in the original graph.
+  * Returns null if the given node does not exists in the original graph.
 * `Edmonds Krap Algorithm`
   * Returns 0, if the given graph is not instance of FlowGraph.
 * `Graph`
@@ -20,12 +23,12 @@
   * Renamed getNodeIDFromLayer method to getNodeFromLayer.
   * Renamed getParentNodeID method to getParentNode.
   * Renamed getLayerIndexOfNodeID method to getLayerIndexOfNode.
-  * Changes to getPath method: receive two nodes' id and returns the shortest path from the 'from' node to 'to' node.
+  * Changes to getPath method: receive two nodes' id and returns the shortest path from the 'from' node to 'to' node. If path can not be found, it will return null.
   * addLayer method no longer accepts parameters. It will automatically add a new layer.
   * printLayers method prints the layers with their indexes.
-* 'FlowGraph`
+* `FlowGraph`
   * Renamed reset method to resetFlow.
-  * getPath method in FlowGraph class return path with FlowEdge objects instead Edge objects.
+  * getPath method in FlowGraph class return path with FlowEdge objects instead Edge objects. If path can not be found, it will return null.
 * `ResidualGraph`
   * Removed changeEdgesToFlowEdges method.
 * `FlowEdge`
